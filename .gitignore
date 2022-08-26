@@ -1,4 +1,4 @@
 node_modules
 dist
-cypress/results
+cypress/support/savetime/results
 cypress/videos
