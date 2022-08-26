@@ -13,12 +13,6 @@ export default defineConfig({
     baseUrl: "http://localhost:4173",
 
     setupNodeEvents(on) {
-      // on("task", {
-      //   appendTestLogs(logs) {
-      //     pushTransferredLogs(logs);
-      //     return null;
-      //   },
-      // });
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       on("after:run", (results) => {
