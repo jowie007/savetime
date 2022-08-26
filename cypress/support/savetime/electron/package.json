@@ -1,7 +1,7 @@
 {
-  "name": "my-electron-app",
+  "name": "savetime",
   "version": "1.0.0",
-  "description": "Hello World!",
+  "description": "Savetime!",
   "main": "main.js",
   "author": "Jonas Wiegmann",
   "license": "MIT"

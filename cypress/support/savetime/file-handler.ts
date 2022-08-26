@@ -51,6 +51,19 @@ function getRecentTwoFileNumbers() {
   return [previousLatest, latest]
 }
 
+export function getAllFileNumbers() {
+  const fileNumbers = []
+  const firstCharsDigits = /\d{1,}$/
+  fs.readdirSync(RESULT_RAW_DIR).forEach(function (filename: string) {
+    const firstChars = filename.split('_')[0]
+    if (firstCharsDigits.test(firstChars)) {
+      const position = Number(firstChars)
+      fileNumbers.push(position)
+    }
+  })
+  return fileNumbers
+}
+
 export function compareRecentTwoFiles() {
   const recentTwoFileNumbers = getRecentTwoFileNumbers()
   compareFilesByNumber(recentTwoFileNumbers[0], recentTwoFileNumbers[1])
