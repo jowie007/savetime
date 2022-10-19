@@ -7,6 +7,7 @@ describe("Home view", () => {
 
   it("check main content", () => {
     cy.contains("h1", "You did it!");
+    cy.wait(20000);
   });
 
   it("check info list", () => {

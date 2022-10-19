@@ -5,6 +5,7 @@ describe("About view", () => {
 
   it("check main content", () => {
     cy.contains("h1", "You did it!");
+    cy.wait(3000);
   });
 
   it("check secondary content", () => {
