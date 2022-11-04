@@ -1,0 +1,19 @@
+{
+  "name": "savetime",
+  "version": "1.0.0",
+  "description": "Savetime!",
+  "main": "./src/main.ts",
+  "author": "Jonas Wiegmann",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "start": "npm run build && electron ./dist/main.js"
+  },
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "cypress": "^10.11.0"
+  }
+}

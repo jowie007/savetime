@@ -4,7 +4,7 @@
     "vite.config.*",
     "vitest.config.*",
     "cypress.config.*",
-    "./cypress/support/savetime/file-handler.ts"
+    "cypress/support/savetime/src/services/file-handler.ts"
   ],
   "compilerOptions": {
     "composite": true,

@@ -1,8 +1,0 @@
-{
-  "name": "savetime",
-  "version": "1.0.0",
-  "description": "Savetime!",
-  "main": "main.js",
-  "author": "Jonas Wiegmann",
-  "license": "MIT"
-}
