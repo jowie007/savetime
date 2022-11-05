@@ -9,11 +9,5 @@
     "build": "tsc",
     "watch": "tsc -w",
     "start": "npm run build && electron ./dist/main.js"
-  },
-  "devDependencies": {
-    "typescript": "^4.8.4"
-  },
-  "dependencies": {
-    "cypress": "^10.11.0"
   }
 }

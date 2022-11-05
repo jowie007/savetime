@@ -6,8 +6,6 @@ import {
   TestResultCompare,
 } from '../classes/cypress-run-result-compare'
 
-import { CypressCommandLine } from 'CypressCommandLine'
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs')
 // const transferedLogs: CypressLog[] = [];
@@ -54,7 +52,7 @@ function getRecentTwoFileNumbers() {
 }
 
 export function getAllFileNumbers() {
-  const fileNumbers = []
+  const fileNumbers: number[] = []
   const firstCharsDigits = /\d{1,}$/
   fs.readdirSync(RESULT_RAW_DIR).forEach(function (filename: string) {
     const firstChars = filename.split('_')[0]
@@ -192,7 +190,7 @@ export function createCypressLog(
     | CypressCommandLine.CypressFailedRunResult,
 ) {
   if (results.status === 'finished') {
-    fs.mkdirSync(RESULT_RAW_DIR, { recursive: true }, (err) => {
+    fs.mkdirSync(RESULT_RAW_DIR, { recursive: true }, (err: any) => {
       if (err) {
         console.error(err)
       }
@@ -205,7 +203,7 @@ export function createCypressLog(
         .split('.')
         .join('-')}.json`,
       JSON.stringify(results, null, '\t'),
-      (err) => {
+      (err: any) => {
         if (err) {
           console.error(err)
         }
@@ -221,7 +219,7 @@ function createCypressCompareLog(
   secondNumber: number,
   logs: CypressRunResultCompare,
 ) {
-  fs.mkdirSync(RESULT_COMP_DIR, { recursive: true }, (err) => {
+  fs.mkdirSync(RESULT_COMP_DIR, { recursive: true }, (err: any) => {
     if (err) {
       console.error(err)
     }
@@ -229,7 +227,7 @@ function createCypressCompareLog(
   fs.writeFileSync(
     `${RESULT_COMP_DIR}/${secondNumber}_vs_${firstNumber}.json`,
     JSON.stringify(logs, null, '\t'),
-    (err) => {
+    (err: any) => {
       if (err) {
         console.error(err)
       }
@@ -237,27 +235,27 @@ function createCypressCompareLog(
   )
 }
 
-export async function openHTMLInfoPage() {
-  // https://stackoverflow.com/questions/4720343/loading-basic-html-in-node-js
-  // const http = require('http')
-  // const fs = require('fs')
-  // const path = require('path')
-  // fs.readFile(path.resolve(__dirname, './report.html'), function (err, html) {
-  //   if (err) {
-  //     throw err
-  //   }
-  //   http
-  //     .createServer(function (request, response) {
-  //       response.writeHeader(200, { 'Content-Type': 'text/html' })
-  //       response.write(html)
-  //       response.end()
-  //     })
-  //     .listen(8000)
-  // })
-  // // eslint-disable-next-line @typescript-eslint/no-var-requires
-  // const open = require('open')
-  // // eslint-disable-next-line @typescript-eslint/no-var-requires
-  // const path = require('path')
-  // const htmlLocation = `file:///${path.resolve(__dirname, './report.html')}`
-  // await open(htmlLocation)
-}
+// export async function openHTMLInfoPage() {
+// https://stackoverflow.com/questions/4720343/loading-basic-html-in-node-js
+// const http = require('http')
+// const fs = require('fs')
+// const path = require('path')
+// fs.readFile(path.resolve(__dirname, './report.html'), function (err, html) {
+//   if (err) {
+//     throw err
+//   }
+//   http
+//     .createServer(function (request, response) {
+//       response.writeHeader(200, { 'Content-Type': 'text/html' })
+//       response.write(html)
+//       response.end()
+//     })
+//     .listen(8000)
+// })
+// // eslint-disable-next-line @typescript-eslint/no-var-requires
+// const open = require('open')
+// // eslint-disable-next-line @typescript-eslint/no-var-requires
+// const path = require('path')
+// const htmlLocation = `file:///${path.resolve(__dirname, './report.html')}`
+// await open(htmlLocation)
+// }

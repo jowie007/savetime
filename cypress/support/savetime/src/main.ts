@@ -6,11 +6,11 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.ts'),
+      preload: path.join(__dirname, 'preload.js'),
     },
   })
 
-  win.loadFile('./src/index.html')
+  win.loadFile('../src/index.html')
   win.webContents.openDevTools()
 }
 
