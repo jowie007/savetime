@@ -68,12 +68,18 @@ export function getAllFileDetails() {
   const fileDetails = new Map<number, Date>()
   const firstCharsDigits = /\d{1,}$/
   fs.readdirSync(RESULT_RAW_DIR).forEach(function (filename: string) {
-    const splittedString = filename.split(/[_.]/g)
+    const splittedString = filename.split(/\D/)
     const firstChars = splittedString[0]
-    const date = Date.parse(splittedString[1])
-    console.log(splittedString[1])
-    if (firstCharsDigits.test(firstChars) && !isNaN(date)) {
-      fileDetails.set(Number(firstChars), new Date(splittedString[1]))
+    if (firstCharsDigits.test(firstChars)) {
+      const date = new Date()
+      date.setFullYear(Number(splittedString[1]))
+      date.setMonth(Number(splittedString[2]) - 1)
+      date.setDate(Number(splittedString[3]))
+      date.setHours(Number(splittedString[4]))
+      date.setMinutes(Number(splittedString[5]))
+      date.setSeconds(Number(splittedString[6]))
+      date.setMilliseconds(Number(splittedString[7]))
+      fileDetails.set(Number(firstChars), new Date(date))
     }
   })
   return fileDetails
