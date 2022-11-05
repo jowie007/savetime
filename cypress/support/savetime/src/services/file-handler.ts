@@ -9,8 +9,8 @@ import {
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs')
 // const transferedLogs: CypressLog[] = [];
-const RESULT_RAW_DIR = 'cypress/support/savetime/results/raw'
-const RESULT_COMP_DIR = 'cypress/support/savetime/results/compare'
+const RESULT_RAW_DIR = __dirname + '/../../results/raw'
+const RESULT_COMP_DIR = __dirname + '/../../results/compare'
 
 export { RESULT_COMP_DIR }
 

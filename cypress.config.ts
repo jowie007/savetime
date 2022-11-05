@@ -3,7 +3,7 @@ import {
   compareRecentTwoFiles,
   createCypressLog,
   // pushTransferredLogs,
-  openHTMLInfoPage,
+  // openHTMLInfoPage,
 } from './cypress/support/savetime/src/services/file-handler'
 
 export default defineConfig({
@@ -19,7 +19,7 @@ export default defineConfig({
         console.log('cypress.config.ts:create_log/after:run')
         createCypressLog(results)
         compareRecentTwoFiles()
-        openHTMLInfoPage()
+        // openHTMLInfoPage()
         return null
       })
       // on("before:browser:launch", (browser, launchOptions) => {

@@ -1,3 +1,5 @@
+import { getAllFileNumbers } from './services/file-handler.js'
+
 window.addEventListener('DOMContentLoaded', () => {
   const replaceText = (selector: string, text: string) => {
     const element = document.getElementById(selector)
@@ -19,6 +21,8 @@ window.addEventListener('DOMContentLoaded', () => {
   //     .catch((error) => alert(error))
 
   const langArray = [{ display: 'display', value: 'value' }]
+
+  console.log(getAllFileNumbers())
 
   var dynamicSelect = document.getElementById('dropdown1') as HTMLSelectElement
   langArray.forEach((item) => {
