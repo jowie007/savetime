@@ -64,6 +64,21 @@ export function getAllFileNumbers() {
   return fileNumbers
 }
 
+export function getAllFileDetails() {
+  const fileDetails = new Map<number, Date>()
+  const firstCharsDigits = /\d{1,}$/
+  fs.readdirSync(RESULT_RAW_DIR).forEach(function (filename: string) {
+    const splittedString = filename.split(/[_.]/g)
+    const firstChars = splittedString[0]
+    const date = Date.parse(splittedString[1])
+    console.log(splittedString[1])
+    if (firstCharsDigits.test(firstChars) && !isNaN(date)) {
+      fileDetails.set(Number(firstChars), new Date(splittedString[1]))
+    }
+  })
+  return fileDetails
+}
+
 export function compareRecentTwoFiles() {
   const recentTwoFileNumbers = getRecentTwoFileNumbers()
   compareFilesByNumber(recentTwoFileNumbers[0], recentTwoFileNumbers[1])
