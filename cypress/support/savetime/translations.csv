@@ -1,2 +1,3 @@
 nothingToCompare|Nothing to compare|Nichts zum Vergleichen
-test|testEN|testDE
+overallDurationDifference|Overall duration difference|Gesamte Laufzeitdifferenz
+overallDurationDifferenceWithoutMissingTests|Overall duration difference without missing tests|Gesamte Laufzeitdifferenz ohne fehlende Tests
