@@ -90,11 +90,12 @@ export function compareRecentTwoFiles() {
   compareFilesByNumber(recentTwoFileNumbers[0], recentTwoFileNumbers[1])
 }
 
-// TODO Was wenn zwei mit der gleichen Nummer starten?
-function compareFilesByNumber(firstNumber: number, secondNumber: number): void {
+export function compareFilesByNumber(
+  firstNumber: number,
+  secondNumber: number,
+): CypressRunResultCompare | null {
   let firstContent: CypressCommandLine.CypressRunResult
   let secondContent: CypressCommandLine.CypressRunResult
-  // TODO Die nächsten drei Zeilen auslagern
   try {
     fs.readdirSync(RESULT_RAW_DIR).forEach(function (filename: string) {
       const firstChars = filename.split('_')[0]
@@ -114,18 +115,19 @@ function compareFilesByNumber(firstNumber: number, secondNumber: number): void {
         }
       }
     })
-    writeCompareResultFile(firstContent, secondContent)
   } catch (e) {
-    console.log(
-      'There is no cypress/results/raw folder yet, so no logs will be compared this time',
-    )
+    console.log('Unable to compare files by number')
   }
+  console.log(firstNumber, secondNumber)
+  return firstContent && secondContent
+    ? compareFilesByContent(firstContent, secondContent)
+    : null
 }
 
-function writeCompareResultFile(
+function compareFilesByContent(
   firstLog: CypressCommandLine.CypressRunResult,
   secondLog: CypressCommandLine.CypressRunResult,
-) {
+): CypressRunResultCompare {
   const cypressRunResultCompare = new CypressRunResultCompare()
   try {
     cypressRunResultCompare.durationDifference =
@@ -194,15 +196,16 @@ function writeCompareResultFile(
     cypressRunResultCompare.durationDifferenceWithoutMissingTests =
       cypressRunResultCompare.durationDifference -
       durationDifferenceOfMissingTestsCombined
-    const recentTwoFileNumbers = getRecentTwoFileNumbers()
-    createCypressCompareLog(
-      recentTwoFileNumbers[0],
-      recentTwoFileNumbers[1],
-      cypressRunResultCompare,
-    )
+    // const recentTwoFileNumbers = getRecentTwoFileNumbers()
+    // createCypressCompareLog(
+    //   recentTwoFileNumbers[0],
+    //   recentTwoFileNumbers[1],
+    //   cypressRunResultCompare,
+    // )
   } catch (_) {
     console.log('Unable to create compare file.')
   }
+  return cypressRunResultCompare
 }
 
 export function createCypressLog(
