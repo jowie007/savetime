@@ -6,6 +6,8 @@ export const enum Locale {
   DE = 1,
 }
 
+let selectedLocale = Locale.EN
+
 const translations = new Map<string, Array<string>>()
 translations.set('nothingToCompare', [
   'Nothing to compare',
@@ -33,6 +35,10 @@ function readFile(): void {
 
 readFile()
 
-export function getTranslation(identifier: string, locale: Locale): string {
-  return translations.get(identifier)[locale]
+export function setSelectedLocale(locale: Locale): void {
+  selectedLocale = locale
+}
+
+export function getTranslation(identifier: string): string {
+  return translations.get(identifier)[selectedLocale]
 }

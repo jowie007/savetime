@@ -9,7 +9,6 @@ const delimiter = ':'
 
 var selectElement1: HTMLSelectElement
 var selectElement2: HTMLSelectElement
-var compareResultsElement: HTMLElement
 
 function getSelectedFirst(): number {
   return Number(selectElement1.value.split(delimiter)[0])
@@ -19,10 +18,7 @@ function getSelectedSecond(): number {
 }
 
 function setcompareResultsElement(): void {
-  printResult(
-    compareResultsElement,
-    compareFilesByNumber(getSelectedFirst(), getSelectedSecond()),
-  )
+  printResult(compareFilesByNumber(getSelectedFirst(), getSelectedSecond()))
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -35,9 +31,6 @@ window.addEventListener('DOMContentLoaded', () => {
   //   }
   selectElement1 = document.getElementById('dropdown1') as HTMLSelectElement
   selectElement2 = document.getElementById('dropdown2') as HTMLSelectElement
-  compareResultsElement = document.getElementById(
-    'compareResults',
-  ) as HTMLElement
   getAllFileDetails().forEach((value, key) => {
     const text = key.toString() + delimiter + ' ' + formatDate(value)
     const newOption1 = document.createElement('option')

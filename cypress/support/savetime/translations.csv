@@ -1,3 +1,4 @@
 nothingToCompare|Nothing to compare|Nichts zum Vergleichen
-overallDurationDifference|Overall duration difference|Gesamte Laufzeitdifferenz
-overallDurationDifferenceWithoutMissingTests|Overall duration difference without missing tests|Gesamte Laufzeitdifferenz ohne fehlende Tests
+overall__caption|Overall infos|Allgemeine Infos
+overall__durationDifference__th|Overall duration difference|Gesamte Laufzeitdifferenz
+overall__durationDifferenceWithoutMissingTests__th|Overall duration difference without missing tests|Gesamte Laufzeitdifferenz ohne fehlende Tests
