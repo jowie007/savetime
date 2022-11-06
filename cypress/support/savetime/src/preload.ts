@@ -1,15 +1,15 @@
-import { first } from 'cypress/types/lodash/index.js'
 import { formatDate } from './services/date-handler.js'
 import {
   compareFilesByNumber,
   getAllFileDetails,
 } from './services/file-handler.js'
+import { printResult } from './services/result-printer.js'
 
 const delimiter = ':'
 
 var dynamicSelect1: HTMLSelectElement
 var dynamicSelect2: HTMLSelectElement
-var json: HTMLElement
+var compareResults: HTMLElement
 
 function getSelectedFirst(): number {
   return Number(dynamicSelect1.value.split(delimiter)[0])
@@ -18,8 +18,8 @@ function getSelectedSecond(): number {
   return Number(dynamicSelect2.value.split(delimiter)[0])
 }
 
-function setJson(): void {
-  json.innerText = JSON.stringify(
+function setCompareResults(): void {
+  compareResults = printResult(
     compareFilesByNumber(getSelectedFirst(), getSelectedSecond()),
   )
 }
@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', () => {
   //   }
   dynamicSelect1 = document.getElementById('dropdown1') as HTMLSelectElement
   dynamicSelect2 = document.getElementById('dropdown2') as HTMLSelectElement
-  json = document.getElementById('json') as HTMLElement
+  compareResults = document.getElementById('compareResults') as HTMLElement
   getAllFileDetails().forEach((value, key) => {
     const text = key.toString() + delimiter + ' ' + formatDate(value)
     const newOption1 = document.createElement('option')
@@ -48,11 +48,11 @@ window.addEventListener('DOMContentLoaded', () => {
   })
   dynamicSelect1.onchange = function () {
     console.log('Key: ', dynamicSelect1.value.split(delimiter)[0])
-    setJson()
+    setCompareResults()
   }
   dynamicSelect2.onchange = function () {
     console.log('Key: ', dynamicSelect2.value.split(delimiter)[0])
-    setJson()
+    setCompareResults()
   }
-  setJson()
+  setCompareResults()
 })
