@@ -1,5 +1,8 @@
 import { getTranslation, Locale } from './translation-handler'
-import { CypressRunResultCompare } from '../classes/cypress-run-result-compare'
+import {
+  CypressRunResultCompare,
+  RunResultCompare,
+} from '../classes/cypress-run-result-compare'
 
 let initialized = false
 let nothingToCompare: HTMLElement
@@ -9,6 +12,12 @@ let overall__durationDifference__th: HTMLElement
 let overall__durationDifference__td: HTMLElement
 let overall__durationDifferenceWithoutMissingTests__th: HTMLElement
 let overall__durationDifferenceWithoutMissingTests__td: HTMLElement
+let run: HTMLElement
+// let run__caption: HTMLElement
+// let run__durationDifference__th: HTMLElement
+// let run__durationDifference__td: HTMLElement
+// let run__durationDifferenceWithoutMissingTests__th: HTMLElement
+// let run__durationDifferenceWithoutMissingTests__td: HTMLElement
 
 function init() {
   if (!initialized) {
@@ -28,6 +37,21 @@ function init() {
     overall__durationDifferenceWithoutMissingTests__td = document.getElementById(
       'overall__durationDifferenceWithoutMissingTests__td',
     )
+    run = document.getElementById('run')
+    run.style.visibility = 'hidden'
+    // run__caption = document.getElementById('run__caption')
+    // run__durationDifference__th = document.getElementById(
+    //   'run__durationDifference__th',
+    // )
+    // run__durationDifference__td = document.getElementById(
+    //   'run__durationDifference__td',
+    // )
+    // run__durationDifferenceWithoutMissingTests__th = document.getElementById(
+    //   'run__durationDifferenceWithoutMissingTests__th',
+    // )
+    // run__durationDifferenceWithoutMissingTests__td = document.getElementById(
+    //   'run__durationDifferenceWithoutMissingTests__td',
+    // )
   }
 }
 
@@ -38,6 +62,7 @@ export function printResult(result: CypressRunResultCompare): void {
     somethingToCompare.style.visibility = 'hidden'
   } else {
     fillOverallTables(result)
+    fillRunTables(result)
     nothingToCompare.style.visibility = 'hidden'
     somethingToCompare.style.visibility = 'visible'
   }
@@ -55,8 +80,22 @@ function fillOverallTables(result: CypressRunResultCompare): void {
   overall__durationDifferenceWithoutMissingTests__td.innerText = result.durationDifferenceWithoutMissingTests.toString()
 }
 
-// function createOverallTables(result: CypressRunResultCompare): HTMLElement {
-//   const runs = document.createElement('div')
-//   result.runs
-//   return runs
-// }
+function fillRunTables(result: CypressRunResultCompare) {
+  result.runs.forEach((value: RunResultCompare, index: number) => {
+    const run__clone = run.cloneNode(true) as HTMLElement
+    run__clone.id += '-' + index
+    run__clone.style.visibility = 'visible'
+    const childElements = run__clone.getElementsByTagName('*')
+    let count = 0
+    let element = childElements[count]
+    while (element) {
+      console.log(element.id)
+      if (element.id !== '') {
+        element.id += '-' + index
+      }
+      count++
+      element = childElements[count]
+    }
+    somethingToCompare.append(run__clone)
+  })
+}
