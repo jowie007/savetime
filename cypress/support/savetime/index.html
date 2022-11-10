@@ -1,50 +1,49 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Savetime!</title>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-</head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
+  </head>
 
-<body>
+  <body>
     <div id="selection">
-        <select id="dropdown1">
-        </select>
-        <select id="dropdown2">
-        </select>
+      <select id="dropdown1"></select>
+      <select id="dropdown2"></select>
     </div>
     <div id="compareResults">
-        <div id="nothingToCompare"></div>
-        <div id="somethingToCompare">
-            <table id="overall">
-                <caption id="overall__caption"></caption>
-                <tr id="overall__durationDifference">
-                    <th id="overall__durationDifference__th"></th>
-                    <td id="overall__durationDifference__td"></td>
-                </tr>
-                <tr id="overall__durationDifferenceWithoutMissingTests">
-                    <th id="overall__durationDifferenceWithoutMissingTests__th"></th>
-                    <td id="overall__durationDifferenceWithoutMissingTests__td"></td>
-                </tr>
-            </table>
-            <table id="run">
-                <caption id="run__caption"></caption>
-                <tr id="run__durationDifference">
-                    <th id="run__durationDifference__th"></th>
-                    <td id="run__durationDifference__td"></td>
-                </tr>
-                <tr id="run__durationDifferenceWithoutMissingTests">
-                    <th id="run__durationDifferenceWithoutMissingTests__th"></th>
-                    <td id="run__durationDifferenceWithoutMissingTests__td"></td>
-                </tr>
-                <!-- <tr id="run__test">
-                    <th id="run__durationDifferenceWithoutMissingTests__th"></th>
-                    <td id="run__durationDifferenceWithoutMissingTests__td"></td>
-                </tr> -->
-            </table>
+      <div id="nothingToCompare"></div>
+      <div id="somethingToCompare">
+        <div id="overall__wrapper">
+          <table id="overall__table">
+            <caption id="overall__caption"></caption>
+            <tr id="overall__durationDifference">
+              <th id="overall__durationDifference__th"></th>
+              <td id="overall__durationDifference__td"></td>
+            </tr>
+            <tr id="overall__durationDifferenceWithoutMissingTests">
+              <th id="overall__durationDifferenceWithoutMissingTests__th"></th>
+              <td id="overall__durationDifferenceWithoutMissingTests__td"></td>
+            </tr>
+          </table>
         </div>
+        <div id="run__wrapper">
+          <table id="run">
+            <caption id="run__caption"></caption>
+            <tr id="run__durationDifference">
+              <th id="run__durationDifference__th"></th>
+              <td id="run__durationDifference__td"></td>
+            </tr>
+            <tr id="run__durationDifferenceWithoutMissingTests">
+              <th id="run__durationDifferenceWithoutMissingTests__th"></th>
+              <td id="run__durationDifferenceWithoutMissingTests__td"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
