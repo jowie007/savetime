@@ -39,11 +39,7 @@ function fillOverallTables(
   cypressRunResultCompare: CypressRunResultCompare
 ): void {
   const overall__wrapper = document.getElementById("overall__wrapper");
-  overall__wrapper.innerHTML = "";
-  overall__wrapper.insertAdjacentHTML(
-    "afterend",
-    getOverallContent(cypressRunResultCompare)
-  );
+  overall__wrapper.innerHTML = getOverallContent(cypressRunResultCompare);
 }
 
 function getOverallContent(cypressRunResultCompare: CypressRunResultCompare) {
@@ -86,14 +82,13 @@ function getOverallContent(cypressRunResultCompare: CypressRunResultCompare) {
 
 function fillRunTables(cypressRunResultCompare: CypressRunResultCompare) {
   const run__wrapper = document.getElementById("run__wrapper");
-  run__wrapper.innerHTML = "";
   const innerHTMLArray: string[] = [];
   cypressRunResultCompare.runs.forEach(
     (value: RunResultCompare, index: number) => {
       innerHTMLArray.push(getRunTableContent(value, index));
     }
   );
-  run__wrapper.insertAdjacentHTML("afterend", innerHTMLArray.join(" "));
+  run__wrapper.innerHTML = innerHTMLArray.join(" ");
 }
 
 function getRunTableContent(
