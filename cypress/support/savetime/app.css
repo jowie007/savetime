@@ -1,0 +1,38 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background-color: #081215;
+  color: white;
+}
+
+caption {
+  margin-bottom: 0.4rem;
+  font-size: medium;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#compareInfos__rating__gradient {
+  height: 1rem;
+  width: 100%;
+  /* background-image: linear-gradient(to right, green, orange, red); */
+}
+
+table,
+td,
+th {
+  border: 1px solid;
+}
+
+.td__duration {
+  background-color: aqua;
+}
+
+table {
+  margin-bottom: 1.2rem;
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+}

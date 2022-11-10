@@ -5,6 +5,8 @@ import {
   TestResultCompare,
 } from "../classes/cypress-run-result-compare";
 
+const MAX_DURATION_BORDER = 1000;
+
 let initialized = false;
 let nothingToCompare: HTMLElement;
 let somethingToCompare: HTMLElement;
@@ -14,6 +16,7 @@ let overall__durationDifference__td: HTMLElement;
 let overall__durationDifferenceWithoutMissingTests__th: HTMLElement;
 let overall__durationDifferenceWithoutMissingTests__td: HTMLElement;
 let run__wrapper: HTMLElement;
+let colors: string[];
 
 function init() {
   if (!initialized) {
@@ -36,6 +39,7 @@ function init() {
         "overall__durationDifferenceWithoutMissingTests__td"
       );
     run__wrapper = document.getElementById("run__wrapper");
+    colors = initializeGradient();
   }
 }
 
@@ -87,7 +91,7 @@ function runTableContent(runResultCompare: RunResultCompare, indexRun: number) {
         <th id="run__durationDifference__th-${indexRun}">
           ${translations.run__durationDifference__th}
         </th>
-        <td id="run__durationDifference__td-${indexRun}">
+        <td id="run__durationDifference__td-${indexRun}" class="td__duration">
           ${runResultCompare.durationDifference}
         </td>
       </tr>
@@ -95,7 +99,7 @@ function runTableContent(runResultCompare: RunResultCompare, indexRun: number) {
         <th id="run__durationDifferenceWithoutMissingTests__th-${indexRun}">
           ${translations.run__durationDifferenceWithoutMissingTests__th}
         </th>
-        <td id="run__durationDifferenceWithoutMissingTests__td-${indexRun}">
+        <td id="run__durationDifferenceWithoutMissingTests__td-${indexRun}" class="td__duration">
           ${runResultCompare.durationDifferenceWithoutMissingTests} 
         </td>
       </tr>
@@ -124,9 +128,48 @@ function testContentRow(
       <td id="run__test__durationDifference__td-${indexRun}-${indexTest}">
         ${testResultCompare.title}
       </td>
-      <td id="run__test__durationDifference__td-${indexRun}-${indexTest}">
+      <td 
+        id="run__test__durationDifference__td-${indexRun}-${indexTest}" 
+        class="td__duration" 
+        style="${getStyleByDurationDifference(1)}">
         ${testResultCompare.durationDifference}
       </td>
     </tr>
   `;
+}
+
+function initializeGradient(): string[] {
+  const canvas = document.getElementById(
+    "compareInfos__rating__gradient"
+  ) as HTMLCanvasElement;
+  const colors: string[] = [];
+  const ctx = canvas.getContext("2d");
+  const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+  gradient.addColorStop(0, "green");
+  gradient.addColorStop(0.5, "yellow");
+  gradient.addColorStop(1, "red");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  const canvasContext = canvas.getContext("2d");
+  for (let i = 0; i < canvas.width; i += canvas.width / 100) {
+    const rgb = canvasContext.getImageData(i, 1, 1, 1).data;
+    colors.push(
+      "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + rgb[3] + ")"
+    );
+  }
+  return colors;
+}
+
+function getColorByDuration(duration: number) {
+  let position = (colors.length * duration) / MAX_DURATION_BORDER;
+  if (position >= colors.length) {
+    position = colors.length - 1;
+  } else if (position < 0) {
+    position = 0;
+  }
+  return colors[position.toFixed(0)];
+}
+
+function getStyleByDurationDifference(durationDifference: number) {
+  return `background-color: red`;
 }
