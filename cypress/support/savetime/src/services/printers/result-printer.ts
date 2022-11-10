@@ -1,9 +1,9 @@
-import { translations } from "./translation-handler";
+import { translations } from "../translation-handler";
 import {
   CypressRunResultCompare,
   RunResultCompare,
   TestResultCompare,
-} from "../classes/cypress-run-result-compare";
+} from "../../classes/cypress-run-result-compare";
 
 const MAX_DURATION_BORDER = 1000;
 
@@ -18,6 +18,7 @@ function init() {
     nothingToCompare.innerText = translations.nothingToCompare;
     somethingToCompare = document.getElementById("somethingToCompare");
     colors = initializeGradient();
+    initialized = true;
   }
 }
 
