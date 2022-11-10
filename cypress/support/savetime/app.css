@@ -3,6 +3,7 @@ body {
   text-align: center;
   background-color: #081215;
   color: white;
+  margin: auto;
 }
 
 caption {
@@ -15,7 +16,6 @@ caption {
 #compareInfos__rating__gradient {
   height: 1rem;
   width: 100%;
-  /* background-image: linear-gradient(to right, green, orange, red); */
 }
 
 table,

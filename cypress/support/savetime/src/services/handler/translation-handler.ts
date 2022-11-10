@@ -16,7 +16,7 @@ export const translations: Translations = new Translations();
 
 export function readTranslationsFile(): void {
   const csv = fs.readFileSync(
-    path.resolve(__dirname, "../../translations.csv")
+    path.resolve(__dirname, "../../../translations.csv")
   );
   csv
     .toString()

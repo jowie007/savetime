@@ -1,4 +1,4 @@
-import { translations } from "../translation-handler";
+import { translations } from "../handler/translation-handler";
 import {
   CypressRunResultCompare,
   RunResultCompare,
