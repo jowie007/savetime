@@ -10,12 +10,6 @@ const MAX_DURATION_BORDER = 1000;
 let initialized = false;
 let nothingToCompare: HTMLElement;
 let somethingToCompare: HTMLElement;
-let overall__caption: HTMLElement;
-let overall__durationDifference__th: HTMLElement;
-let overall__durationDifference__td: HTMLElement;
-let overall__durationDifferenceWithoutMissingTests__th: HTMLElement;
-let overall__durationDifferenceWithoutMissingTests__td: HTMLElement;
-let run__wrapper: HTMLElement;
 let colors: string[];
 
 function init() {
@@ -23,22 +17,6 @@ function init() {
     nothingToCompare = document.getElementById("nothingToCompare");
     nothingToCompare.innerText = translations.nothingToCompare;
     somethingToCompare = document.getElementById("somethingToCompare");
-    overall__caption = document.getElementById("overall__caption");
-    overall__durationDifference__th = document.getElementById(
-      "overall__durationDifference__th"
-    );
-    overall__durationDifference__td = document.getElementById(
-      "overall__durationDifference__td"
-    );
-    overall__durationDifferenceWithoutMissingTests__th =
-      document.getElementById(
-        "overall__durationDifferenceWithoutMissingTests__th"
-      );
-    overall__durationDifferenceWithoutMissingTests__td =
-      document.getElementById(
-        "overall__durationDifferenceWithoutMissingTests__td"
-      );
-    run__wrapper = document.getElementById("run__wrapper");
     colors = initializeGradient();
   }
 }
@@ -46,41 +24,86 @@ function init() {
 export function printResult(result: CypressRunResultCompare): void {
   init();
   if (result === null) {
-    nothingToCompare.style.visibility = "visible";
-    somethingToCompare.style.visibility = "hidden";
+    nothingToCompare.style.display = "block";
+    somethingToCompare.style.display = "none";
   } else {
     fillOverallTables(result);
     fillRunTables(result);
-    nothingToCompare.style.visibility = "hidden";
-    somethingToCompare.style.visibility = "visible";
+    nothingToCompare.style.display = "none";
+    somethingToCompare.style.display = "block";
   }
 }
 
-function fillOverallTables(result: CypressRunResultCompare): void {
-  overall__caption.innerText = translations.overall__caption;
-  overall__durationDifference__th.innerText =
-    translations.overall__durationDifference__th;
-  overall__durationDifferenceWithoutMissingTests__th.innerText =
-    translations.overall__durationDifferenceWithoutMissingTests__th;
-  overall__durationDifference__td.innerText =
-    result.durationDifference.toString();
-  overall__durationDifferenceWithoutMissingTests__td.innerText =
-    result.durationDifferenceWithoutMissingTests.toString();
+function fillOverallTables(
+  cypressRunResultCompare: CypressRunResultCompare
+): void {
+  const overall__wrapper = document.getElementById("overall__wrapper");
+  overall__wrapper.innerHTML = "";
+  overall__wrapper.insertAdjacentHTML(
+    "afterend",
+    getOverallContent(cypressRunResultCompare)
+  );
 }
 
-function fillRunTables(result: CypressRunResultCompare) {
+function getOverallContent(cypressRunResultCompare: CypressRunResultCompare) {
+  return `
+    <table id="overall__table">
+      <caption id="overall__caption">
+        ${translations.overall__caption}
+      </caption>
+      <tr id="overall__durationDifference">
+        <th id="overall__durationDifference__th">
+          ${translations.overall__durationDifference__th}
+        </th>
+        <td id="overall__durationDifference__td"
+          class="td__duration"
+          style="
+            ${getStyleByDurationDifference(
+              cypressRunResultCompare.durationDifference
+            )}
+          ">
+          ${cypressRunResultCompare.durationDifference}
+        </td>
+      </tr>
+      <tr id="overall__durationDifferenceWithoutMissingTests">
+        <th id="overall__durationDifferenceWithoutMissingTests__th">
+          ${translations.overall__durationDifferenceWithoutMissingTests__th}
+        </th>
+        <td id="overall__durationDifferenceWithoutMissingTests__td"
+          class="td__duration"
+          style="
+            ${getStyleByDurationDifference(
+              cypressRunResultCompare.durationDifferenceWithoutMissingTests
+            )}
+          ">
+          ${cypressRunResultCompare.durationDifferenceWithoutMissingTests}
+        </td>
+      </tr>
+    </table>
+  `;
+}
+
+function fillRunTables(cypressRunResultCompare: CypressRunResultCompare) {
+  const run__wrapper = document.getElementById("run__wrapper");
   run__wrapper.innerHTML = "";
   const innerHTMLArray: string[] = [];
-  result.runs.forEach((value: RunResultCompare, index: number) => {
-    innerHTMLArray.push(runTableContent(value, index));
-  });
+  cypressRunResultCompare.runs.forEach(
+    (value: RunResultCompare, index: number) => {
+      innerHTMLArray.push(getRunTableContent(value, index));
+    }
+  );
   run__wrapper.insertAdjacentHTML("afterend", innerHTMLArray.join(" "));
 }
 
-function runTableContent(runResultCompare: RunResultCompare, indexRun: number) {
+function getRunTableContent(
+  runResultCompare: RunResultCompare,
+  indexRun: number
+) {
   const testHTMLArray: string[] = [];
   runResultCompare.tests.forEach((testResultCompare, indexTest) => {
-    testHTMLArray.push(testContentRow(testResultCompare, indexRun, indexTest));
+    testHTMLArray.push(
+      getTestRowContent(testResultCompare, indexRun, indexTest)
+    );
   });
   return `
     <table id="run-${indexRun}">
@@ -91,7 +114,11 @@ function runTableContent(runResultCompare: RunResultCompare, indexRun: number) {
         <th id="run__durationDifference__th-${indexRun}">
           ${translations.run__durationDifference__th}
         </th>
-        <td id="run__durationDifference__td-${indexRun}" class="td__duration">
+        <td id="run__durationDifference__td-${indexRun}" 
+          class="td__duration"
+          style="
+            ${getStyleByDurationDifference(runResultCompare.durationDifference)}
+          ">
           ${runResultCompare.durationDifference}
         </td>
       </tr>
@@ -99,7 +126,13 @@ function runTableContent(runResultCompare: RunResultCompare, indexRun: number) {
         <th id="run__durationDifferenceWithoutMissingTests__th-${indexRun}">
           ${translations.run__durationDifferenceWithoutMissingTests__th}
         </th>
-        <td id="run__durationDifferenceWithoutMissingTests__td-${indexRun}" class="td__duration">
+        <td id="run__durationDifferenceWithoutMissingTests__td-${indexRun}" 
+          class="td__duration"
+          style="
+            ${getStyleByDurationDifference(
+              runResultCompare.durationDifferenceWithoutMissingTests
+            )}
+          ">
           ${runResultCompare.durationDifferenceWithoutMissingTests} 
         </td>
       </tr>
@@ -118,7 +151,7 @@ function runTableContent(runResultCompare: RunResultCompare, indexRun: number) {
   `;
 }
 
-function testContentRow(
+function getTestRowContent(
   testResultCompare: TestResultCompare,
   indexRun: number,
   indexTest: number
@@ -131,7 +164,9 @@ function testContentRow(
       <td 
         id="run__test__durationDifference__td-${indexRun}-${indexTest}" 
         class="td__duration" 
-        style="${getStyleByDurationDifference(1)}">
+        style="
+          ${getStyleByDurationDifference(testResultCompare.durationDifference)}
+        ">
         ${testResultCompare.durationDifference}
       </td>
     </tr>
@@ -167,9 +202,9 @@ function getColorByDuration(duration: number) {
   } else if (position < 0) {
     position = 0;
   }
-  return colors[position.toFixed(0)];
+  return colors[Number(position.toFixed(0))];
 }
 
 function getStyleByDurationDifference(durationDifference: number) {
-  return `background-color: red`;
+  return `background-color: ${getColorByDuration(durationDifference)}`;
 }
