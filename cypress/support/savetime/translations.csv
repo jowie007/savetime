@@ -6,4 +6,5 @@ overall__durationDifferenceWithoutMissingTests__th|Overall duration difference w
 run__durationDifference__th|Run duration difference|Laufzeitdifferenz der Testsammlung
 run__durationDifferenceWithoutMissingTests__th|Run duration difference without missing tests|Laufzeitdifferenz der Testsammlung ohne fehlende Tests
 run__durationDifference__th|Run duration difference|Laufzeitdifferenz der Testsammlung
+run__test__name__th|Test name|Testname
 run__test__durationDifference__th|Test duration difference|Laufzeitdifferenz des Tests

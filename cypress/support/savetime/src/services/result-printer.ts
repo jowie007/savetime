@@ -99,6 +99,16 @@ function runTableContent(runResultCompare: RunResultCompare, indexRun: number) {
           ${runResultCompare.durationDifferenceWithoutMissingTests} 
         </td>
       </tr>
+    </table>
+    <table>
+      <tr id="run__test-${indexRun}">
+        <th id="run__test__name__th-${indexRun}">
+          ${translations.run__test__name__th}
+        </th>
+        <th id="run__test__durationDifference__th-${indexRun}">
+          ${translations.run__test__durationDifference__th}
+        </th>
+      </tr>
       ${testHTMLArray.join(" ")}
     </table>
   `;
@@ -111,9 +121,9 @@ function testContentRow(
 ) {
   return `
     <tr id="run__test-${indexRun}-${indexTest}">
-      <th id="run__test__durationDifference__th-${indexRun}-${indexTest}">
-        ${translations.run__test__durationDifference__th}
-      </th>
+      <td id="run__test__durationDifference__td-${indexRun}-${indexTest}">
+        ${testResultCompare.title}
+      </td>
       <td id="run__test__durationDifference__td-${indexRun}-${indexTest}">
         ${testResultCompare.durationDifference}
       </td>
