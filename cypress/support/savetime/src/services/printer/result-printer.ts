@@ -155,7 +155,7 @@ function getTestRowContent(
   return `
     <tr id="run__test-${indexRun}-${indexTest}">
       <td id="run__test__durationDifference__td-${indexRun}-${indexTest}">
-        ${testResultCompare.title}
+        ${testResultCompare.title.join(": ")}
       </td>
       <td 
         id="run__test__durationDifference__td-${indexRun}-${indexTest}" 

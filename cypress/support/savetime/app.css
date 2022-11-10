@@ -3,7 +3,8 @@ body {
   text-align: center;
   background-color: #081215;
   color: white;
-  margin: auto;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 caption {
@@ -24,11 +25,13 @@ th {
   border: 1px solid;
 }
 
-table {
-  margin-bottom: 1.2rem;
+td,
+th {
+  min-width: 20%;
 }
 
 table {
-  width: 80%;
+  margin-bottom: 1.2rem;
+  width: 100%;
   border-collapse: collapse;
 }
