@@ -1,5 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
+import { getSettings } from '../store/settings-store'
 
 export enum Locale {
   EN = 0,
@@ -9,12 +10,25 @@ export enum Locale {
 const languageFlags = ['🇬🇧', '🇩🇪']
 
 class Translations {
+  [key: string]: string[]
+}
+
+class Translation {
   [key: string]: string
 }
 
-let selectedLocale = Locale.EN
+let selectedLocale: Locale
 
-export const translations: Translations = new Translations()
+const translations: Translations = new Translations()
+
+export const translation: Translation = new Translation()
+
+export function initTranslations() {
+  selectedLocale = getSettings().locale
+  for (const [key, value] of Object.entries(translations)) {
+    translation[key] = value[selectedLocale]
+  }
+}
 
 export function getLanguageFlagByLocale(locale: number) {
   return languageFlags[locale]
@@ -29,11 +43,6 @@ export function readTranslationsFile(): void {
     .split('\n')
     .forEach((value) => {
       const valueArray = value.split('|')
-      translations[valueArray.shift()] = valueArray[selectedLocale]
+      translations[valueArray.shift()] = valueArray
     })
-}
-
-export function setSelectedLocale(locale: Locale): void {
-  selectedLocale = locale
-  readTranslationsFile()
 }

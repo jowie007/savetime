@@ -1,5 +1,5 @@
 import { formatDate } from "../handler/date-handler";
-import { compareFilesByNumber, getAllFileDetails } from "../handler/file-handler";
+import { compareFilesByNumber, getAllFileDetails } from "../handler/cypress-file-handler";
 import { printResult } from "./result-printer";
 
 const delimiter = ":";
