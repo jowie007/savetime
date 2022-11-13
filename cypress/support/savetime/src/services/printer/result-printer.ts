@@ -7,19 +7,15 @@ import {
 
 const MAX_DURATION_BORDER = 1000
 
-let initialized = false
 let nothingToCompare: HTMLElement
 let somethingToCompare: HTMLElement
 let colors: string[]
 
 function init() {
-  if (!initialized) {
-    nothingToCompare = document.getElementById('nothingToCompare')
-    nothingToCompare.innerText = translation.nothingToCompare
-    somethingToCompare = document.getElementById('somethingToCompare')
-    colors = initializeGradient()
-    initialized = true
-  }
+  nothingToCompare = document.getElementById('nothingToCompare')
+  nothingToCompare.innerText = translation.nothingToCompare
+  somethingToCompare = document.getElementById('somethingToCompare')
+  colors = initializeGradient()
 }
 
 export function printResult(result: CypressRunResultCompare): void {

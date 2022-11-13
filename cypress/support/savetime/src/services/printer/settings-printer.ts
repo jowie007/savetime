@@ -6,17 +6,12 @@ import {
 } from '../handler/translation-handler'
 import { setLocale } from '../store/settings-store'
 
-let initialized = false
 let settings__button: HTMLElement
 let settings__panel: HTMLElement
-let clickedLocale: Locale
 
 function init() {
-  if (!initialized) {
-    initializeAccordionButton()
-    fillSettings()
-    initialized = true
-  }
+  initializeAccordionButton()
+  fillSettings()
 }
 
 function initializeAccordionButton() {
@@ -32,6 +27,7 @@ function initializeAccordionButton() {
 
 function fillSettings(): void {
   settings__panel.innerHTML = getSettingsContent()
+  initLocaleButtonsClickListeners()
 }
 
 function getSettingsContent(): string {
@@ -52,17 +48,24 @@ function getSettingsContent(): string {
 function getFlagButtonContentByLocale(locale: number): string {
   return `
     <button id='settings__language__button-${locale}'
-      class='settings__language__button'
-      onclick='${onLocaleButtonClick}'>
+      class='settings__language__button'>
         ${getLanguageFlagByLocale(locale)}
     </button>
     `
 }
 
-function onLocaleButtonClick() {
-  // TODO Wont work like this, because click is triggered on init
-  setLocale(Number(clickedLocale))
-  initializeHTML()
+function initLocaleButtonsClickListeners() {
+  Object.values(Locale).forEach((locale) => {
+    if (!Number.isNaN(Number(locale))) {
+      console.log('started loading')
+      document
+        .getElementById(`settings__language__button-${locale}`)
+        .addEventListener('click', () => {
+          setLocale(Number(locale))
+          initializeHTML()
+        })
+    }
+  })
 }
 
 export function printSettings(): void {
