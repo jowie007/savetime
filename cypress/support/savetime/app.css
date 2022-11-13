@@ -3,8 +3,6 @@ body {
   text-align: center;
   background-color: #081215;
   color: white;
-  margin-left: 20%;
-  margin-right: 20%;
 }
 
 caption {
@@ -34,4 +32,45 @@ table {
   margin-bottom: 1.2rem;
   width: 100%;
   border-collapse: collapse;
+}
+
+#main {
+  display: flex;
+}
+
+#everything {
+  padding: 0.1rem;
+  position: relative;
+}
+
+#content__wrapper {
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+#settings__button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.td__duration {
+  text-shadow: 0px 0px 4px black;
+}
+
+.accordion {
+  padding: 0;
+  background-color: transparent;
+  font-size: medium;
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  outline: none;
+  transition: 0.4s;
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
 }

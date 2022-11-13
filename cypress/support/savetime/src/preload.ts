@@ -1,14 +1,9 @@
-import { printDropdowns } from "./services/printer/dropdown-printer.js";
-import { readTranslationsFile } from "./services/handler/translation-handler.js";
+import { printDropdowns } from './services/printer/dropdown-printer.js'
+import { readTranslationsFile } from './services/handler/translation-handler.js'
+import { printSettings } from './services/printer/settings-printer.js'
 
-window.addEventListener("DOMContentLoaded", async () => {
-  // const replaceText = (selector: string, text: string) => {
-  //   const element = document.getElementById(selector)
-  //   if (element) element.innerText = text
-  // }
-  //   for (const type of ['chrome', 'node', 'electron']) {
-  //     replaceText(`${type}-version`, process.versions[type])
-  //   }
-  readTranslationsFile();
-  printDropdowns();
-});
+window.addEventListener('DOMContentLoaded', async () => {
+  readTranslationsFile()
+  printSettings()
+  printDropdowns()
+})

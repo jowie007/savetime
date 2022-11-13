@@ -1,5 +1,7 @@
 nothingToCompare|Nothing to compare|Nichts zum Vergleichen
 file|File|Datei
+duration|Duration|Laufzeit
+settings|⚙️|⚙️
 overall__caption|Overall infos|Allgemeine Infos
 overall__durationDifference__th|Overall duration difference|Gesamte Laufzeitdifferenz
 overall__durationDifferenceWithoutMissingTests__th|Overall duration difference without missing tests|Gesamte Laufzeitdifferenz ohne fehlende Tests
