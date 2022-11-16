@@ -4,11 +4,15 @@ import {
   RunResultCompare,
   TestResultCompare,
 } from "../../classes/cypress-run-result-compare";
-import { getMaxDurationDifference } from "../store/settings-store";
+import {
+  getMaxDurationDifference,
+  isPercentageValues,
+} from "../store/settings-store";
 
 let nothingToCompare: HTMLElement;
 let somethingToCompare: HTMLElement;
 let colors: string[];
+let cypressRunResultCompare: CypressRunResultCompare;
 
 function init() {
   nothingToCompare = document.getElementById("nothingToCompare");
@@ -19,18 +23,19 @@ function init() {
 
 export function printResult(result: CypressRunResultCompare) {
   init();
+  cypressRunResultCompare = result;
   if (result === null) {
     nothingToCompare.style.display = "block";
     somethingToCompare.style.display = "none";
   } else {
-    fillOverallTables(result);
-    fillRunTables(result);
+    fillOverallTables();
+    fillRunTables();
     nothingToCompare.style.display = "none";
     somethingToCompare.style.display = "block";
   }
 }
 
-function fillOverallTables(cypressRunResultCompare: CypressRunResultCompare) {
+function fillOverallTables() {
   const overall__wrapper = document.getElementById("overall__wrapper");
   overall__wrapper.innerHTML = getOverallContent(cypressRunResultCompare);
 }
@@ -73,7 +78,7 @@ function getOverallContent(cypressRunResultCompare: CypressRunResultCompare) {
   `;
 }
 
-function fillRunTables(cypressRunResultCompare: CypressRunResultCompare) {
+function fillRunTables() {
   const run__wrapper = document.getElementById("run__wrapper");
   const innerHTMLArray: string[] = [];
   cypressRunResultCompare.runs.forEach(
@@ -156,7 +161,7 @@ function getTestRowContent(
         style="
           ${getStyleByDurationDifference(testResultCompare.durationDifference)}
         ">
-        ${testResultCompare.durationDifference}
+        ${getAdjustedDurationDifference(testResultCompare)}
       </td>
     </tr>
   `;
@@ -201,4 +206,11 @@ function getColorByDuration(duration: number) {
 
 function getStyleByDurationDifference(durationDifference: number) {
   return `background-color: ${getColorByDuration(durationDifference)}`;
+}
+
+function getAdjustedDurationDifference(testResultCompare: TestResultCompare) {
+  if (isPercentageValues()) {
+    return testResultCompare.durationDifferencePercentage + "%";
+  }
+  return testResultCompare.durationDifference;
 }

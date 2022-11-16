@@ -1,6 +1,8 @@
 export class CypressRunResultCompare {
   durationDifference: number;
+  durationDifferencePercentage: number;
   durationDifferenceWithoutMissingTests: number;
+  durationDifferenceWithoutMissingTestsPercentage: number;
   runs: RunResultCompare[];
 
   constructor() {
@@ -11,7 +13,9 @@ export class CypressRunResultCompare {
 
 export class RunResultCompare {
   durationDifference: number;
+  durationDifferencePercentage: number;
   durationDifferenceWithoutMissingTests: number;
+  durationDifferenceWithoutMissingTestsPercentage: number;
   tests: TestResultCompare[];
   name: string;
   differenceDetectedMessage: string | null;
@@ -27,6 +31,7 @@ export class RunResultCompare {
 export class TestResultCompare {
   title: string[];
   durationDifference: number;
+  durationDifferencePercentage: number;
   attemptCountDifference: number;
   differenceDetectedMessage: string | null;
 
