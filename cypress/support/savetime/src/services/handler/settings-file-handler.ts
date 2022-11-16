@@ -1,5 +1,4 @@
-import { Settings } from "../../classes/settings";
-import { Locale } from "./translation-handler";
+import { INITIAL_SETTINGS, Settings } from "../../classes/settings";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require("fs");
 
@@ -11,7 +10,7 @@ export function readSettings(): Settings {
     return JSON.parse(fs.readFileSync(SETTINGS_FILE, "utf8")) as Settings;
   } catch (e) {
     console.log("Unable to read settings");
-    return new Settings(Locale.EN, 1000);
+    return INITIAL_SETTINGS;
   }
 }
 

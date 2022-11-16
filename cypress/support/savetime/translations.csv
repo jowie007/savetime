@@ -4,8 +4,9 @@ file|File|Datei
 duration|Duration|Laufzeit
 milliseconds|ms|ms
 settings|⚙️|⚙️
-settings__languageLabel|Language|Sprache
-settings__maxDurationDifferenceLabel|Max duration difference|Max. Laufzeitdifferenz
+settings__language__label|Language|Sprache
+settings__maxDurationDifference__label|Max duration difference|Max. Laufzeitdifferenz
+settings__percentageValues__label|Percentage values|Prozentuale Werte
 overall__caption|Overall infos|Allgemeine Infos
 overall__durationDifference__th|Overall duration difference|Gesamte Laufzeitdifferenz
 overall__durationDifferenceWithoutMissingTests__th|Overall duration difference without missing tests|Gesamte Laufzeitdifferenz ohne fehlende Tests

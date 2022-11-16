@@ -1,4 +1,5 @@
 {
 	"locale": 1,
-	"maxDurationDifference": 579
+	"maxDurationDifference": 579,
+	"percentageValues": true
 }
