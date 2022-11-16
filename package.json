@@ -10,7 +10,7 @@
     "test:e2e:ci": "start-server-and-test preview http://localhost:4173/ 'cypress run --e2e'",
     "test:unit": "cypress open --component",
     "test:unit:ci": "cypress run --component --quiet --reporter spec",
-    "savetime:report": "cd ./cypress/support/savetime && tsc && electron ./dist/main.js",
+    "savetime:report": "cd ./cypress/support/savetime && tsc && sass src/styles:dist/styles  && electron ./dist/main.js",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
@@ -34,6 +34,7 @@
     "eslint-plugin-vue": "^9.3.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
+    "sass": "^1.56.1",
     "start-server-and-test": "^1.14.0",
     "typescript": "^4.8.4",
     "vite": "^3.0.4",
