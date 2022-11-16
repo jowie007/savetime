@@ -6,11 +6,14 @@ import {
 } from "../handler/translation-handler";
 import {
   getMaxDurationDifference,
+  getMaxDurationDifferencePercentage,
   isPercentageValues,
   setLocale,
   setMaxDurationDifference,
+  setMaxDurationDifferencePercentage,
   setPercentageValues,
 } from "../store/settings-store";
+import { getMinBorder } from "./result-printer";
 
 let settings__button: HTMLElement;
 let settings__panel: HTMLElement;
@@ -60,13 +63,21 @@ function getSettingsContent() {
     </div>
     <div id='settings__maxDurationDifference__wrapper' class='settings__item'>
       <label id='settings__maxDurationDifference__label' for='settings__maxDurationDifference'>
-        ${translation.settings__maxDurationDifference__label}
+        ${
+          isPercentageValues()
+            ? translation.settings__maxDurationDifference__label__percentage
+            : translation.settings__maxDurationDifference__label
+        }
       </label><br/>
       <input 
         id='settings__maxDurationDifference' 
         type='number' 
-        min='1' 
-        value='${getMaxDurationDifference()}' 
+        min='${getMinBorder()}' 
+        value='${
+          isPercentageValues()
+            ? getMaxDurationDifferencePercentage()
+            : getMaxDurationDifference()
+        }' 
         oninput="validity.valid||(value='');"
         />
     </div>
@@ -109,9 +120,12 @@ function initMaxDurationDifferenceChangeListener() {
   document
     .getElementById(`settings__maxDurationDifference`)
     .addEventListener("change", (change) => {
-      setMaxDurationDifference(
-        Number((change.target as HTMLInputElement).value)
-      );
+      const newValue = Number((change.target as HTMLInputElement).value);
+      if (isPercentageValues()) {
+        setMaxDurationDifferencePercentage(newValue);
+      } else {
+        setMaxDurationDifference(newValue);
+      }
       initializeHTML();
     });
 }

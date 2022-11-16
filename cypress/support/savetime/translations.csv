@@ -6,6 +6,7 @@ milliseconds|ms|ms
 settings|⚙️|⚙️
 settings__language__label|Language|Sprache
 settings__maxDurationDifference__label|Max duration difference|Max. Laufzeitdifferenz
+settings__maxDurationDifference__label__percentage|Max duration difference in %|Max. Laufzeitdifferenz in %
 settings__percentageValues__label|Percentage values|Prozentuale Werte
 overall__caption|Overall infos|Allgemeine Infos
 overall__durationDifference__th|Overall duration difference|Gesamte Laufzeitdifferenz

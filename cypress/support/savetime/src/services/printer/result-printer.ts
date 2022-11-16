@@ -6,8 +6,12 @@ import {
 } from "../../classes/cypress-run-result-compare";
 import {
   getMaxDurationDifference,
+  getMaxDurationDifferencePercentage,
   isPercentageValues,
 } from "../store/settings-store";
+
+const MIN_BORDER = 0;
+const MIN_BORDER_PERCENTAGE = 100;
 
 let nothingToCompare: HTMLElement;
 let somethingToCompare: HTMLElement;
@@ -19,6 +23,10 @@ function init() {
   nothingToCompare.innerText = translation.nothingToCompare;
   somethingToCompare = document.getElementById("somethingToCompare");
   colors = initializeGradient();
+}
+
+export function getMinBorder() {
+  return isPercentageValues() ? MIN_BORDER_PERCENTAGE : MIN_BORDER;
 }
 
 export function printResult(result: CypressRunResultCompare) {
@@ -57,7 +65,7 @@ function getOverallContent(cypressRunResultCompare: CypressRunResultCompare) {
               cypressRunResultCompare.durationDifference
             )}
           ">
-          ${cypressRunResultCompare.durationDifference}
+          ${getAdjustedDurationDifference(cypressRunResultCompare)}
         </td>
       </tr>
       <tr id="overall__durationDifferenceWithoutMissingTests">
@@ -71,7 +79,9 @@ function getOverallContent(cypressRunResultCompare: CypressRunResultCompare) {
               cypressRunResultCompare.durationDifferenceWithoutMissingTests
             )}
           ">
-          ${cypressRunResultCompare.durationDifferenceWithoutMissingTests}
+          ${getAdjustedDurationDifferenceWithoutMissingTests(
+            cypressRunResultCompare
+          )}
         </td>
       </tr>
     </table>
@@ -113,7 +123,7 @@ function getRunTableContent(
           style="
             ${getStyleByDurationDifference(runResultCompare.durationDifference)}
           ">
-          ${runResultCompare.durationDifference}
+          ${getAdjustedDurationDifference(runResultCompare)}
         </td>
       </tr>
       <tr id="run__durationDifferenceWithoutMissingTests-${indexRun}">
@@ -127,7 +137,7 @@ function getRunTableContent(
               runResultCompare.durationDifferenceWithoutMissingTests
             )}
           ">
-          ${runResultCompare.durationDifferenceWithoutMissingTests} 
+          ${getAdjustedDurationDifferenceWithoutMissingTests(runResultCompare)} 
         </td>
       </tr>
     </table>
@@ -179,7 +189,8 @@ function initializeGradient() {
   gradient.addColorStop(1, "red");
   canvasContext.fillStyle = gradient;
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
-  for (let i = 0; i < canvas.width; i += canvas.width / 100) {
+  const start = getMinBorder();
+  for (let i = start; i < canvas.width; i += canvas.width / 100) {
     const rgb = canvasContext.getImageData(i, 1, 1, 1).data;
     colors.push(
       "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + rgb[3] + ")"
@@ -188,18 +199,25 @@ function initializeGradient() {
   document.getElementById("compareInfos__rating__title").innerHTML =
     translation.compareInfos__rating__title;
   document.getElementById("compareInfos__rating__min").innerHTML =
-    "0" + translation.milliseconds;
+    isPercentageValues() ? "100%" : "0" + translation.milliseconds;
   document.getElementById("compareInfos__rating__max").innerHTML =
-    getMaxDurationDifference() + translation.milliseconds;
+    isPercentageValues()
+      ? getMaxDurationDifferencePercentage() + "%"
+      : getMaxDurationDifference() + translation.milliseconds;
   return colors;
 }
 
+// TODO Beginnt für Prozent mit 100 funktioniert nicht
 function getColorByDuration(duration: number) {
-  let position = (colors.length * duration) / getMaxDurationDifference();
+  let position =
+    (colors.length * duration) /
+    (isPercentageValues()
+      ? getMaxDurationDifferencePercentage()
+      : getMaxDurationDifference());
   if (position >= colors.length) {
     position = colors.length - 1;
-  } else if (position < 0) {
-    position = 0;
+  } else if (position < getMinBorder()) {
+    position = getMinBorder();
   }
   return colors[Number(position.toFixed(0))];
 }
@@ -208,9 +226,23 @@ function getStyleByDurationDifference(durationDifference: number) {
   return `background-color: ${getColorByDuration(durationDifference)}`;
 }
 
-function getAdjustedDurationDifference(testResultCompare: TestResultCompare) {
+function getAdjustedDurationDifference(
+  resultCompare: TestResultCompare | RunResultCompare | CypressRunResultCompare
+) {
   if (isPercentageValues()) {
-    return testResultCompare.durationDifferencePercentage + "%";
+    return resultCompare.durationDifferencePercentage + "%";
   }
-  return testResultCompare.durationDifference;
+  return resultCompare.durationDifference + translation.milliseconds;
+}
+
+function getAdjustedDurationDifferenceWithoutMissingTests(
+  resultCompare: RunResultCompare | CypressRunResultCompare
+) {
+  if (isPercentageValues()) {
+    return resultCompare.durationDifferenceWithoutMissingTestsPercentage + "%";
+  }
+  return (
+    resultCompare.durationDifferenceWithoutMissingTests +
+    translation.milliseconds
+  );
 }

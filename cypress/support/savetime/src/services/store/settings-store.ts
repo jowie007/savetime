@@ -26,6 +26,17 @@ export function setMaxDurationDifference(maxDurationDifference: number) {
   saveSettings(settings);
 }
 
+export function getMaxDurationDifferencePercentage() {
+  return settings.maxDurationDifferencePercentage;
+}
+
+export function setMaxDurationDifferencePercentage(
+  maxDurationDifferencePercentage: number
+) {
+  settings.maxDurationDifferencePercentage = maxDurationDifferencePercentage;
+  saveSettings(settings);
+}
+
 export function isPercentageValues() {
   return settings.percentageValues;
 }
