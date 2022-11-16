@@ -17,7 +17,7 @@ function init() {
   colors = initializeGradient();
 }
 
-export function printResult(result: CypressRunResultCompare): void {
+export function printResult(result: CypressRunResultCompare) {
   init();
   if (result === null) {
     nothingToCompare.style.display = "block";
@@ -30,9 +30,7 @@ export function printResult(result: CypressRunResultCompare): void {
   }
 }
 
-function fillOverallTables(
-  cypressRunResultCompare: CypressRunResultCompare
-): void {
+function fillOverallTables(cypressRunResultCompare: CypressRunResultCompare) {
   const overall__wrapper = document.getElementById("overall__wrapper");
   overall__wrapper.innerHTML = getOverallContent(cypressRunResultCompare);
 }
@@ -164,25 +162,30 @@ function getTestRowContent(
   `;
 }
 
-function initializeGradient(): string[] {
+function initializeGradient() {
   const canvas = document.getElementById(
     "compareInfos__rating__gradient"
   ) as HTMLCanvasElement;
   const colors: string[] = [];
-  const ctx = canvas.getContext("2d");
-  const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+  const canvasContext = canvas.getContext("2d");
+  const gradient = canvasContext.createLinearGradient(0, 0, canvas.width, 0);
   gradient.addColorStop(0, "green");
   gradient.addColorStop(0.5, "yellow");
   gradient.addColorStop(1, "red");
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  const canvasContext = canvas.getContext("2d");
+  canvasContext.fillStyle = gradient;
+  canvasContext.fillRect(0, 0, canvas.width, canvas.height);
   for (let i = 0; i < canvas.width; i += canvas.width / 100) {
     const rgb = canvasContext.getImageData(i, 1, 1, 1).data;
     colors.push(
       "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + rgb[3] + ")"
     );
   }
+  document.getElementById("compareInfos__rating__title").innerHTML =
+    translation.compareInfos__rating__title;
+  document.getElementById("compareInfos__rating__min").innerHTML =
+    "0" + translation.milliseconds;
+  document.getElementById("compareInfos__rating__max").innerHTML =
+    getMaxDurationDifference() + translation.milliseconds;
   return colors;
 }
 

@@ -5,7 +5,8 @@ body {
   color: white;
 }
 
-caption {
+caption,
+#compareInfos__rating__title {
   margin-bottom: 0.4rem;
   font-size: medium;
   font-weight: bold;
@@ -15,6 +16,12 @@ caption {
 #compareInfos__rating__gradient {
   height: 1rem;
   width: 100%;
+}
+
+#compareInfos__rating__borders {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
 }
 
 table,
@@ -35,12 +42,11 @@ table {
 }
 
 #main {
-  display: flex;
+  padding: 0.4rem;
 }
 
-#everything {
-  padding: 0.1rem;
-  position: relative;
+#title {
+  margin-top: 0;
 }
 
 #content__wrapper {
@@ -50,6 +56,7 @@ table {
 
 #settings__wrapper {
   position: absolute;
+  padding: 1rem 0.4rem;
   top: 0;
   right: 0;
   z-index: 1;
@@ -60,8 +67,8 @@ table {
 
 #settings__button {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 0.4rem;
+  right: 0.4rem;
 }
 
 #settings__panel {
@@ -73,7 +80,7 @@ table {
 }
 
 .settings__item {
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
 }
 
 .td__duration {

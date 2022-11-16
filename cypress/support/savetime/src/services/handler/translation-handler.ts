@@ -34,7 +34,7 @@ export function getLanguageFlagByLocale(locale: number) {
   return languageFlags[locale]
 }
 
-export function readTranslationsFile(): void {
+export function readTranslationsFile() {
   const csv = fs.readFileSync(
     path.resolve(__dirname, '../../../translations.csv'),
   )

@@ -33,13 +33,13 @@ function initializeAccordionButton() {
   });
 }
 
-function fillSettings(): void {
+function fillSettings() {
   settings__panel.innerHTML = getSettingsContent();
   initLocaleButtonsClickListeners();
   initMaxDurationDifferenceChangeListener();
 }
 
-function getSettingsContent(): string {
+function getSettingsContent() {
   const languageFlagsHTMLArray: string[] = [];
   Object.values(Locale).forEach((locale) => {
     if (!Number.isNaN(Number(locale))) {
@@ -64,7 +64,7 @@ function getSettingsContent(): string {
     `;
 }
 
-function getFlagButtonContentByLocale(locale: number): string {
+function getFlagButtonContentByLocale(locale: number) {
   return `
     <button id='settings__language__button-${locale}'
       class='settings__language__button'>
@@ -98,6 +98,6 @@ function initMaxDurationDifferenceChangeListener() {
     });
 }
 
-export function printSettings(): void {
+export function printSettings() {
   init();
 }

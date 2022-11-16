@@ -1,6 +1,8 @@
+title|Savetime!|Savetime!
 nothingToCompare|Nothing to compare|Nichts zum Vergleichen
 file|File|Datei
 duration|Duration|Laufzeit
+milliseconds|ms|ms
 settings|⚙️|⚙️
 settings__languageLabel|Language|Sprache
 settings__maxDurationDifferenceLabel|Max duration difference|Max. Laufzeitdifferenz
@@ -11,4 +13,5 @@ run__durationDifference__th|Run duration difference|Laufzeitdifferenz der Testsa
 run__durationDifferenceWithoutMissingTests__th|Run duration difference without missing tests|Laufzeitdifferenz der Testsammlung ohne fehlende Tests
 run__durationDifference__th|Run duration difference|Laufzeitdifferenz der Testsammlung
 run__test__name__th|Test name|Testname
-run__test__durationDifference__th|Test duration difference|Laufzeitdifferenz des Tests
+run__test__durationDifference__th|Test duration difference|Laufzeitdifferenz der Tests
+compareInfos__rating__title|Legend|Legende

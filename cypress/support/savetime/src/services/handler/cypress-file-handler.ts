@@ -11,7 +11,7 @@ const RESULT_COMP_DIR = __dirname + '/../../../results/compare'
 
 export { RESULT_COMP_DIR }
 
-export function getFileNumber(): string {
+export function getFileNumber() {
   let count = 0
   const firstCharsDigits = /\d{1,}$/
   try {

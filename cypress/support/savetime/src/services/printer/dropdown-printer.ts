@@ -20,7 +20,7 @@ function getSelectedSecond(): number {
   return Number(selectElement2.value.split(delimiter)[0])
 }
 
-function printResultsElement(): void {
+function printResultsElement() {
   printResult(compareFilesByNumber(getSelectedFirst(), getSelectedSecond()))
 }
 
