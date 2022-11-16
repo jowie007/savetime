@@ -1,53 +1,57 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>Savetime!</title>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
     <link rel="stylesheet" href="app.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="everything">
-        <div id="main">
-            <div id="content__wrapper">
-                <div id="selection">
-                    <select id="dropdown1"></select>
-                    <select id="dropdown2"></select>
+      <div id="main">
+        <div id="content__wrapper">
+          <div id="selection">
+            <select id="dropdown1"></select>
+            <select id="dropdown2"></select>
+          </div>
+          <div id="compareResults">
+            <div id="nothingToCompare"></div>
+            <div id="somethingToCompare">
+              <div id="compareInfos">
+                <div id="compareInfos__rating">
+                  <canvas id="compareInfos__rating__gradient"></canvas>
                 </div>
-                <div id="compareResults">
-                    <div id="nothingToCompare"></div>
-                    <div id="somethingToCompare">
-                        <div id="compareInfos">
-                            <div id="compareInfos__rating">
-                                <canvas id="compareInfos__rating__gradient"></canvas>
-                            </div>
-                        </div>
-                        <div id="overall__wrapper"></div>
-                        <div id="run__wrapper">
-                            <table id="run">
-                                <caption id="run__caption"></caption>
-                                <tr id="run__durationDifference">
-                                    <th id="run__durationDifference__th"></th>
-                                    <td id="run__durationDifference__td"></td>
-                                </tr>
-                                <tr id="run__durationDifferenceWithoutMissingTests">
-                                    <th id="run__durationDifferenceWithoutMissingTests__th"></th>
-                                    <td id="run__durationDifferenceWithoutMissingTests__td"></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+              </div>
+              <div id="overall__wrapper"></div>
+              <div id="run__wrapper">
+                <table id="run">
+                  <caption id="run__caption"></caption>
+                  <tr id="run__durationDifference">
+                    <th id="run__durationDifference__th"></th>
+                    <td id="run__durationDifference__td"></td>
+                  </tr>
+                  <tr id="run__durationDifferenceWithoutMissingTests">
+                    <th
+                      id="run__durationDifferenceWithoutMissingTests__th"
+                    ></th>
+                    <td
+                      id="run__durationDifferenceWithoutMissingTests__td"
+                    ></td>
+                  </tr>
+                </table>
+              </div>
             </div>
-            <div id="settings__wrapper">
-                <div id="settings__panel" class="panel">
-                </div>
-            </div>
+          </div>
         </div>
-        <button id="settings__button" class="accordion"></button>
+        <div id="settings__wrapper">
+          <button id="settings__button" class="accordion"></button>
+          <div id="settings__panel" class="panel"></div>
+        </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>

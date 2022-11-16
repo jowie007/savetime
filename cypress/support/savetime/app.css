@@ -48,10 +48,32 @@ table {
   margin-right: 20%;
 }
 
+#settings__wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #081215;
+  height: 100%;
+  border-top-left-radius: 1rem;
+}
+
 #settings__button {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+#settings__panel {
+  display: none;
+}
+
+#settings__maxDurationDifference {
+  width: 4rem;
+}
+
+.settings__item {
+  margin-bottom: 2rem;
 }
 
 .td__duration {

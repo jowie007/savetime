@@ -2,7 +2,8 @@ nothingToCompare|Nothing to compare|Nichts zum Vergleichen
 file|File|Datei
 duration|Duration|Laufzeit
 settings|⚙️|⚙️
-language|Language|Sprache
+settings__languageLabel|Language|Sprache
+settings__maxDurationDifferenceLabel|Max duration difference|Max. Laufzeitdifferenz
 overall__caption|Overall infos|Allgemeine Infos
 overall__durationDifference__th|Overall duration difference|Gesamte Laufzeitdifferenz
 overall__durationDifferenceWithoutMissingTests__th|Overall duration difference without missing tests|Gesamte Laufzeitdifferenz ohne fehlende Tests

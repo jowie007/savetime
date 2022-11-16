@@ -1,18 +1,27 @@
-import { Settings } from '../../classes/settings'
-import { readSettings, saveSettings } from '../handler/settings-file-handler'
-import { Locale } from '../handler/translation-handler'
+import { Settings } from "../../classes/settings";
+import { readSettings, saveSettings } from "../handler/settings-file-handler";
+import { Locale } from "../handler/translation-handler";
 
-let settings: Settings
+let settings: Settings;
 
 export function initSettingsStore() {
-  settings = readSettings()
+  settings = readSettings();
 }
 
 export function getSettings() {
-  return settings
+  return settings;
 }
 
 export function setLocale(locale: Locale) {
-  settings.locale = locale
-  saveSettings(settings)
+  settings.locale = locale;
+  saveSettings(settings);
+}
+
+export function getMaxDurationDifference() {
+  return settings.maxDurationDifference;
+}
+
+export function setMaxDurationDifference(maxDurationDifference: number) {
+  settings.maxDurationDifference = maxDurationDifference;
+  saveSettings(settings);
 }

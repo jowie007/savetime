@@ -1,9 +1,11 @@
-import { Locale } from '../services/handler/translation-handler'
+import { Locale } from "../services/handler/translation-handler";
 
 export class Settings {
-  locale: Locale
+  locale: Locale;
+  maxDurationDifference: number;
 
-  constructor(locale: Locale) {
-    this.locale = locale
+  constructor(locale: Locale, maxDurationDifference: number) {
+    this.locale = locale;
+    this.maxDurationDifference = maxDurationDifference;
   }
 }
