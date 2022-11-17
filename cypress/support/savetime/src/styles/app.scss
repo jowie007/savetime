@@ -1,5 +1,6 @@
 $main-margin-bottom: 1.2rem;
 $dark-color: #081215;
+$dark-color-1: #112f38;
 $light-color: white;
 
 body {
@@ -67,8 +68,9 @@ table {
   right: 0;
   z-index: 1;
   background-color: #081215;
+  opacity: 0.95;
   height: 100vw;
-  border-top-left-radius: 1rem;
+  // border-top-left-radius: 1rem;
 
   #settings__button {
     position: absolute;
