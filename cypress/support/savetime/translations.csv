@@ -5,9 +5,10 @@ duration|Duration|Laufzeit
 milliseconds|ms|ms
 settings|⚙️|⚙️
 settings__language__label|Language|Sprache
-settings__maxDurationDifference__label|Max duration difference|Max. Laufzeitdifferenz
+settings__maxDurationDifference__label|Max duration difference in milliseconds|Max. Laufzeitdifferenz in Millisekunden
 settings__maxDurationDifference__label__percentage|Max duration difference in %|Max. Laufzeitdifferenz in %
 settings__percentageValues__label|Percentage values|Prozentuale Werte
+settings__onlyCriticalTests__label|Only show tests with a duration difference above the border|Nur Tests anzeigen dessen Laufzeit die Grenze überschreitet
 overall__caption|Overall infos|Allgemeine Infos
 overall__durationDifference__th|Overall duration difference|Gesamte Laufzeitdifferenz
 overall__durationDifferenceWithoutMissingTests__th|Overall duration difference without missing tests|Gesamte Laufzeitdifferenz ohne fehlende Tests
@@ -17,3 +18,4 @@ run__durationDifference__th|Run duration difference|Laufzeitdifferenz der Testsa
 run__test__name__th|Test name|Testname
 run__test__durationDifference__th|Test duration difference|Laufzeitdifferenz der Tests
 compareInfos__rating__title|Legend|Legende
+TODO1|LANG IM HTML SETZEN|

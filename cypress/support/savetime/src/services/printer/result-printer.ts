@@ -7,6 +7,7 @@ import {
 import {
   getMaxDurationDifference,
   getMaxDurationDifferencePercentage,
+  isOnlyCriticalTests,
   isPercentageValues,
 } from "../store/settings-store";
 
@@ -63,7 +64,7 @@ function getOverallContent(cypressRunResultCompare: CypressRunResultCompare) {
           style="
             ${getAdjustedStyle(cypressRunResultCompare)}
           ">
-          ${getAdjustedDurationDifference(cypressRunResultCompare)}
+          ${getAdjustedDurationDifferenceString(cypressRunResultCompare)}
         </td>
       </tr>
       <tr id="overall__durationDifferenceWithoutMissingTests">
@@ -75,7 +76,7 @@ function getOverallContent(cypressRunResultCompare: CypressRunResultCompare) {
           style="
             ${getAdjustedStyle(cypressRunResultCompare)}
           ">
-          ${getAdjustedDurationDifferenceWithoutMissingTests(
+          ${getAdjustedDurationDifferenceWithoutMissingTestsString(
             cypressRunResultCompare
           )}
         </td>
@@ -105,11 +106,16 @@ function getRunTableContent(
       getTestRowContent(testResultCompare, indexRun, indexTest)
     );
   });
-  return `
+  const joinedTestHTMLArray = testHTMLArray.join(" ");
+  return joinedTestHTMLArray.trim() !== ""
+    ? `
+    <h3 id="run__caption-${indexRun}">
+      ${translation.file + ": " + runResultCompare.name}
+    </h3>
+    ` +
+        (!isOnlyCriticalTests()
+          ? `
     <table id="run-${indexRun}">
-      <caption id="run__caption-${indexRun}">
-        ${translation.file + ": " + runResultCompare.name}
-      </caption>
       <tr id="run__durationDifference-${indexRun}">
         <th id="run__durationDifference__th-${indexRun}">
           ${translation.run__durationDifference__th}
@@ -119,7 +125,7 @@ function getRunTableContent(
           style="
             ${getAdjustedStyle(runResultCompare)}
           ">
-          ${getAdjustedDurationDifference(runResultCompare)}
+          ${getAdjustedDurationDifferenceString(runResultCompare)}
         </td>
       </tr>
       <tr id="run__durationDifferenceWithoutMissingTests-${indexRun}">
@@ -131,10 +137,15 @@ function getRunTableContent(
           style="
             ${getAdjustedStyle(runResultCompare)}
           ">
-          ${getAdjustedDurationDifferenceWithoutMissingTests(runResultCompare)} 
+          ${getAdjustedDurationDifferenceWithoutMissingTestsString(
+            runResultCompare
+          )} 
         </td>
       </tr>
     </table>
+    `
+          : "") +
+        `
     <table>
       <tr id="run__test-${indexRun}">
         <th id="run__test__name__th-${indexRun}">
@@ -144,9 +155,10 @@ function getRunTableContent(
           ${translation.run__test__durationDifference__th}
         </th>
       </tr>
-      ${testHTMLArray.join(" ")}
+      ${joinedTestHTMLArray}
     </table>
-  `;
+  `
+    : "";
 }
 
 function getTestRowContent(
@@ -154,7 +166,10 @@ function getTestRowContent(
   indexRun: number,
   indexTest: number
 ) {
-  return `
+  return isOnlyCriticalTests() &&
+    !isCriticalPosition(getAdjustedDurationDifference(testResultCompare))
+    ? ""
+    : `
     <tr id="run__test-${indexRun}-${indexTest}">
       <td id="run__test__durationDifference__td-${indexRun}-${indexTest}">
         ${testResultCompare.title.join(": ")}
@@ -165,7 +180,7 @@ function getTestRowContent(
         style="
           ${getAdjustedStyle(testResultCompare)}
         ">
-        ${getAdjustedDurationDifference(testResultCompare)}
+        ${getAdjustedDurationDifferenceString(testResultCompare)}
       </td>
     </tr>
   `;
@@ -183,7 +198,6 @@ function initializeGradient() {
   gradient.addColorStop(1, "red");
   canvasContext.fillStyle = gradient;
   canvasContext.fillRect(0, 0, canvas.width, canvas.height);
-  let cpunt = 0;
   if (canvas.width > 1) {
     for (let i = 0; i < canvas.width; i += (canvas.width - 1) / 99) {
       const rgb = canvasContext.getImageData(i, 1, 1, 1).data;
@@ -203,7 +217,22 @@ function initializeGradient() {
   return colors;
 }
 
+function isCriticalPosition(duration: number) {
+  console.log(
+    "CRIT",
+    duration,
+    getPositionByDuration(duration),
+    colors.length,
+    getPositionByDuration(duration) >= colors.length - 1
+  );
+  return getPositionByDuration(duration) >= colors.length - 1;
+}
+
 function getColorByDuration(duration: number) {
+  return colors[getPositionByDuration(duration)];
+}
+
+function getPositionByDuration(duration: number) {
   let position;
   if (isPercentageValues()) {
     position =
@@ -212,13 +241,12 @@ function getColorByDuration(duration: number) {
   } else {
     position = (colors.length * duration) / getMaxDurationDifference();
   }
-  console.log("POS", duration, position);
   if (position >= colors.length) {
     position = colors.length - 1;
   } else if (position < 0) {
     position = 0;
   }
-  return colors[Number(position.toFixed(0))];
+  return Number(position.toFixed(0));
 }
 
 function getAdjustedStyle(
@@ -235,12 +263,21 @@ function getAdjustedDurationDifference(
   resultCompare: TestResultCompare | RunResultCompare | CypressRunResultCompare
 ) {
   if (isPercentageValues()) {
+    return resultCompare.durationDifferencePercentage;
+  }
+  return resultCompare.durationDifference;
+}
+
+function getAdjustedDurationDifferenceString(
+  resultCompare: TestResultCompare | RunResultCompare | CypressRunResultCompare
+) {
+  if (isPercentageValues()) {
     return resultCompare.durationDifferencePercentage + "%";
   }
   return resultCompare.durationDifference + translation.milliseconds;
 }
 
-function getAdjustedDurationDifferenceWithoutMissingTests(
+function getAdjustedDurationDifferenceWithoutMissingTestsString(
   resultCompare: RunResultCompare | CypressRunResultCompare
 ) {
   if (isPercentageValues()) {

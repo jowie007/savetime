@@ -45,3 +45,12 @@ export function setPercentageValues(percentageValues: boolean) {
   settings.percentageValues = percentageValues;
   saveSettings(settings);
 }
+
+export function isOnlyCriticalTests() {
+  return settings.onlyCriticalTests;
+}
+
+export function setOnlyCriticalTests(onlyCriticalTests: boolean) {
+  settings.onlyCriticalTests = onlyCriticalTests;
+  saveSettings(settings);
+}

@@ -7,10 +7,12 @@ import {
 import {
   getMaxDurationDifference,
   getMaxDurationDifferencePercentage,
+  isOnlyCriticalTests,
   isPercentageValues,
   setLocale,
   setMaxDurationDifference,
   setMaxDurationDifferencePercentage,
+  setOnlyCriticalTests,
   setPercentageValues,
 } from "../store/settings-store";
 import { getMinBorder } from "./result-printer";
@@ -43,6 +45,7 @@ function fillSettings() {
   initLocaleButtonsClickListeners();
   initMaxDurationDifferenceChangeListener();
   initPercentageValuesChangeListener();
+  initOnlyCriticalTestsChangeListener();
 }
 
 function getSettingsContent() {
@@ -82,7 +85,7 @@ function getSettingsContent() {
         />
     </div>
     <div id='settings__percentageValues' class='settings__item'>
-      <label id='settings__percentageValues__label' for='settings__maxDurationDifference'>
+      <label id='settings__percentageValues__label' for='settings__percentageValues__checkbox'>
         ${translation.settings__percentageValues__label}
       </label><br/>
       <input 
@@ -91,6 +94,16 @@ function getSettingsContent() {
         ${isPercentageValues() ? "checked" : ""}
         />
     </div>
+    <div id='settings__onlyCriticalTests' class='settings__item'>
+    <label id='settings__onlyCriticalTests__label' for='settings__onlyCriticalTests__checkbox'>
+      ${translation.settings__onlyCriticalTests__label}
+    </label><br/>
+    <input 
+      id='settings__onlyCriticalTests__checkbox' 
+      type='checkbox'
+      ${isOnlyCriticalTests() ? "checked" : ""}
+      />
+  </div>
     `;
 }
 
@@ -135,6 +148,15 @@ function initPercentageValuesChangeListener() {
     .getElementById(`settings__percentageValues__checkbox`)
     .addEventListener("change", () => {
       setPercentageValues(!isPercentageValues());
+      initializeHTML();
+    });
+}
+
+function initOnlyCriticalTestsChangeListener() {
+  document
+    .getElementById(`settings__onlyCriticalTests__checkbox`)
+    .addEventListener("change", () => {
+      setOnlyCriticalTests(!isOnlyCriticalTests());
       initializeHTML();
     });
 }
