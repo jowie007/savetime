@@ -61,6 +61,29 @@ table {
   margin-right: 20%;
 }
 
+#selection__datepicker {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  grid-gap: 0.1rem;
+  padding: 0.4rem;
+
+  .selection__datepicker__day {
+    background-color: $light-color; /* Green */
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8rem;
+    height: 2rem;
+    cursor: pointer;
+
+    &__invalid {
+      opacity: 0.8;
+      cursor: default;
+    }
+  }
+}
+
 #settings__wrapper {
   position: absolute;
   padding: 1rem 0.4rem;

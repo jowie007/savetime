@@ -6,6 +6,7 @@ import {
 import { printSettings } from "./services/printer/settings-printer.js";
 import { initSettingsStore } from "./services/store/settings-store.js";
 import { printTitle } from "./services/printer/title-printer.js";
+import { printDatepicker } from "./services/printer/datepicker-printer.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
   initSettingsStore();
@@ -18,4 +19,5 @@ export function initializeHTML() {
   printTitle();
   printSettings();
   printDropdowns();
+  printDatepicker();
 }
