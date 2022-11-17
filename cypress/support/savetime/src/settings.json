@@ -3,5 +3,5 @@
 	"maxDurationDifference": 165,
 	"maxDurationDifferencePercentage": 107,
 	"percentageValues": false,
-	"onlyCriticalTests": false
+	"onlyCriticalTests": true
 }

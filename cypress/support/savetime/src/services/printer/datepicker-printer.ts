@@ -92,7 +92,20 @@ function getWeekdayContent() {
 }
 
 function getDatePickerContent() {
-  console.log(files);
+  const dayFileMap: Map<number, Map<number, Date>> = new Map();
+  files.forEach((value, key) => {
+    if (value.getFullYear() === year && value.getMonth() === month) {
+      const date = value.getDate();
+      if (dayFileMap.has(date)) {
+        dayFileMap.set(
+          date,
+          new Map([...Array.from(dayFileMap.get(date)), [key, value]])
+        );
+      } else {
+        dayFileMap.set(date, new Map([[key, value]]));
+      }
+    }
+  });
   const htmlArray = [];
   let invalidFieldCount = 0;
   for (let day of getDayArray()) {
@@ -104,9 +117,13 @@ function getDatePickerContent() {
     } else {
       id = "-" + day;
     }
+    const value = dayFileMap.get(Number(day));
+    const positionCount = value ? (value.size > 5 ? 5 : value.size) : 0;
     htmlArray.push(
       `<button id='selection__datepicker__day${id}' class="selection__datepicker__day${
-        dayInvalid ? " selection__datepicker__day__invalid" : ""
+        dayInvalid
+          ? " selection__datepicker__day__invalid"
+          : " selection__datepicker__day-" + positionCount
       }">${day}</button>`
     );
   }

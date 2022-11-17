@@ -96,6 +96,31 @@ table {
       height: 2rem;
       cursor: pointer;
 
+      &-1 {
+        color: $light-color;
+        background-color: #5662ff;
+      }
+
+      &-2 {
+        color: $light-color;
+        background-color: #454ec6;
+      }
+
+      &-3 {
+        color: $light-color;
+        background-color: #2e348a;
+      }
+
+      &-4 {
+        color: $light-color;
+        background-color: #1b1e50;
+      }
+
+      &-5 {
+        color: $light-color;
+        background-color: #0e102b;
+      }
+
       &__invalid {
         opacity: 0.8;
         cursor: default;
