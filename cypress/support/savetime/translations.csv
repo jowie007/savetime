@@ -3,6 +3,10 @@ nothingToCompare|Nothing to compare|Nichts zum Vergleichen
 file|File|Datei
 duration|Duration|Laufzeit
 milliseconds|ms|ms
+months|January,February,March,April,May,June,July,August,September,October,November,December|Januar,Februar,März,April,Mai,Juni,Juli,August,September,Oktober,November,Dezember
+weekdays|Mon,Tue,Wed,Thu,Fri,Sat,Sun|Mo,Di,Mi,Do,Fr,Sa,So
+selection__datepicker__navigation__back|◀|◀
+selection__datepicker__navigation__forwards|▶|▶
 settings|⚙️|⚙️
 settings__language__label|Language|Sprache
 settings__maxDurationDifference__label|Max duration difference in milliseconds|Max. Laufzeitdifferenz in Millisekunden
