@@ -10,6 +10,7 @@ body {
 }
 
 caption,
+h2,
 h3,
 #compareInfos__rating__title {
   margin-bottom: 0.4rem;
@@ -19,12 +20,12 @@ h3,
 }
 
 #compareInfos {
-  #compareInfos__rating__gradient {
+  &__rating__gradient {
     height: 1rem;
     width: 100%;
   }
 
-  #compareInfos__rating__borders {
+  &__rating__borders {
     display: flex;
     justify-content: space-between;
     margin-bottom: $main-margin-bottom;
@@ -61,30 +62,49 @@ table {
   margin-right: 20%;
 }
 
-#selection__datepicker__wrapper {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
-  grid-gap: 0.1rem;
-  padding: 0.4rem;
+#selection__datepicker {
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $main-margin-bottom;
 
-  .selection__datepicker__day {
-    background-color: $light-color; /* Green */
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 0.8rem;
-    height: 2rem;
-    cursor: pointer;
+    .selection__datepicker__navigation {
+      background-color: $light-color;
+      height: 1.6rem;
+      width: 1.6rem;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
 
-    &__invalid {
-      opacity: 0.8;
-      cursor: default;
+  &__wrapper {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-gap: 0.1rem;
+
+    .selection__datepicker__day {
+      background-color: $light-color;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.8rem;
+      height: 2rem;
+      cursor: pointer;
+
+      &__invalid {
+        opacity: 0.8;
+        cursor: default;
+      }
     }
   }
 }
 
-#settings__wrapper {
+#settings {
   position: absolute;
   padding: 1rem 0.4rem;
   top: 0;
@@ -96,21 +116,21 @@ table {
   max-width: 20%;
   // border-top-left-radius: 1rem;
 
-  #settings__button {
+  &__button {
     position: absolute;
     top: 0.4rem;
     right: 0.4rem;
   }
 
-  #settings__panel {
+  &__panel {
     display: none;
   }
 
-  #settings__maxDurationDifference {
+  &__maxDurationDifference {
     width: 4rem;
   }
 
-  .settings__item {
+  &__item {
     margin-bottom: $main-margin-bottom;
   }
 }
@@ -129,11 +149,10 @@ table {
   border: none;
   text-align: left;
   outline: none;
-  transition: 0.4s;
 }
 
 .panel {
-  padding: 0 18px;
+  padding: 0 1rem;
   display: none;
   overflow: hidden;
 }

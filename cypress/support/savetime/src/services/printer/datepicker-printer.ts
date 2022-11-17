@@ -4,8 +4,12 @@ import { translation } from "../handler/translation-handler";
 let selection__datepicker__heading: HTMLElement;
 let selection__datepicker__wrapper: HTMLDivElement;
 let files: Map<number, Date>;
+let year: number;
+let month: number;
 
 export function printDatepicker() {
+  year = new Date().getFullYear();
+  month = new Date().getMonth();
   init();
 }
 
@@ -17,18 +21,20 @@ function init() {
   selection__datepicker__wrapper = document.getElementById(
     "selection__datepicker__wrapper"
   ) as HTMLDivElement;
-  selection__datepicker__heading.innerHTML = getDatePickerTitle(2022, 10);
+  selection__datepicker__heading.innerHTML = getDatePickerTitle();
   selection__datepicker__wrapper.innerHTML = getWeekdayContent();
-  selection__datepicker__wrapper.innerHTML += getDatePickerContent(2022, 10);
+  selection__datepicker__wrapper.innerHTML += getDatePickerContent();
+  initPreviousButtonClickListener();
+  initNextButtonClickListener();
 }
 
-function getDatePickerTitle(year: number, month: number) {
+function getDatePickerTitle() {
   return (
     `<button 
-        id='selection__datepicker__navigation__back'
+        id='selection__datepicker__navigation__previous'
         class='selection__datepicker__navigation'
         />
-        ${translation.selection__datepicker__navigation__back}
+        ${translation.selection__datepicker__navigation__previous}
     </button>` +
     `<h2>${
       translation.months.split(",")[month] +
@@ -36,27 +42,29 @@ function getDatePickerTitle(year: number, month: number) {
       new Date(year, month).getFullYear()
     }</h2>` +
     `<button 
-        id='selection__datepicker__navigation__forwards'
+        id='selection__datepicker__navigation__next'
         class='selection__datepicker__navigation'
         />
-        ${translation.selection__datepicker__navigation__forwards}
+        ${translation.selection__datepicker__navigation__next}
     </button>`
   );
 }
 
-function getDayArray(year: number, month: number) {
+function getDayArray() {
   const firstDayOfMonth = new Date(year, month - 1, 1);
   // 0 -> Mon, 1 -> Tue, 2 -> Wed, 3 -> Thu
   // 4 -> Fri, 5 -> Sat, 6 -> Sun
   const firstDayOfMonthNumber =
     firstDayOfMonth.getDay() - 1 < 0 ? 6 : firstDayOfMonth.getDay() - 1;
   let days = Array(firstDayOfMonthNumber).fill("");
-  days = [...days, ...getValidDayArray(year, month)];
-  days = [...days, ...Array(7 - (days.length % 7)).fill("")];
+  days = [...days, ...getValidDayArray()];
+  if (days.length % 7 !== 0) {
+    days = [...days, ...Array(7 - (days.length % 7)).fill("")];
+  }
   return days;
 }
 
-function getValidDayArray(year: number, month: number) {
+function getValidDayArray() {
   const lastDayOfMonth = new Date(year, month, 0);
   const lastDayOfMonthDay = lastDayOfMonth.getDate();
   let days = [];
@@ -83,12 +91,11 @@ function getWeekdayContent() {
   return htmlArray.join(" ");
 }
 
-function getDatePickerContent(year: number, month: number) {
+function getDatePickerContent() {
   console.log(files);
   const htmlArray = [];
   let invalidFieldCount = 0;
-  console.log(getDayArray(year, month));
-  for (let day of getDayArray(year, month)) {
+  for (let day of getDayArray()) {
     let id;
     const dayInvalid = day === "";
     if (dayInvalid) {
@@ -98,10 +105,38 @@ function getDatePickerContent(year: number, month: number) {
       id = "-" + day;
     }
     htmlArray.push(
-      `<button id='selection__datepicker__day${id} class="selection__datepicker__day${
+      `<button id='selection__datepicker__day${id}' class="selection__datepicker__day${
         dayInvalid ? " selection__datepicker__day__invalid" : ""
       }">${day}</button>`
     );
   }
   return htmlArray.join(" ");
+}
+
+function initPreviousButtonClickListener() {
+  document
+    .getElementById(`selection__datepicker__navigation__previous`)
+    .addEventListener("click", () => {
+      if (month === 0) {
+        month = 11;
+        year -= 1;
+      } else {
+        month -= 1;
+      }
+      init();
+    });
+}
+
+function initNextButtonClickListener() {
+  document
+    .getElementById(`selection__datepicker__navigation__next`)
+    .addEventListener("click", () => {
+      if (month === 11) {
+        month = 0;
+        year += 1;
+      } else {
+        month += 1;
+      }
+      init();
+    });
 }
