@@ -94,36 +94,34 @@ table {
       display: inline-block;
       font-size: 0.8rem;
       height: 2rem;
-      cursor: pointer;
+
+      &-1, &-2, &-3, &-4, &-5 {
+        color: $light-color;
+        cursor: pointer;
+      }
 
       &-1 {
-        color: $light-color;
-        background-color: #5662ff;
+        background-color: #9955ffff;
       }
 
       &-2 {
-        color: $light-color;
-        background-color: #454ec6;
+        background-color: #7f2affff;
       }
 
       &-3 {
-        color: $light-color;
-        background-color: #2e348a;
+        background-color: #6600ffff;
       }
 
       &-4 {
-        color: $light-color;
-        background-color: #1b1e50;
+        background-color: #5500d4ff;
       }
 
       &-5 {
-        color: $light-color;
-        background-color: #0e102b;
+        background-color: #4400aaff;
       }
 
       &__invalid {
         opacity: 0.8;
-        cursor: default;
       }
     }
   }
