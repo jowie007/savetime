@@ -1,4 +1,3 @@
-import { printDropdowns } from './services/printer/dropdown-printer.js'
 import {
   initTranslations,
   readTranslationsFile,
@@ -20,6 +19,5 @@ export function initializeHTML() {
   initTranslations()
   printTitle()
   printSettings()
-  printDropdowns()
   printDatepicker()
 }

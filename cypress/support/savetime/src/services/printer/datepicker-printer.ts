@@ -1,28 +1,69 @@
-import { getAllFileDetails } from '../handler/cypress-file-handler'
+import {
+  compareFilesByNumber,
+  getAllFileDetails,
+} from '../handler/cypress-file-handler'
 import { getFormatDateWithPosition } from '../handler/date-handler'
 import { translation } from '../handler/translation-handler'
 import { getCypressLogFiles } from '../store/cypress-file-store'
+import { printResult } from './result-printer'
 
-let selection__datepicker__heading: HTMLElement
+let selection__datepicker__button1: HTMLButtonElement
+let selection__datepicker__button2: HTMLButtonElement
+let selection__datepicker__day__heading: HTMLDivElement
 let selection__datepicker__day__wrapper: HTMLDivElement
+let selection__datepicker__test__heading: HTMLDivElement
+let selection__datepicker__test__wrapper: HTMLDivElement
+let selectedFirst: number
+let selectedSecond: number
 let year: number
 let month: number
+let day: number
 let dayFileMap: Map<number, Map<number, Date>>
+let clickedButton: number
+let shown: boolean
 
 export function printDatepicker() {
-  year = new Date().getFullYear()
-  month = new Date().getMonth()
+  shown = false
   init()
 }
 
 function init() {
-  selection__datepicker__heading = document.getElementById(
-    'selection__datepicker__heading',
-  ) as HTMLElement
+  selection__datepicker__button1 = document.getElementById(
+    'selection__datepicker__button1',
+  ) as HTMLButtonElement
+  selection__datepicker__button2 = document.getElementById(
+    'selection__datepicker__button2',
+  ) as HTMLButtonElement
+  selection__datepicker__day__heading = document.getElementById(
+    'selection__datepicker__day__heading',
+  ) as HTMLDivElement
   selection__datepicker__day__wrapper = document.getElementById(
     'selection__datepicker__day__wrapper',
   ) as HTMLDivElement
-  selection__datepicker__heading.innerHTML = getDatePickerTitle()
+  selection__datepicker__test__heading = document.getElementById(
+    'selection__datepicker__test__heading',
+  ) as HTMLDivElement
+  selection__datepicker__test__wrapper = document.getElementById(
+    'selection__datepicker__test__wrapper',
+  ) as HTMLDivElement
+  initializeSelectedElements()
+  initButton1ClickListener()
+  initButton2ClickListener()
+}
+
+function toggleDatePickerContent() {
+  if (shown) {
+    clearDatePickerContent()
+  } else {
+    initializeDatePickerContent()
+  }
+  shown = !shown
+}
+
+function initializeDatePickerContent() {
+  year = new Date().getFullYear()
+  month = new Date().getMonth()
+  selection__datepicker__day__heading.innerHTML = getDatePickerFirstTitle()
   selection__datepicker__day__wrapper.innerHTML = getWeekdayContent()
   selection__datepicker__day__wrapper.innerHTML += getDatePickerSelectContent()
   initPreviousButtonClickListener()
@@ -30,7 +71,48 @@ function init() {
   initDateButtonClickListeners()
 }
 
-function getDatePickerTitle() {
+function clearDatePickerContent() {
+  selection__datepicker__button1.classList.remove(
+    'selection__datepicker__button__selected',
+  )
+  selection__datepicker__button2.classList.remove(
+    'selection__datepicker__button__selected',
+  )
+  clickedButton = undefined
+  selection__datepicker__day__heading.innerHTML = ''
+  selection__datepicker__day__wrapper.innerHTML = ''
+  selection__datepicker__test__heading.innerHTML = ''
+  selection__datepicker__test__wrapper.innerHTML = ''
+}
+
+function initializeSelectedElements() {
+  const itemsSize = getAllFileDetails().size
+  if (!selectedFirst || !selectedSecond) {
+    setSelectedFirst(itemsSize - 1)
+    setSelectedSecond((selectedSecond = itemsSize))
+  }
+}
+
+function setSelectedFirst(key: number) {
+  selectedFirst = key
+  console.log('SEL FIRST', getAllFileDetails().get(key), key)
+  selection__datepicker__button1.innerHTML = getFormatDateWithPosition(
+    getAllFileDetails().get(key),
+    key,
+  )
+  printResultsElement()
+}
+
+function setSelectedSecond(key: number) {
+  selectedSecond = key
+  selection__datepicker__button2.innerHTML = getFormatDateWithPosition(
+    getAllFileDetails().get(key),
+    key,
+  )
+  printResultsElement()
+}
+
+function getDatePickerFirstTitle() {
   return (
     `<button 
         id='selection__datepicker__navigation__previous'
@@ -50,6 +132,16 @@ function getDatePickerTitle() {
         ${translation.selection__datepicker__navigation__next}
     </button>`
   )
+}
+
+function getDatePickerSecondTitle() {
+  return `<h2>${
+    day +
+    '. ' +
+    translation.months.split(',')[month] +
+    ' ' +
+    new Date(year, month).getFullYear()
+  }</h2>`
 }
 
 function getDayArray() {
@@ -132,19 +224,67 @@ function getDatePickerSelectContent() {
   return htmlArray.join(' ')
 }
 
-function initializeDatePickerSecondSelectContent(day: number) {
+function printResultsElement() {
+  printResult(compareFilesByNumber(selectedFirst, selectedSecond))
+}
+
+function initializeDatePickerSecondTitle() {
+  selection__datepicker__test__heading.innerHTML = getDatePickerSecondTitle()
+}
+
+function initializeDatePickerSecondSelectContent() {
   const htmlArray: string[] = []
   dayFileMap.get(day).forEach((value, key) => {
-    console.log('VALUE', getFormatDateWithPosition(value, key))
     htmlArray.push(
-      `<div id='selection__datepicker__test-${key}' class="selection__datepicker__test">
+      `<button id='selection__datepicker__test-${key}' class="selection__datepicker__test">
         ${getFormatDateWithPosition(value, key)}
-       </div>`,
+       </button>`,
     )
   })
-  document.getElementById(
-    'selection__datepicker__test__wrapper',
-  ).innerHTML = htmlArray.join(' ')
+  selection__datepicker__test__wrapper.innerHTML = htmlArray.join(' ')
+  initTestButtonClickListener()
+}
+
+function initButton1ClickListener() {
+  selection__datepicker__button1.addEventListener('click', () => {
+    const previousClickedButton = clickedButton
+    clickedButton = 1
+    if (previousClickedButton === 1) {
+      toggleDatePickerContent()
+    } else {
+      selection__datepicker__button1.classList.add(
+        'selection__datepicker__button__selected',
+      )
+      if (previousClickedButton === 2) {
+        selection__datepicker__button2.classList.remove(
+          'selection__datepicker__button__selected',
+        )
+      } else {
+        toggleDatePickerContent()
+      }
+    }
+  })
+}
+
+function initButton2ClickListener() {
+  selection__datepicker__button2.addEventListener('click', () => {
+    const previousClickedButton = clickedButton
+    clickedButton = 2
+    if (previousClickedButton === 2) {
+      toggleDatePickerContent()
+    } else {
+      selection__datepicker__button2.classList.add(
+        'selection__datepicker__button__selected',
+      )
+      if (previousClickedButton === 1) {
+        selection__datepicker__button1.classList.remove(
+          'selection__datepicker__button__selected',
+        )
+      } else {
+        toggleDatePickerContent()
+      }
+    }
+  })
 }
 
 function initPreviousButtonClickListener() {
@@ -157,7 +297,7 @@ function initPreviousButtonClickListener() {
       } else {
         month -= 1
       }
-      init()
+      initializeDatePickerContent()
     })
 }
 
@@ -171,7 +311,7 @@ function initNextButtonClickListener() {
       } else {
         month += 1
       }
-      init()
+      initializeDatePickerContent()
     })
 }
 
@@ -182,12 +322,27 @@ function initDateButtonClickListeners() {
     if (!item.classList.contains('selection__datepicker__day-0')) {
       item.addEventListener('click', () => {
         const splitId = item.id.split('-')
-        console.log(splitId[splitId.length - 1])
-        initializeDatePickerSecondSelectContent(
-          Number(splitId[splitId.length - 1]),
-        )
-        // init()
+        day = Number(splitId[splitId.length - 1])
+        initializeDatePickerSecondTitle()
+        initializeDatePickerSecondSelectContent()
       })
     }
+  }
+}
+
+function initTestButtonClickListener() {
+  const elements = document.getElementsByClassName(
+    `selection__datepicker__test`,
+  )
+  for (let index = 0; index < elements.length; index++) {
+    const item = elements.item(index)
+    item.addEventListener('click', () => {
+      if (clickedButton === 1) {
+        setSelectedFirst(Number(item.innerHTML.trim().split(':')[0]))
+      } else {
+        setSelectedSecond(Number(item.innerHTML.trim().split(':')[0]))
+      }
+      toggleDatePickerContent()
+    })
   }
 }

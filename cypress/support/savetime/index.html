@@ -1,62 +1,68 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Savetime!</title>
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="script-src 'self' 'unsafe-inline';"
-    />
-    <link rel="stylesheet" href="dist/styles/app.css" />
-  </head>
 
-  <body>
-    <div id="main">
-      <div id="content__wrapper">
-        <h1 id="title"></h1>
-        <div id="selection">
-          <select id="selection__dropdown1"></select>
-          <select id="selection__dropdown2"></select>
-          <div id="selection__datepicker">
-            <div id="selection__datepicker__heading"></div>
+<head>
+  <meta charset="UTF-8" />
+  <title>Savetime!</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <link rel="stylesheet" href="dist/styles/app.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="content__wrapper">
+      <h1 id="title"></h1>
+      <div id="selection">
+        <div id="selection__datepicker">
+          <div id="selection__datepicker__button">
+            <button id="selection__datepicker__button1" class="selection__datepicker__button"></button>
+            <button id="selection__datepicker__button2" class="selection__datepicker__button"></button>
+          </div>
+          <div id="selection__datepicker__day">
+            <div id="selection__datepicker__day__heading"></div>
             <div id="selection__datepicker__day__wrapper"></div>
+          </div>
+          <div id="selection__datepicker__test">
+            <div id='selection__datepicker__test__heading'></div>
             <div id='selection__datepicker__test__wrapper'></div>
           </div>
         </div>
-        <div id="compareResults">
-          <div id="nothingToCompare"></div>
-          <div id="somethingToCompare">
-            <div id="compareInfos">
-              <div id="compareInfos__rating">
-                <h2 id="compareInfos__rating__title"></h2>
-                <canvas id="compareInfos__rating__gradient"></canvas>
-                <div id="compareInfos__rating__borders">
-                  <div id="compareInfos__rating__min"></div>
-                  <div id="compareInfos__rating__max"></div>
-                </div>
+      </div>
+      <div id="compareResults">
+        <div id="nothingToCompare"></div>
+        <div id="somethingToCompare">
+          <div id="compareInfos">
+            <div id="compareInfos__rating">
+              <h2 id="compareInfos__rating__title"></h2>
+              <canvas id="compareInfos__rating__gradient"></canvas>
+              <div id="compareInfos__rating__borders">
+                <div id="compareInfos__rating__min"></div>
+                <div id="compareInfos__rating__max"></div>
               </div>
             </div>
-            <div id="overall__wrapper"></div>
-            <div id="run__wrapper">
-              <table id="run">
-                <caption id="run__caption"></caption>
-                <tr id="run__durationDifference">
-                  <th id="run__durationDifference__th"></th>
-                  <td id="run__durationDifference__td"></td>
-                </tr>
-                <tr id="run__durationDifferenceWithoutMissingTests">
-                  <th id="run__durationDifferenceWithoutMissingTests__th"></th>
-                  <td id="run__durationDifferenceWithoutMissingTests__td"></td>
-                </tr>
-              </table>
-            </div>
+          </div>
+          <div id="overall__wrapper"></div>
+          <div id="run__wrapper">
+            <table id="run">
+              <caption id="run__caption"></caption>
+              <tr id="run__durationDifference">
+                <th id="run__durationDifference__th"></th>
+                <td id="run__durationDifference__td"></td>
+              </tr>
+              <tr id="run__durationDifferenceWithoutMissingTests">
+                <th id="run__durationDifferenceWithoutMissingTests__th"></th>
+                <td id="run__durationDifferenceWithoutMissingTests__td"></td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
-      <div id="settings">
-        <button id="settings__button" class="accordion"></button>
-        <div id="settings__panel" class="panel"></div>
-      </div>
     </div>
-  </body>
+    <div id="settings">
+      <button id="settings__button" class="accordion"></button>
+      <div id="settings__panel" class="panel"></div>
+    </div>
+  </div>
+</body>
+
 </html>

@@ -2,6 +2,12 @@ $main-margin-bottom: 1.2rem;
 $dark-color: #081215;
 $light-color: white;
 
+@mixin basic-outline {
+  outline-width: 0.04rem;
+  outline-style: solid;
+  outline-color: $light-color;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
@@ -63,13 +69,21 @@ table {
 }
 
 #selection__datepicker {
-  &__heading {
+  &__day__heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: $main-margin-bottom;
+  }
 
-    .selection__datepicker__navigation {
+  .selection__datepicker {
+    &__button__selected {
+      background-color: $dark-color;
+      color: $light-color;
+      @include basic-outline;
+    }
+
+    &__navigation {
       background-color: $light-color;
       height: 1.6rem;
       width: 1.6rem;
@@ -77,6 +91,28 @@ table {
       text-align: center;
       text-decoration: none;
       display: inline-block;
+      cursor: pointer;
+    }
+  }
+
+  &__test__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.1rem;
+
+    .selection__datepicker__test {
+      background-color: $light-color;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.8rem;
+      height: 2rem;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 0;
+      min-width: fit-content;
       cursor: pointer;
     }
   }
@@ -95,7 +131,11 @@ table {
       font-size: 0.8rem;
       height: 2rem;
 
-      &-1, &-2, &-3, &-4, &-5 {
+      &-1,
+      &-2,
+      &-3,
+      &-4,
+      &-5 {
         color: $light-color;
         cursor: pointer;
       }
@@ -129,7 +169,6 @@ table {
 
 #settings {
   position: absolute;
-  padding: 1rem 0.4rem;
   top: 0;
   right: 0;
   z-index: 1;
@@ -137,8 +176,8 @@ table {
   opacity: 0.95;
   height: 100vw;
   max-width: 20%;
-  // border-top-left-radius: 1rem;
-
+  padding: 0.2rem;
+ 
   &__button {
     position: absolute;
     top: 0.4rem;
@@ -147,13 +186,15 @@ table {
 
   &__panel {
     display: none;
+    padding: 1rem 0.4rem;
+    @include basic-outline;
   }
 
   &__maxDurationDifference {
     width: 4rem;
   }
 
-  &__item {
+  .settings__item {
     margin-bottom: $main-margin-bottom;
   }
 }
