@@ -21,21 +21,32 @@ let day: number
 let dayFileMap: Map<number, Map<number, Date>>
 let clickedButton: number
 let shown: boolean
+let initializedBefore: boolean
 
 export function printDatepicker() {
-  shown = false
   init()
-  initButton1ClickListener()
-  initButton2ClickListener()
 }
 
 function init() {
-  selection__datepicker__button1 = document.getElementById(
-    'selection__datepicker__button1',
-  ) as HTMLButtonElement
-  selection__datepicker__button2 = document.getElementById(
-    'selection__datepicker__button2',
-  ) as HTMLButtonElement
+  if (!initializedBefore) {
+    initializedBefore = true
+    shown = false
+    selection__datepicker__button1 = document.getElementById(
+      'selection__datepicker__button1',
+    ) as HTMLButtonElement
+    selection__datepicker__button2 = document.getElementById(
+      'selection__datepicker__button2',
+    ) as HTMLButtonElement
+    initButton1ClickListener()
+    initButton2ClickListener()
+  } else {
+    if (shown) {
+      initializeDayHeading()
+      if (day !== undefined) {
+        initializeDatePickerSecondTitle()
+      }
+    }
+  }
   selection__datepicker__day__heading = document.getElementById(
     'selection__datepicker__day__heading',
   ) as HTMLDivElement
@@ -63,12 +74,16 @@ function toggleDatePickerContent() {
   shown = !shown
 }
 
-function initializeDatePickerContent() {
+function initializeDayHeading() {
   selection__datepicker__day__heading.innerHTML = getDatePickerFirstTitle()
-  selection__datepicker__day__wrapper.innerHTML = getWeekdayContent()
-  selection__datepicker__day__wrapper.innerHTML += getDatePickerSelectContent()
   initPreviousButtonClickListener()
   initNextButtonClickListener()
+}
+
+function initializeDatePickerContent() {
+  initializeDayHeading()
+  selection__datepicker__day__wrapper.innerHTML = getWeekdayContent()
+  selection__datepicker__day__wrapper.innerHTML += getDatePickerSelectContent()
   initDateButtonClickListeners()
 }
 
@@ -79,6 +94,7 @@ function clearDatePickerContent() {
   selection__datepicker__button2.classList.remove(
     'selection__datepicker__button__selected',
   )
+  day = undefined
   clickedButton = undefined
   selection__datepicker__day__heading.innerHTML = ''
   selection__datepicker__day__wrapper.innerHTML = ''
@@ -96,7 +112,6 @@ function initializeSelectedElements() {
 
 function setSelectedFirst(key: number) {
   selectedFirst = key
-  console.log('SEL FIRST', getAllFileDetails().get(key), key)
   selection__datepicker__button1.innerHTML = getFormatDateWithPosition(
     getAllFileDetails().get(key),
     key,

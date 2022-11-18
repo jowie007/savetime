@@ -81,11 +81,9 @@ export function getAllFileDetails() {
   })
   const ret = new Map(
     Array.from(fileDetails).sort((a, b) => {
-      // a[0], b[0] is the key of the map
       return a[0] - b[0]
     }),
   )
-  console.log('Sort', ret)
   return ret
 }
 

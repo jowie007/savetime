@@ -1,7 +1,7 @@
 {
-	"locale": 1,
+	"locale": 0,
 	"maxDurationDifference": 152,
 	"maxDurationDifferencePercentage": 128,
-	"percentageValues": true,
+	"percentageValues": false,
 	"onlyCriticalTests": false
 }
