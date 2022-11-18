@@ -4,7 +4,7 @@ import {
   createCypressLog,
   // pushTransferredLogs,
   // openHTMLInfoPage,
-} from './cypress/support/savetime/src/services/file-handler'
+} from './cypress/support/savetime/src/services/handler/cypress-file-handler'
 
 export default defineConfig({
   projectId: 'h3q1s1',
