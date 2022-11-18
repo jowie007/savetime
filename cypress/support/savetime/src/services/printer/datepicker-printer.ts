@@ -25,6 +25,8 @@ let shown: boolean
 export function printDatepicker() {
   shown = false
   init()
+  initButton1ClickListener()
+  initButton2ClickListener()
 }
 
 function init() {
@@ -47,22 +49,21 @@ function init() {
     'selection__datepicker__test__wrapper',
   ) as HTMLDivElement
   initializeSelectedElements()
-  initButton1ClickListener()
-  initButton2ClickListener()
+  printResultsElement()
 }
 
 function toggleDatePickerContent() {
   if (shown) {
     clearDatePickerContent()
   } else {
+    year = new Date().getFullYear()
+    month = new Date().getMonth()
     initializeDatePickerContent()
   }
   shown = !shown
 }
 
 function initializeDatePickerContent() {
-  year = new Date().getFullYear()
-  month = new Date().getMonth()
   selection__datepicker__day__heading.innerHTML = getDatePickerFirstTitle()
   selection__datepicker__day__wrapper.innerHTML = getWeekdayContent()
   selection__datepicker__day__wrapper.innerHTML += getDatePickerSelectContent()

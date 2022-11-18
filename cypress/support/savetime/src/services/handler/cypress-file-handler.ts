@@ -201,7 +201,7 @@ function compareFilesByContent(
             runResultCompare.durationDifference -
             durationDifferenceOfMissingTests
           runResultCompare.durationDifferenceWithoutMissingTestsPercentage = getPercentageDifference(
-            runResultCompare.durationDifferenceWithoutMissingTests,
+            secondRunResultCompare.stats.duration,
             firstRunResultCompare.stats.duration,
           )
           durationDifferenceOfMissingTestsCombined += durationDifferenceOfMissingTests
@@ -216,7 +216,7 @@ function compareFilesByContent(
       cypressRunResultCompare.durationDifference -
       durationDifferenceOfMissingTestsCombined
     cypressRunResultCompare.durationDifferenceWithoutMissingTestsPercentage = getPercentageDifference(
-      cypressRunResultCompare.durationDifferenceWithoutMissingTests,
+      secondLog.totalDuration,
       firstLog.totalDuration,
     )
     // const recentTwoFileNumbers = getRecentTwoFileNumbers()
