@@ -1,9 +1,7 @@
 import { DELIMITER, getFormatDateWithPosition } from '../handler/date-handler'
-import {
-  compareFilesByNumber,
-  getAllFileDetails,
-} from '../handler/cypress-file-handler'
+import { compareFilesByNumber } from '../handler/cypress-file-handler'
 import { printResult } from './result-printer'
+import { getCypressLogFiles } from '../store/cypress-file-store'
 
 let selection__dropdown1: HTMLSelectElement
 let selection__dropdown2: HTMLSelectElement
@@ -35,7 +33,7 @@ function init() {
   const optionHTMLArray1: string[] = []
   const optionHTMLArray2: string[] = []
   dropdownLength = 0
-  getAllFileDetails().forEach((value, key) => {
+  getCypressLogFiles().forEach((value, key) => {
     optionHTMLArray1.push(getOption('selection__dropdown1', key, value))
     optionHTMLArray2.push(getOption('selection__dropdown2', key, value))
     dropdownLength++

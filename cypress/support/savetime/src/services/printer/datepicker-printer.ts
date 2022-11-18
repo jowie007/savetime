@@ -1,10 +1,10 @@
 import { getAllFileDetails } from '../handler/cypress-file-handler'
 import { getFormatDateWithPosition } from '../handler/date-handler'
 import { translation } from '../handler/translation-handler'
+import { getCypressLogFiles } from '../store/cypress-file-store'
 
 let selection__datepicker__heading: HTMLElement
-let selection__datepicker__wrapper: HTMLDivElement
-let files: Map<number, Date>
+let selection__datepicker__day__wrapper: HTMLDivElement
 let year: number
 let month: number
 let dayFileMap: Map<number, Map<number, Date>>
@@ -16,16 +16,15 @@ export function printDatepicker() {
 }
 
 function init() {
-  files = getAllFileDetails()
   selection__datepicker__heading = document.getElementById(
     'selection__datepicker__heading',
   ) as HTMLElement
-  selection__datepicker__wrapper = document.getElementById(
-    'selection__datepicker__wrapper',
+  selection__datepicker__day__wrapper = document.getElementById(
+    'selection__datepicker__day__wrapper',
   ) as HTMLDivElement
   selection__datepicker__heading.innerHTML = getDatePickerTitle()
-  selection__datepicker__wrapper.innerHTML = getWeekdayContent()
-  selection__datepicker__wrapper.innerHTML += getDatePickerSelectContent()
+  selection__datepicker__day__wrapper.innerHTML = getWeekdayContent()
+  selection__datepicker__day__wrapper.innerHTML += getDatePickerSelectContent()
   initPreviousButtonClickListener()
   initNextButtonClickListener()
   initDateButtonClickListeners()
@@ -96,7 +95,7 @@ function getWeekdayContent() {
 
 function getDatePickerSelectContent() {
   dayFileMap = new Map()
-  files.forEach((value, key) => {
+  getCypressLogFiles().forEach((value, key) => {
     if (value.getFullYear() === year && value.getMonth() === month) {
       const date = value.getDate()
       if (dayFileMap.has(date)) {
@@ -130,7 +129,6 @@ function getDatePickerSelectContent() {
       }">${day}</button>`,
     )
   }
-  htmlArray.push(`<div id='selection__datepicker__test'></div>`)
   return htmlArray.join(' ')
 }
 
@@ -145,7 +143,7 @@ function initializeDatePickerSecondSelectContent(day: number) {
     )
   })
   document.getElementById(
-    'selection__datepicker__test',
+    'selection__datepicker__test__wrapper',
   ).innerHTML = htmlArray.join(' ')
 }
 
