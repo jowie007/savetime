@@ -1,4 +1,4 @@
-$main-margin-bottom: 1.2rem;
+$main-margin-y: 1.2rem;
 $dark-color: #081215;
 $light-color: white;
 
@@ -34,7 +34,7 @@ h3,
   &__rating__borders {
     display: flex;
     justify-content: space-between;
-    margin-bottom: $main-margin-bottom;
+    margin-bottom: $main-margin-y;
   }
 }
 
@@ -50,7 +50,7 @@ th {
 }
 
 table {
-  margin-bottom: $main-margin-bottom;
+  margin-bottom: $main-margin-y;
   width: 100%;
   border-collapse: collapse;
 }
@@ -73,7 +73,7 @@ table {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: $main-margin-bottom;
+    margin-bottom: $main-margin-y;
   }
 
   .selection__datepicker {
@@ -194,7 +194,7 @@ table {
   }
 
   .settings__item {
-    margin-bottom: $main-margin-bottom;
+    margin-bottom: $main-margin-y;
   }
 }
 
@@ -221,7 +221,7 @@ table {
   overflow: hidden;
 }
 
-.run__test__durationDifference__td__duration__tooltip {
+.tooltip {
   width: 1.2rem;
   height: 1.2rem;
   background-color: $dark-color;
@@ -257,9 +257,21 @@ table {
   }
 }
 
+#nothingToCompare {
+  margin-top: $main-margin-y;
+}
+
 #overall {
   &__report {
+    position: relative;
     text-align: start;
-    margin-bottom: $main-margin-bottom;
+    margin-bottom: $main-margin-y;
+  }
+
+  &__report {
+    &__tooltip {
+      right: -0.2rem;
+      top: -0.8rem;
+    }
   }
 }

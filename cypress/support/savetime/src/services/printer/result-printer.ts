@@ -58,15 +58,25 @@ function getOverallContent(cypressRunResultCompare: CypressRunResultCompare) {
     </h2>
     <div id="overall__report">
       ${
-        translation.overall__report1 +
+        translation.overall__report1.trim() +
+        ' ' +
         durationRange[0] +
         ' ' +
-        translation.overall__report2 +
+        translation.overall__report2.trim() +
+        ' ' +
         durationRange[1] +
-        '. ' +
-        translation.overall__report3.trim() +
         '.'
       }
+      <div 
+        id='overall__report__tooltip'  
+        class="tooltip overall__report__tooltip">
+        ?
+        <span 
+          id='overall__report__tooltip__text' 
+          class="tooltip__text overall__report__tooltip__text">
+          ${translation.overall__report3.trim()}.
+        </span>
+      </div>
     </div>
     <table id="overall__table">
       <tr id="overall__durationDifference">
@@ -210,15 +220,12 @@ function getAttemptCountTooltip(
     ? `
     <div 
       id='run__test__durationDifference__td__duration__tooltip-${indexRun}-${indexTest}'  
-      class="run__test__durationDifference__td__duration__tooltip">
+      class="tooltip run__test__durationDifference__td__duration__tooltip">
       !
       <span 
         id='run__test__durationDifference__td__duration__tooltip__text-${indexRun}-${indexTest}' 
-        class="run__test__durationDifference__td__duration__tooltip__text">
-        ${
-          translation.run__test__durationDifference__td__duration__tooltip__text.trim() +
-          ':'
-        }<br/>
+        class="tooltip__text run__test__durationDifference__td__duration__tooltip__text">
+        ${translation.run__test__durationDifference__td__duration__tooltip__text.trim()}:<br/>
         ${testResultCompare.attemptCountRun1}
         ${
           testResultCompare.attemptCountRun1 > 1
