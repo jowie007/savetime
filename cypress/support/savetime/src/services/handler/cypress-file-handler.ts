@@ -180,10 +180,46 @@ function compareFilesByContent(
                 testResultCompare.durationDifference =
                   secondTestResultCompareLastAttempt.duration -
                   firstTestResultCompareLastAttempt.duration
+                if (
+                  cypressRunResultCompare.lowestDurationDifference ===
+                    undefined ||
+                  testResultCompare.durationDifference <
+                    cypressRunResultCompare.lowestDurationDifference
+                ) {
+                  cypressRunResultCompare.lowestDurationDifference =
+                    testResultCompare.durationDifference
+                }
+                if (
+                  cypressRunResultCompare.highestDurationDifference ===
+                    undefined ||
+                  testResultCompare.durationDifference >
+                    cypressRunResultCompare.highestDurationDifference
+                ) {
+                  cypressRunResultCompare.highestDurationDifference =
+                    testResultCompare.durationDifference
+                }
                 testResultCompare.durationDifferencePercentage = getPercentageDifference(
                   secondTestResultCompareLastAttempt.duration,
                   firstTestResultCompareLastAttempt.duration,
                 )
+                if (
+                  cypressRunResultCompare.lowestDurationDifferencePercentage ===
+                    undefined ||
+                  testResultCompare.durationDifferencePercentage <
+                    cypressRunResultCompare.lowestDurationDifferencePercentage
+                ) {
+                  cypressRunResultCompare.lowestDurationDifferencePercentage =
+                    testResultCompare.durationDifferencePercentage
+                }
+                if (
+                  cypressRunResultCompare.highestDurationDifferencePercentage ===
+                    undefined ||
+                  testResultCompare.durationDifferencePercentage >
+                    cypressRunResultCompare.highestDurationDifferencePercentage
+                ) {
+                  cypressRunResultCompare.highestDurationDifferencePercentage =
+                    testResultCompare.durationDifferencePercentage
+                }
               }
             }
             if (!firstTestResultFound) {

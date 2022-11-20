@@ -3,6 +3,10 @@ export class CypressRunResultCompare {
   durationDifferencePercentage: number
   durationDifferenceWithoutMissingTests: number
   durationDifferenceWithoutMissingTestsPercentage: number
+  lowestDurationDifference: number | undefined
+  highestDurationDifference: number | undefined
+  lowestDurationDifferencePercentage: number | undefined
+  highestDurationDifferencePercentage: number | undefined
   runs: RunResultCompare[]
 
   constructor() {

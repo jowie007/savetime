@@ -17,6 +17,9 @@ settings__maxDurationDifference__label__percentage|Max duration difference in %|
 settings__percentageValues__label|Percentage values|Prozentuale Werte
 settings__onlyCriticalTests__label|Only show tests with a duration difference above the border|Nur Tests anzeigen dessen Laufzeit die Grenze überschreitet
 overall__caption|Overall infos|Allgemeine Infos
+overall__report1|The difference varies between|Die Laufzeitdifferenz schwankt zwischen
+overall__report2|and|und
+overall__report3|If the minimum and maximum differences are relatively high or low, while the range is quite small, this may indicate that the tests were either run on different devices or that the entire application is slowed down by various factors|Sind die minimalen und maximalen Differenzen verhältnismäßig hoch oder niedrig, die Spanne hingegen recht gering, dann kann dies ein Indiz dafür sein, dass die Tests entweder auf unterschiedlichen Geräten durchlaufen wurden oder die gesamte Applikation durch verschiedene Faktoren verlangsamt wird
 overall__durationDifference__th|Overall duration difference|Gesamte Laufzeitdifferenz
 overall__durationDifferenceWithoutMissingTests__th|Overall duration difference without missing tests|Gesamte Laufzeitdifferenz ohne fehlende Tests
 run__durationDifference__th|Run duration difference|Laufzeitdifferenz der Testsammlung

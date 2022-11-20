@@ -50,11 +50,25 @@ function fillOverallTables() {
 }
 
 function getOverallContent(cypressRunResultCompare: CypressRunResultCompare) {
+  const durationRange = getDurationRange(cypressRunResultCompare)
   return `
+    <h2 id="overall__caption">
+      ${translation.overall__caption}
+      
+    </h2>
+    <div id="overall__report">
+      ${
+        translation.overall__report1 +
+        durationRange[0] +
+        ' ' +
+        translation.overall__report2 +
+        durationRange[1] +
+        '. ' +
+        translation.overall__report3.trim() +
+        '.'
+      }
+    </div>
     <table id="overall__table">
-      <caption id="overall__caption">
-        ${translation.overall__caption}
-      </caption>
       <tr id="overall__durationDifference">
         <th id="overall__durationDifference__th">
           ${translation.overall__durationDifference__th}
@@ -296,6 +310,20 @@ function getAdjustedStyle(
       ? resultCompare.durationDifferencePercentage
       : resultCompare.durationDifference,
   )}`
+}
+
+function getDurationRange(resultCompare: CypressRunResultCompare) {
+  console.log(resultCompare)
+  if (isPercentageValues()) {
+    return [
+      resultCompare.lowestDurationDifferencePercentage + '%',
+      resultCompare.highestDurationDifferencePercentage + '%',
+    ]
+  }
+  return [
+    resultCompare.lowestDurationDifference + translation.milliseconds,
+    resultCompare.highestDurationDifference + translation.milliseconds,
+  ]
 }
 
 function getAdjustedDurationDifferenceString(
