@@ -21,6 +21,10 @@ export const translation: Translation = new Translation()
 
 export function initTranslations() {
   selectedLocale = getSettings().locale
+  document
+    .getElementsByTagName('html')
+    .item(0)
+    .setAttribute('lang', selectedLocale.toLowerCase())
   for (const [key, value] of Object.entries(translations)) {
     translation[key] = value[getLocaleIndex(selectedLocale)]
   }
