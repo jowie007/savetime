@@ -170,19 +170,58 @@ function getTestRowContent(
     ? ''
     : `
     <tr id="run__test-${indexRun}-${indexTest}">
-      <td id="run__test__durationDifference__td-${indexRun}-${indexTest}">
+      <td id="run__test__durationDifference__td__name-${indexRun}-${indexTest}">
         ${testResultCompare.title.join(': ')}
       </td>
       <td 
-        id="run__test__durationDifference__td-${indexRun}-${indexTest}" 
+        id="run__test__durationDifference__td__duration-${indexRun}-${indexTest}" 
         class="td__duration" 
         style="
           ${getAdjustedStyle(testResultCompare)}
         ">
         ${getAdjustedDurationDifferenceString(testResultCompare)}
+        ${getAttemptCountTooltip(testResultCompare, indexRun, indexTest)}
       </td>
     </tr>
   `
+}
+
+function getAttemptCountTooltip(
+  testResultCompare: TestResultCompare,
+  indexRun: number,
+  indexTest: number,
+) {
+  return testResultCompare.attemptCountRun1 !==
+    testResultCompare.attemptCountRun2
+    ? `
+    <div 
+      id='run__test__durationDifference__td__duration__tooltip-${indexRun}-${indexTest}'  
+      class="run__test__durationDifference__td__duration__tooltip">
+      !
+      <span 
+        id='run__test__durationDifference__td__duration__tooltip__text-${indexRun}-${indexTest}' 
+        class="run__test__durationDifference__td__duration__tooltip__text">
+        ${
+          translation.run__test__durationDifference__td__duration__tooltip__text.trim() +
+          ':'
+        }<br/>
+        ${testResultCompare.attemptCountRun1}
+        ${
+          testResultCompare.attemptCountRun1 > 1
+            ? translation.runs
+            : translation.run
+        }<br/>
+        ${translation.versus}<br/>
+        ${testResultCompare.attemptCountRun2}
+        ${
+          testResultCompare.attemptCountRun2 > 1
+            ? translation.runs
+            : translation.run
+        }
+      </span>
+    </div>
+  `
+    : ''
 }
 
 function initializeGradient() {

@@ -174,10 +174,9 @@ table {
   z-index: 1;
   background-color: $dark-color;
   opacity: 0.95;
-  height: 100vw;
   max-width: 20%;
   padding: 0.2rem;
- 
+
   &__button {
     position: absolute;
     top: 0.4rem;
@@ -203,6 +202,7 @@ table {
   text-shadow: 1px 1px 2px black;
   padding: 0.2rem;
   width: 20%;
+  position: relative;
 }
 
 .accordion {
@@ -219,4 +219,40 @@ table {
   padding: 0 1rem;
   display: none;
   overflow: hidden;
+}
+
+.run__test__durationDifference__td__duration__tooltip {
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: $dark-color;
+  color: $light-color;
+  border-radius: 1rem;
+  position: absolute;
+  right: -0.2rem;
+  top: -0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include basic-outline;
+
+  &:hover &__text {
+    visibility: visible;
+  }
+
+  &__text {
+    visibility: hidden;
+    width: 8rem;
+    text-align: center;
+    border-radius: 0.4rem;
+    padding: 0.2rem;
+    background-color: $dark-color;
+    color: $light-color;
+    @include basic-outline;
+
+    /* Position the tooltip */
+    position: absolute;
+    top: 0;
+    left: 1.6rem;
+    z-index: 2;
+  }
 }

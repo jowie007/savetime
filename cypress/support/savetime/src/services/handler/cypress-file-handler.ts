@@ -118,7 +118,7 @@ export function compareFilesByNumber(
       }
     })
   } catch (e) {
-    console.log('Unable to compare files by number')
+    console.log(e, 'Unable to compare files by number')
   }
   return firstContent && secondContent
     ? compareFilesByContent(firstContent, secondContent)
@@ -171,9 +171,11 @@ function compareFilesByContent(
               ) {
                 firstTestResultFound = true
                 const firstTestResultCompareLastAttempt = firstTestResultCompare.attempts.pop()
-                testResultCompare.attemptCountDifference =
-                  secondTestResultCompare.attempts.length -
-                  firstTestResultCompare.attempts.length
+                // Plus 1, because 1 is popped
+                testResultCompare.attemptCountRun1 =
+                  firstTestResultCompare.attempts.length + 1
+                testResultCompare.attemptCountRun2 =
+                  secondTestResultCompare.attempts.length + 1
                 testResultCompare.differenceDetectedMessage = null
                 testResultCompare.durationDifference =
                   secondTestResultCompareLastAttempt.duration -
@@ -187,7 +189,8 @@ function compareFilesByContent(
             if (!firstTestResultFound) {
               testResultCompare.durationDifference =
                 secondTestResultCompareLastAttempt.duration
-              testResultCompare.attemptCountDifference =
+              testResultCompare.attemptCountRun1 = 0
+              testResultCompare.attemptCountRun2 =
                 secondTestResultCompare.attempts.length
               testResultCompare.differenceDetectedMessage = 'NOT_FOUND'
               durationDifferenceOfMissingTests +=

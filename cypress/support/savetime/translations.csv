@@ -5,6 +5,9 @@ duration|Duration|Laufzeit
 milliseconds|ms|ms
 months|January,February,March,April,May,June,July,August,September,October,November,December|Januar,Februar,März,April,Mai,Juni,Juli,August,September,Oktober,November,Dezember
 weekdays|Mon,Tue,Wed,Thu,Fri,Sat,Sun|Mo,Di,Mi,Do,Fr,Sa,So
+run|run|Durchlauf
+runs|runs|Durchläufe
+versus|vs.|vs.
 selection__datepicker__navigation__previous|◀|◀
 selection__datepicker__navigation__next|▶|▶
 settings|⚙️|⚙️
@@ -21,5 +24,5 @@ run__durationDifferenceWithoutMissingTests__th|Run duration difference without m
 run__durationDifference__th|Run duration difference|Laufzeitdifferenz der Testsammlung
 run__test__name__th|Test name|Testname
 run__test__durationDifference__th|Test duration difference|Laufzeitdifferenz der Tests
+run__test__durationDifference__td__duration__tooltip__text|The test runs have different attempt counts|Die Tests wurden unterschiedlich oft ausgeführt
 compareInfos__rating__title|Legend|Legende
-TODO1|LANG IM HTML SETZEN|
