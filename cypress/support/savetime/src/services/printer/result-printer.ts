@@ -52,7 +52,7 @@ function fillOverallTables() {
 function getOverallContent(cypressRunResultCompare: CypressRunResultCompare) {
   const durationRange = getDurationRange(cypressRunResultCompare)
   return `
-    <h2 id="overall__caption">
+    <h2 id="overall__title">
       ${translation.overall__caption}
       
     </h2>

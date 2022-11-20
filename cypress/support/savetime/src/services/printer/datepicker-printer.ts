@@ -7,6 +7,7 @@ import { translation } from '../handler/translation-handler'
 import { getCypressLogFiles } from '../store/cypress-file-store'
 import { printResult } from './result-printer'
 
+let selection__datepicker__day: HTMLDivElement
 let selection__datepicker__button1: HTMLButtonElement
 let selection__datepicker__button2: HTMLButtonElement
 let selection__datepicker__day__heading: HTMLDivElement
@@ -47,6 +48,9 @@ function init() {
       }
     }
   }
+  selection__datepicker__day = document.getElementById(
+    'selection__datepicker__day',
+  ) as HTMLDivElement
   selection__datepicker__day__heading = document.getElementById(
     'selection__datepicker__day__heading',
   ) as HTMLDivElement
@@ -71,6 +75,8 @@ function toggleDatePickerContent() {
     month = new Date().getMonth()
     initializeDatePickerContent()
   }
+  selection__datepicker__day.style.display =
+    selection__datepicker__day.style.display === 'block' ? 'none' : 'block'
   shown = !shown
 }
 
