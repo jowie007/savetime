@@ -1,9 +1,9 @@
-import { initializeHTML } from "../../preload";
+import { Locale } from '../../classes/locale'
+import { initializeHTML } from '../../preload'
 import {
   getLanguageFlagByLocale,
-  Locale,
   translation,
-} from "../handler/translation-handler";
+} from '../handler/translation-handler'
 import {
   getMaxDurationDifference,
   getMaxDurationDifferencePercentage,
@@ -14,54 +14,52 @@ import {
   setMaxDurationDifferencePercentage,
   setOnlyCriticalTests,
   setPercentageValues,
-} from "../store/settings-store";
-import { getMinBorder } from "./result-printer";
+} from '../store/settings-store'
+import { getMinBorder } from './result-printer'
 
-let settings__button: HTMLElement;
-let settings__panel: HTMLElement;
-let initializedBefore = false;
+let settings__button: HTMLElement
+let settings__panel: HTMLElement
+let initializedBefore = false
 
 function init() {
   if (!initializedBefore) {
-    initializeAccordionButton();
+    initializeAccordionButton()
   }
-  fillSettings();
-  initializedBefore = true;
+  fillSettings()
+  initializedBefore = true
 }
 
 function initializeAccordionButton() {
-  settings__button = document.getElementById("settings__button");
-  settings__panel = document.getElementById("settings__panel");
-  settings__button.textContent = translation.settings;
-  settings__button.addEventListener("click", function () {
-    this.classList.toggle("settings__active");
+  settings__button = document.getElementById('settings__button')
+  settings__panel = document.getElementById('settings__panel')
+  settings__button.textContent = translation.settings
+  settings__button.addEventListener('click', function () {
+    this.classList.toggle('settings__active')
     settings__panel.style.display =
-      settings__panel.style.display === "block" ? "none" : "block";
-  });
+      settings__panel.style.display === 'block' ? 'none' : 'block'
+  })
 }
 
 function fillSettings() {
-  settings__panel.innerHTML = getSettingsContent();
-  initLocaleButtonsClickListeners();
-  initMaxDurationDifferenceChangeListener();
-  initPercentageValuesChangeListener();
-  initOnlyCriticalTestsChangeListener();
+  settings__panel.innerHTML = getSettingsContent()
+  initLocaleButtonsClickListeners()
+  initMaxDurationDifferenceChangeListener()
+  initPercentageValuesChangeListener()
+  initOnlyCriticalTestsChangeListener()
 }
 
 function getSettingsContent() {
-  const languageFlagsHTMLArray: string[] = [];
+  const languageFlagsHTMLArray: string[] = []
   Object.values(Locale).forEach((locale) => {
-    if (!Number.isNaN(Number(locale))) {
-      languageFlagsHTMLArray.push(getFlagButtonContentByLocale(Number(locale)));
-    }
-  });
+    languageFlagsHTMLArray.push(getFlagButtonContentByLocale(locale))
+  })
   return `
     <div id='settings__language__wrapper' class='settings__item'>
       <label id='settings__language__label' for='settings__language'>
         ${translation.settings__language__label}
       </label><br/>
       <div id='settings__language'>
-        ${languageFlagsHTMLArray.join(" ")}
+        ${languageFlagsHTMLArray.join(' ')}
       </div>
     </div>
     <div id='settings__maxDurationDifference__wrapper' class='settings__item'>
@@ -91,7 +89,7 @@ function getSettingsContent() {
       <input 
         id='settings__percentageValues__checkbox' 
         type='checkbox'
-        ${isPercentageValues() ? "checked" : ""}
+        ${isPercentageValues() ? 'checked' : ''}
         />
     </div>
     <div id='settings__onlyCriticalTests' class='settings__item'>
@@ -101,66 +99,64 @@ function getSettingsContent() {
     <input 
       id='settings__onlyCriticalTests__checkbox' 
       type='checkbox'
-      ${isOnlyCriticalTests() ? "checked" : ""}
+      ${isOnlyCriticalTests() ? 'checked' : ''}
       />
   </div>
-    `;
+    `
 }
 
-function getFlagButtonContentByLocale(locale: number) {
+function getFlagButtonContentByLocale(locale: Locale) {
   return `
     <button id='settings__language__button-${locale}'
       class='settings__language__button'>
         ${getLanguageFlagByLocale(locale)}
     </button>
-    `;
+    `
 }
 
 function initLocaleButtonsClickListeners() {
   Object.values(Locale).forEach((locale) => {
-    if (!Number.isNaN(Number(locale))) {
-      document
-        .getElementById(`settings__language__button-${locale}`)
-        .addEventListener("click", () => {
-          setLocale(Number(locale));
-          initializeHTML();
-        });
-    }
-  });
+    document
+      .getElementById(`settings__language__button-${locale}`)
+      .addEventListener('click', () => {
+        setLocale(locale)
+        initializeHTML()
+      })
+  })
 }
 
 function initMaxDurationDifferenceChangeListener() {
   document
     .getElementById(`settings__maxDurationDifference`)
-    .addEventListener("change", (change) => {
-      const newValue = Number((change.target as HTMLInputElement).value);
+    .addEventListener('change', (change) => {
+      const newValue = Number((change.target as HTMLInputElement).value)
       if (isPercentageValues()) {
-        setMaxDurationDifferencePercentage(newValue);
+        setMaxDurationDifferencePercentage(newValue)
       } else {
-        setMaxDurationDifference(newValue);
+        setMaxDurationDifference(newValue)
       }
-      initializeHTML();
-    });
+      initializeHTML()
+    })
 }
 
 function initPercentageValuesChangeListener() {
   document
     .getElementById(`settings__percentageValues__checkbox`)
-    .addEventListener("change", () => {
-      setPercentageValues(!isPercentageValues());
-      initializeHTML();
-    });
+    .addEventListener('change', () => {
+      setPercentageValues(!isPercentageValues())
+      initializeHTML()
+    })
 }
 
 function initOnlyCriticalTestsChangeListener() {
   document
     .getElementById(`settings__onlyCriticalTests__checkbox`)
-    .addEventListener("change", () => {
-      setOnlyCriticalTests(!isOnlyCriticalTests());
-      initializeHTML();
-    });
+    .addEventListener('change', () => {
+      setOnlyCriticalTests(!isOnlyCriticalTests())
+      initializeHTML()
+    })
 }
 
 export function printSettings() {
-  init();
+  init()
 }

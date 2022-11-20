@@ -1,56 +1,56 @@
-import { Settings } from "../../classes/settings";
-import { readSettings, saveSettings } from "../handler/settings-file-handler";
-import { Locale } from "../handler/translation-handler";
+import { Locale } from '../../classes/locale'
+import { Settings } from '../../classes/settings'
+import { readSettings, saveSettings } from '../handler/settings-file-handler'
 
-let settings: Settings;
+let settings: Settings
 
 export function initSettingsStore() {
-  settings = readSettings();
+  settings = readSettings()
 }
 
 export function getSettings() {
-  return settings;
+  return settings
 }
 
 export function setLocale(locale: Locale) {
-  settings.locale = locale;
-  saveSettings(settings);
+  settings.locale = locale
+  saveSettings(settings)
 }
 
 export function getMaxDurationDifference() {
-  return settings.maxDurationDifference;
+  return settings.maxDurationDifference
 }
 
 export function setMaxDurationDifference(maxDurationDifference: number) {
-  settings.maxDurationDifference = maxDurationDifference;
-  saveSettings(settings);
+  settings.maxDurationDifference = maxDurationDifference
+  saveSettings(settings)
 }
 
 export function getMaxDurationDifferencePercentage() {
-  return settings.maxDurationDifferencePercentage;
+  return settings.maxDurationDifferencePercentage
 }
 
 export function setMaxDurationDifferencePercentage(
-  maxDurationDifferencePercentage: number
+  maxDurationDifferencePercentage: number,
 ) {
-  settings.maxDurationDifferencePercentage = maxDurationDifferencePercentage;
-  saveSettings(settings);
+  settings.maxDurationDifferencePercentage = maxDurationDifferencePercentage
+  saveSettings(settings)
 }
 
 export function isPercentageValues() {
-  return settings.percentageValues;
+  return settings.percentageValues
 }
 
 export function setPercentageValues(percentageValues: boolean) {
-  settings.percentageValues = percentageValues;
-  saveSettings(settings);
+  settings.percentageValues = percentageValues
+  saveSettings(settings)
 }
 
 export function isOnlyCriticalTests() {
-  return settings.onlyCriticalTests;
+  return settings.onlyCriticalTests
 }
 
 export function setOnlyCriticalTests(onlyCriticalTests: boolean) {
-  settings.onlyCriticalTests = onlyCriticalTests;
-  saveSettings(settings);
+  settings.onlyCriticalTests = onlyCriticalTests
+  saveSettings(settings)
 }
