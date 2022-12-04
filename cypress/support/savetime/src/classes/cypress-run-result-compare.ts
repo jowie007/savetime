@@ -7,8 +7,8 @@ export enum CypressDifference {
 export class CypressRunResultCompare {
   durationDifference: number
   durationDifferencePercentage: number
-  durationDifferenceWithoutMissingTests: number
-  durationDifferenceWithoutMissingTestsPercentage: number
+  // durationDifferenceWithoutMissingTests: number
+  // durationDifferenceWithoutMissingTestsPercentage: number
   lowestDurationDifference: number | undefined
   highestDurationDifference: number | undefined
   lowestDurationDifferencePercentage: number | undefined
@@ -24,8 +24,8 @@ export class CypressRunResultCompare {
 export class RunResultCompare {
   durationDifference: number
   durationDifferencePercentage: number
-  durationDifferenceWithoutMissingTests: number
-  durationDifferenceWithoutMissingTestsPercentage: number
+  // durationDifferenceWithoutMissingTests: number
+  // durationDifferenceWithoutMissingTestsPercentage: number
   tests: TestResultCompare[]
   name: string
   differenceDetectedMessage: CypressDifference
