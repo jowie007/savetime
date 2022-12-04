@@ -117,7 +117,6 @@ function fillRunTables() {
   const innerHTMLArray: string[] = [];
   cypressRunResultCompare.runs.forEach(
     (value: RunResultCompare, index: number) => {
-      console.log("vi", value, index);
       innerHTMLArray.push(getRunTableContent(value, index));
     }
   );
@@ -143,7 +142,13 @@ function getRunTableContent(
     ` +
     (runResultCompare.differenceDetectedMessage !==
     CypressDifference.NO_DIFFERENCE
-      ? translation[runResultCompare.differenceDetectedMessage]
+      ? `
+      <div         
+        class="run__info run__info-${
+          runResultCompare.differenceDetectedMessage
+        }">
+        ${translation[runResultCompare.differenceDetectedMessage]}
+      </div>`
       : (!isOnlyCriticalTests()
           ? `
     <table id="run-${indexRun}">

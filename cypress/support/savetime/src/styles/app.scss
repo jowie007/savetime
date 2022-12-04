@@ -8,6 +8,23 @@ $light-color: white;
   outline-color: $light-color;
 }
 
+@mixin dotted-background {
+  background-image: radial-gradient(#404040 30%, transparent 30%);
+  background-color: transparent;
+  background-position: center;
+  background-size: 0.625rem 0.625rem;
+}
+
+@mixin striped-background {
+  background: repeating-linear-gradient(
+    45deg,
+    #404040,
+    #404040 0.25rem,
+    transparent 0.25rem,
+    transparent 0.5rem
+  );
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
@@ -42,7 +59,7 @@ h3 {
 table,
 td,
 th {
-  border: 1px solid;
+  border: 0.0625rem solid;
 }
 
 td,
@@ -213,26 +230,30 @@ table {
 }
 
 .td__duration {
-  text-shadow: 1px 1px 2px black;
+  text-shadow: 0.0625rem 0.0625rem 0.125rem black;
   padding: 0.2rem;
   width: 20%;
   position: relative;
 
   &-notFoundFirst {
-    background-image: radial-gradient(#404040 30%, transparent 30%);
-    background-color: transparent;
-    background-position: center;
-    background-size: 10px 10px;
+    @include dotted-background;
   }
 
   &-notFoundSecond {
-    background: repeating-linear-gradient(
-      45deg,
-      #404040,
-      #404040 4px,
-      transparent 4px,
-      transparent 8px
-    );
+    @include striped-background;
+  }
+}
+
+.run__info {
+  @include basic-outline;
+  padding: 0.25rem;
+
+  &-notFoundFirst {
+    @include dotted-background;
+  }
+
+  &-notFoundSecond {
+    @include striped-background;
   }
 }
 
