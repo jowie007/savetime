@@ -1,5 +1,6 @@
 import { translation } from '../handler/translation-handler'
 import {
+  CypressDifference,
   CypressRunResultCompare,
   RunResultCompare,
   TestResultCompare,
@@ -199,11 +200,20 @@ function getTestRowContent(
       </td>
       <td 
         id="run__test__durationDifference__td__duration-${indexRun}-${indexTest}" 
-        class="td__duration" 
+        class="td__duration${
+          isDifferenceDetected(testResultCompare)
+            ? ` td__duration-${testResultCompare.differenceDetectedMessage}`
+            : ''
+        }" 
         style="
           ${getAdjustedStyle(testResultCompare)}
         ">
-        ${getAdjustedDurationDifferenceString(testResultCompare)}
+        ${
+          testResultCompare.differenceDetectedMessage ===
+          CypressDifference.NO_DIFFERENCE
+            ? getAdjustedDurationDifferenceString(testResultCompare)
+            : translation[testResultCompare.differenceDetectedMessage]
+        }
         ${getAttemptCountTooltip(testResultCompare, indexRun, indexTest)}
       </td>
     </tr>
@@ -215,6 +225,9 @@ function getAttemptCountTooltip(
   indexRun: number,
   indexTest: number,
 ) {
+  if (isDifferenceDetected(testResultCompare)) {
+    return ''
+  }
   return testResultCompare.attemptCountRun1 !==
     testResultCompare.attemptCountRun2
     ? `
@@ -312,11 +325,24 @@ function getPositionByDuration(duration: number) {
 function getAdjustedStyle(
   resultCompare: TestResultCompare | RunResultCompare | CypressRunResultCompare,
 ) {
+  if (isDifferenceDetected(resultCompare)) {
+    return ''
+  }
   return `background-color: ${getColorByDuration(
     isPercentageValues()
       ? resultCompare.durationDifferencePercentage
       : resultCompare.durationDifference,
   )}`
+}
+
+function isDifferenceDetected(
+  resultCompare: TestResultCompare | RunResultCompare | CypressRunResultCompare,
+) {
+  return (
+    (resultCompare instanceof TestResultCompare ||
+      resultCompare instanceof RunResultCompare) &&
+    resultCompare.differenceDetectedMessage !== CypressDifference.NO_DIFFERENCE
+  )
 }
 
 function getDurationRange(resultCompare: CypressRunResultCompare) {

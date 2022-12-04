@@ -8,6 +8,8 @@ weekdays|Mon,Tue,Wed,Thu,Fri,Sat,Sun|Mo,Di,Mi,Do,Fr,Sa,So
 run|run|Durchlauf
 runs|runs|Durchläufe
 versus|vs.|vs.
+notFoundFirst|New|Neu
+notFoundSecond|Deleted|Entfernt
 selection__datepicker__navigation__previous|◀|◀
 selection__datepicker__navigation__next|▶|▶
 settings|⚙️|⚙️

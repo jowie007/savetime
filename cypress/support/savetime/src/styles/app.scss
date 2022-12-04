@@ -217,6 +217,23 @@ table {
   padding: 0.2rem;
   width: 20%;
   position: relative;
+
+  &-notFoundFirst {
+    background-image: radial-gradient(#404040 30%, transparent 30%);
+    background-color: transparent;
+    background-position: center;
+    background-size: 10px 10px;
+  }
+
+  &-notFoundSecond {
+    background: repeating-linear-gradient(
+      45deg,
+      #404040,
+      #404040 4px,
+      transparent 4px,
+      transparent 8px
+    );
+  }
 }
 
 .accordion {

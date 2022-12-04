@@ -1,11 +1,11 @@
 {
 	"status": "finished",
-	"startedTestsAt": "2022-11-18T08:58:34.816Z",
-	"endedTestsAt": "2022-11-18T08:59:04.595Z",
-	"totalDuration": 25052,
-	"totalSuites": 2,
-	"totalTests": 6,
-	"totalPassed": 6,
+	"startedTestsAt": "2022-12-03T17:53:05.900Z",
+	"endedTestsAt": "2022-12-03T17:53:38.651Z",
+	"totalDuration": 25310,
+	"totalSuites": 3,
+	"totalTests": 8,
+	"totalPassed": 8,
 	"totalPending": 0,
 	"totalFailed": 0,
 	"totalSkipped": 0,
@@ -18,9 +18,9 @@
 				"pending": 0,
 				"skipped": 0,
 				"failures": 0,
-				"duration": 4128,
-				"startedAt": "2022-11-18T08:58:34.816Z",
-				"endedAt": "2022-11-18T08:58:38.944Z"
+				"duration": 3726,
+				"startedAt": "2022-12-03T17:53:05.900Z",
+				"endedAt": "2022-12-03T17:53:09.626Z"
 			},
 			"reporter": "spec",
 			"reporterStats": {
@@ -29,9 +29,9 @@
 				"passes": 3,
 				"pending": 0,
 				"failures": 0,
-				"start": "2022-11-18T08:58:34.820Z",
-				"end": "2022-11-18T08:58:38.979Z",
-				"duration": 4159
+				"start": "2022-12-03T17:53:05.903Z",
+				"end": "2022-12-03T17:53:09.638Z",
+				"duration": 3735
 			},
 			"hooks": [
 				{
@@ -55,28 +55,9 @@
 						{
 							"state": "passed",
 							"error": null,
-							"videoTimestamp": 3128,
-							"duration": 3419,
-							"startedAt": "2022-11-18T08:58:34.831Z",
-							"screenshots": []
-						}
-					]
-				},
-				{
-					"title": [
-						"About view",
-						"check secondary content"
-					],
-					"state": "passed",
-					"body": "function () {\r\n        cy.contains(\"h1\", \"This is an about page\");\r\n    }",
-					"displayError": null,
-					"attempts": [
-						{
-							"state": "passed",
-							"error": null,
-							"videoTimestamp": 6553,
-							"duration": 274,
-							"startedAt": "2022-11-18T08:58:38.256Z",
+							"videoTimestamp": 1899,
+							"duration": 3243,
+							"startedAt": "2022-12-03T17:53:05.910Z",
 							"screenshots": []
 						}
 					]
@@ -93,9 +74,9 @@
 						{
 							"state": "passed",
 							"error": null,
-							"videoTimestamp": 6830,
-							"duration": 408,
-							"startedAt": "2022-11-18T08:58:38.533Z",
+							"videoTimestamp": 5354,
+							"duration": 258,
+							"startedAt": "2022-12-03T17:53:09.365Z",
 							"screenshots": []
 						}
 					]
@@ -103,7 +84,7 @@
 				{
 					"title": [
 						"About view",
-						"check more content"
+						"check impressum"
 					],
 					"state": "passed",
 					"body": "function () {\r\n        cy.contains(\"a\", \"Home\").click();\r\n    }",
@@ -112,9 +93,9 @@
 						{
 							"state": "passed",
 							"error": null,
-							"videoTimestamp": 6830,
-							"duration": 408,
-							"startedAt": "2022-11-18T08:58:38.533Z",
+							"videoTimestamp": 5354,
+							"duration": 258,
+							"startedAt": "2022-12-03T17:53:09.365Z",
 							"screenshots": []
 						}
 					]
@@ -143,9 +124,9 @@
 				"pending": 0,
 				"skipped": 0,
 				"failures": 0,
-				"duration": 20924,
-				"startedAt": "2022-11-18T08:58:43.671Z",
-				"endedAt": "2022-11-18T08:59:04.595Z"
+				"duration": 20570,
+				"startedAt": "2022-12-03T17:53:12.663Z",
+				"endedAt": "2022-12-03T17:53:33.233Z"
 			},
 			"reporter": "spec",
 			"reporterStats": {
@@ -154,9 +135,9 @@
 				"passes": 3,
 				"pending": 0,
 				"failures": 0,
-				"start": "2022-11-18T08:58:43.674Z",
-				"end": "2022-11-18T08:59:04.601Z",
-				"duration": 20927
+				"start": "2022-12-03T17:53:12.669Z",
+				"end": "2022-12-03T17:53:33.243Z",
+				"duration": 20574
 			},
 			"hooks": [
 				{
@@ -180,9 +161,9 @@
 						{
 							"state": "passed",
 							"error": null,
-							"videoTimestamp": 1813,
-							"duration": 20370,
-							"startedAt": "2022-11-18T08:58:43.686Z",
+							"videoTimestamp": 1107,
+							"duration": 20205,
+							"startedAt": "2022-12-03T17:53:12.673Z",
 							"screenshots": []
 						}
 					]
@@ -199,9 +180,9 @@
 						{
 							"state": "passed",
 							"error": null,
-							"videoTimestamp": 22204,
-							"duration": 230,
-							"startedAt": "2022-11-18T08:59:04.077Z",
+							"videoTimestamp": 21330,
+							"duration": 136,
+							"startedAt": "2022-12-03T17:53:32.896Z",
 							"screenshots": []
 						}
 					]
@@ -218,9 +199,9 @@
 						{
 							"state": "passed",
 							"error": null,
-							"videoTimestamp": 22436,
-							"duration": 284,
-							"startedAt": "2022-11-18T08:59:04.309Z",
+							"videoTimestamp": 21468,
+							"duration": 197,
+							"startedAt": "2022-12-03T17:53:33.034Z",
 							"screenshots": []
 						}
 					]
@@ -238,6 +219,93 @@
 				"name": "cypress/e2e/home-view.cy.ts",
 				"relative": "cypress\\e2e\\home-view.cy.ts",
 				"absolute": "C:/Users/jonas/Documents/Workspace/VSC/master-project/cypress/e2e/home-view.cy.ts"
+			},
+			"shouldUploadVideo": true
+		},
+		{
+			"stats": {
+				"suites": 1,
+				"tests": 2,
+				"passes": 2,
+				"pending": 0,
+				"skipped": 0,
+				"failures": 0,
+				"duration": 1014,
+				"startedAt": "2022-12-03T17:53:37.637Z",
+				"endedAt": "2022-12-03T17:53:38.651Z"
+			},
+			"reporter": "spec",
+			"reporterStats": {
+				"suites": 1,
+				"tests": 2,
+				"passes": 2,
+				"pending": 0,
+				"failures": 0,
+				"start": "2022-12-03T17:53:37.642Z",
+				"end": "2022-12-03T17:53:38.666Z",
+				"duration": 1024
+			},
+			"hooks": [
+				{
+					"hookName": "before each",
+					"title": [
+						"\"before each\" hook"
+					],
+					"body": "function () {\r\n        cy.visit('/sort');\r\n    }"
+				}
+			],
+			"tests": [
+				{
+					"title": [
+						"Sort view",
+						"check main content"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.contains('h1', 'You did it!');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 1147,
+							"duration": 171,
+							"startedAt": "2022-12-03T17:53:37.648Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Sort view",
+						"check sort"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.get('[id=sort__buttons__mergeSort]').click();\r\n        cy.get('[id=sort__item-7]').contains('Leoniden');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 1321,
+							"duration": 827,
+							"startedAt": "2022-12-03T17:53:37.822Z",
+							"screenshots": []
+						}
+					]
+				}
+			],
+			"error": null,
+			"video": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\videos\\sort-view.cy.ts.mp4",
+			"spec": {
+				"fileExtension": ".ts",
+				"baseName": "sort-view.cy.ts",
+				"fileName": "sort-view",
+				"specFileExtension": ".cy.ts",
+				"relativeToCommonRoot": "sort-view.cy.ts",
+				"specType": "integration",
+				"name": "cypress/e2e/sort-view.cy.ts",
+				"relative": "cypress\\e2e\\sort-view.cy.ts",
+				"absolute": "C:/Users/jonas/Documents/Workspace/VSC/master-project/cypress/e2e/sort-view.cy.ts"
 			},
 			"shouldUploadVideo": true
 		}
@@ -281,7 +349,7 @@
 		"configFile": "cypress.config.ts",
 		"morgan": false,
 		"isTextTerminal": true,
-		"socketId": "1saeb0usnw",
+		"socketId": "f82orqsa4j",
 		"report": true,
 		"animationDistanceThreshold": 5,
 		"arch": "x64",
@@ -309,7 +377,7 @@
 		"numTestsKeptInMemory": 0,
 		"platform": "win32",
 		"pageLoadTimeout": 60000,
-		"port": 59109,
+		"port": 63901,
 		"redirectionLimit": 20,
 		"reporter": "spec",
 		"reporterOptions": null,
@@ -347,20 +415,20 @@
 				"family": "chromium",
 				"channel": "stable",
 				"displayName": "Chrome",
-				"version": "107.0.5304.107",
+				"version": "108.0.5359.94",
 				"path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
 				"minSupportedVersion": 64,
-				"majorVersion": "107"
+				"majorVersion": "108"
 			},
 			{
 				"name": "firefox",
 				"family": "firefox",
 				"channel": "stable",
 				"displayName": "Firefox",
-				"version": "106.0.5",
+				"version": "107.0.1",
 				"path": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
 				"minSupportedVersion": 86,
-				"majorVersion": "106",
+				"majorVersion": "107",
 				"warning": "Your project has set the configuration option: `chromeWebSecurity` to `false`.\n\nThis option will not have an effect in Firefox. Tests that rely on web security being disabled will not run as expected."
 			},
 			{
@@ -368,7 +436,7 @@
 				"family": "chromium",
 				"channel": "stable",
 				"displayName": "Edge",
-				"version": "107.0.1418.42",
+				"version": "107.0.1418.62",
 				"path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
 				"minSupportedVersion": 79,
 				"majorVersion": "107"
@@ -630,27 +698,27 @@
 						"family": "chromium",
 						"channel": "stable",
 						"displayName": "Chrome",
-						"version": "107.0.5304.107",
+						"version": "108.0.5359.94",
 						"path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
 						"minSupportedVersion": 64,
-						"majorVersion": "107"
+						"majorVersion": "108"
 					},
 					{
 						"name": "firefox",
 						"family": "firefox",
 						"channel": "stable",
 						"displayName": "Firefox",
-						"version": "106.0.5",
+						"version": "107.0.1",
 						"path": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
 						"minSupportedVersion": 86,
-						"majorVersion": "106"
+						"majorVersion": "107"
 					},
 					{
 						"name": "edge",
 						"family": "chromium",
 						"channel": "stable",
 						"displayName": "Edge",
-						"version": "107.0.1418.42",
+						"version": "107.0.1418.62",
 						"path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
 						"minSupportedVersion": 79,
 						"majorVersion": "107"
@@ -693,11 +761,11 @@
 		},
 		"browser": null,
 		"specs": [],
-		"proxyUrl": "http://localhost:59109",
+		"proxyUrl": "http://localhost:63901",
 		"browserUrl": "http://localhost:4173/__/",
 		"reporterUrl": "http://localhost:4173/__cypress/reporter",
 		"xhrUrl": "__cypress/xhrs/",
-		"proxyServer": "http://localhost:59109",
+		"proxyServer": "http://localhost:63901",
 		"state": {}
 	}
 }

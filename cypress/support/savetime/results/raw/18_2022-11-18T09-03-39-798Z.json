@@ -59,7 +59,7 @@
               "state": "passed",
               "error": null,
               "videoTimestamp": 3393,
-              "duration": 33630,
+              "duration": 6630,
               "startedAt": "2022-11-18T09:03:06.040Z",
               "screenshots": []
             }
@@ -71,14 +71,6 @@
           "body": "function () {\r\n        cy.contains(\"h1\", \"This is an about page\");\r\n    }",
           "displayError": null,
           "attempts": [
-            {
-              "state": "passed",
-              "error": null,
-              "videoTimestamp": 6761,
-              "duration": 281,
-              "startedAt": "2022-11-18T09:03:09.408Z",
-              "screenshots": []
-            },
             {
               "state": "passed",
               "error": null,

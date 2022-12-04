@@ -1,6 +1,6 @@
 <template>
     <div class="list-item">
-        <!-- <div>{{ props.id }}</div> -->
+        <!-- <div>{{ props.trackId }}</div> -->
         <div class="list-item__artists">{{ props.artists }}</div>
         <div class="list-item__name">{{ props.name }}</div>
     </div>
@@ -8,7 +8,7 @@
   
 <script setup lang="ts">
 const props = defineProps({
-    id: {
+    trackId: {
         type: String,
         required: true,
     },

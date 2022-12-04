@@ -1,4 +1,5 @@
 import {
+  CypressDifference,
   CypressRunResultCompare,
   RunResultCompare,
   TestResultCompare,
@@ -130,6 +131,7 @@ function compareFilesByContent(
   secondLog: CypressCommandLine.CypressRunResult,
 ): CypressRunResultCompare {
   const cypressRunResultCompare = new CypressRunResultCompare()
+  // Get the total duration of the test runs
   try {
     cypressRunResultCompare.durationDifference =
       secondLog.totalDuration - firstLog.totalDuration
@@ -140,15 +142,20 @@ function compareFilesByContent(
     cypressRunResultCompare.runs = []
     let durationDifferenceOfMissingTestsCombined = 0
 
+    // Iterate over all run results of the second log
     for (const secondRunResultCompare of secondLog.runs) {
       const runResultCompare = new RunResultCompare()
       runResultCompare.name = secondRunResultCompare.spec.name
       let firstRunResultFound = false
+      // Iterate over the run results of the first log
+      // Until we find the file with the same name
       for (const firstRunResultCompare of firstLog.runs) {
         if (
           secondRunResultCompare.spec.name === firstRunResultCompare.spec.name
         ) {
           firstRunResultFound = true
+
+          // Calculate the duration differences
           runResultCompare.durationDifference =
             secondRunResultCompare.stats.duration -
             firstRunResultCompare.stats.duration
@@ -157,11 +164,16 @@ function compareFilesByContent(
             firstRunResultCompare.stats.duration,
           )
           let durationDifferenceOfMissingTests = 0
+
+          // Iterate over the tests of the second run result
           for (const secondTestResultCompare of secondRunResultCompare.tests) {
             const testResultCompare = new TestResultCompare()
             testResultCompare.title = secondTestResultCompare.title
             let firstTestResultFound = false
             const secondTestResultCompareLastAttempt = secondTestResultCompare.attempts.pop()
+
+            // Iterate over the tests of the first run result
+            // Until we find the test with the same name
             for (const firstTestResultCompare of firstRunResultCompare.tests) {
               if (
                 firstTestResultCompare.title[0] ===
@@ -170,13 +182,15 @@ function compareFilesByContent(
                   secondTestResultCompare.title[1]
               ) {
                 firstTestResultFound = true
+                // Pop the last attempt of the test
                 const firstTestResultCompareLastAttempt = firstTestResultCompare.attempts.pop()
                 // Plus 1, because 1 is popped
                 testResultCompare.attemptCountRun1 =
                   firstTestResultCompare.attempts.length + 1
                 testResultCompare.attemptCountRun2 =
                   secondTestResultCompare.attempts.length + 1
-                testResultCompare.differenceDetectedMessage = null
+                testResultCompare.differenceDetectedMessage =
+                  CypressDifference.NO_DIFFERENCE
                 testResultCompare.durationDifference =
                   secondTestResultCompareLastAttempt.duration -
                   firstTestResultCompareLastAttempt.duration
@@ -228,11 +242,39 @@ function compareFilesByContent(
               testResultCompare.attemptCountRun1 = 0
               testResultCompare.attemptCountRun2 =
                 secondTestResultCompare.attempts.length
-              testResultCompare.differenceDetectedMessage = 'NOT_FOUND'
+              testResultCompare.differenceDetectedMessage =
+                CypressDifference.NOT_FOUND_FIRST
               durationDifferenceOfMissingTests +=
                 secondTestResultCompareLastAttempt.duration
             }
             runResultCompare.tests.push(testResultCompare)
+          }
+
+          // Check which tests results of the first log arent handled
+          for (const firstTestResultCompare of firstRunResultCompare.tests) {
+            let secondTestResultFound = false
+            for (const secondTestResultCompare of secondRunResultCompare.tests) {
+              if (
+                firstTestResultCompare.title[0] ===
+                  secondTestResultCompare.title[0] &&
+                firstTestResultCompare.title[1] ===
+                  secondTestResultCompare.title[1]
+              ) {
+                secondTestResultFound = true
+              }
+            }
+            if (!secondTestResultFound) {
+              const testResultCompare = new TestResultCompare()
+              testResultCompare.title = firstTestResultCompare.title
+              testResultCompare.attemptCountRun1 =
+                firstTestResultCompare.attempts.length
+              testResultCompare.attemptCountRun2 = 0
+              testResultCompare.differenceDetectedMessage =
+                CypressDifference.NOT_FOUND_SECOND
+              durationDifferenceOfMissingTests -= firstTestResultCompare.attempts.pop()
+                .duration
+              runResultCompare.tests.push(testResultCompare)
+            }
           }
           runResultCompare.durationDifferenceWithoutMissingTests =
             runResultCompare.durationDifference -
@@ -246,7 +288,28 @@ function compareFilesByContent(
         }
       }
       if (!firstRunResultFound) {
-        runResultCompare.differenceDetectedMessage = 'NOT_FOUND'
+        runResultCompare.differenceDetectedMessage =
+          CypressDifference.NOT_FOUND_FIRST
+        cypressRunResultCompare.runs.push(runResultCompare)
+      }
+    }
+
+    // Check which run results of the first log arent handled
+    for (const firstRunResultCompare of firstLog.runs) {
+      let secondRunResultFound = false
+      for (const secondRunResultCompare of secondLog.runs) {
+        if (
+          secondRunResultCompare.spec.name === firstRunResultCompare.spec.name
+        ) {
+          secondRunResultFound = true
+        }
+      }
+      if (!secondRunResultFound) {
+        const runResultCompare = new RunResultCompare()
+        runResultCompare.name = firstRunResultCompare.spec.name
+        runResultCompare.differenceDetectedMessage =
+          CypressDifference.NOT_FOUND_SECOND
+        cypressRunResultCompare.runs.push(runResultCompare)
       }
     }
     cypressRunResultCompare.durationDifferenceWithoutMissingTests =

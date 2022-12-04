@@ -1,3 +1,9 @@
+export enum CypressDifference {
+  NO_DIFFERENCE = 'noDifference',
+  NOT_FOUND_FIRST = 'notFoundFirst',
+  NOT_FOUND_SECOND = 'notFoundSecond',
+}
+
 export class CypressRunResultCompare {
   durationDifference: number
   durationDifferencePercentage: number
@@ -22,13 +28,13 @@ export class RunResultCompare {
   durationDifferenceWithoutMissingTestsPercentage: number
   tests: TestResultCompare[]
   name: string
-  differenceDetectedMessage: string | null
+  differenceDetectedMessage: CypressDifference
 
   constructor() {
     this.durationDifference = 0
     this.tests = []
     this.name = ''
-    this.differenceDetectedMessage = null
+    this.differenceDetectedMessage = CypressDifference.NO_DIFFERENCE
   }
 }
 
@@ -38,13 +44,13 @@ export class TestResultCompare {
   durationDifferencePercentage: number
   attemptCountRun1: number
   attemptCountRun2: number
-  differenceDetectedMessage: string | null
+  differenceDetectedMessage: CypressDifference
 
   constructor() {
     this.title = []
     this.durationDifference = 0
     this.attemptCountRun1 = 0
     this.attemptCountRun2 = 0
-    this.differenceDetectedMessage = null
+    this.differenceDetectedMessage = CypressDifference.NO_DIFFERENCE
   }
 }
