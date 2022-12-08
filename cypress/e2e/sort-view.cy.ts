@@ -8,7 +8,7 @@ describe('Sort view', () => {
   })
 
   it('check sort', () => {
-    cy.get('[id=sort__buttons__mergeSort]').click()
+    cy.get('[id=sort__buttons__sort]').click()
     cy.get('[id=sort__item-7]').contains('Leoniden')
   })
 })
