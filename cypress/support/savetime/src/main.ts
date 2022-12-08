@@ -11,6 +11,7 @@ function createWindow() {
       sandbox: false,
       preload: path.join(__dirname, "preload.js"),
     },
+    icon: path.join(__dirname, "/assets/logo_savetime.ico"),
   });
 
   win.loadFile("../index.html");
