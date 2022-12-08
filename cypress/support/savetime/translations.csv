@@ -11,8 +11,8 @@ versus|vs.|vs.
 notFoundFirst|New|Neu
 notFoundSecond|Deleted|Entfernt
 failedBoth|Both failed|Beide fehlerhaft
-failedFirst|First failed|Neuer fehlerhaft
-failedSecond|Second failed|Alter fehlerhaft
+failedFirst|Old failed|Alter fehlerhaft
+failedSecond|New failed|Neuer fehlerhaft
 selection__datepicker__navigation__previous|◀|◀
 selection__datepicker__navigation__next|▶|▶
 swap|↔|↔
