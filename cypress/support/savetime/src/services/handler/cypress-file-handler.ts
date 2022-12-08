@@ -1,9 +1,10 @@
 import {
   CypressDifference,
+  CypressFailed,
   CypressRunResultCompare,
   RunResultCompare,
   TestResultCompare,
-} from "../../classes/cypress-run-result-compare";
+} from "../../classes/cypress-test-result-compare";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require("fs");
@@ -169,70 +170,84 @@ function compareFilesByContent(
                 firstResultCompareTest.title[1] ===
                   secondResultCompareTest.title[1]
               ) {
-                let durationOfFirstTestAttempts = 0;
-                let durationOfSecondTestAttempts = 0;
-                firstTestResultFound = true;
-                testResultCompare.attemptCountRun1 =
-                  firstResultCompareTest.attempts.length;
-                testResultCompare.attemptCountRun2 =
-                  secondResultCompareTest.attempts.length;
-                testResultCompare.differenceDetectedMessage =
-                  CypressDifference.NO_DIFFERENCE;
-                firstResultCompareTest.attempts.forEach((value) => {
-                  durationOfFirstTestAttempts += value.duration;
-                });
-                secondResultCompareTest.attempts.forEach((value) => {
-                  durationOfSecondTestAttempts += value.duration;
-                });
-                testResultCompare.durationDifference =
-                  durationOfSecondTestAttempts - durationOfFirstTestAttempts;
-                testResultCompare.durationDifferencePercentage =
-                  getPercentageDifference(
-                    durationOfSecondTestAttempts,
-                    durationOfFirstTestAttempts
-                  );
-                durationOfFirstTests += durationOfFirstTestAttempts;
-                durationOfSecondTests += durationOfSecondTestAttempts;
-                if (
-                  cypressRunResultCompare.lowestDurationDifference ===
-                    undefined ||
-                  testResultCompare.durationDifference <
-                    cypressRunResultCompare.lowestDurationDifference
-                ) {
-                  cypressRunResultCompare.lowestDurationDifference =
-                    testResultCompare.durationDifference;
-                }
-                if (
-                  cypressRunResultCompare.highestDurationDifference ===
-                    undefined ||
-                  testResultCompare.durationDifference >
-                    cypressRunResultCompare.highestDurationDifference
-                ) {
-                  cypressRunResultCompare.highestDurationDifference =
-                    testResultCompare.durationDifference;
-                }
-                if (
-                  cypressRunResultCompare.lowestDurationDifferencePercentage ===
-                    undefined ||
-                  testResultCompare.durationDifferencePercentage <
-                    cypressRunResultCompare.lowestDurationDifferencePercentage
-                ) {
-                  cypressRunResultCompare.lowestDurationDifferencePercentage =
-                    testResultCompare.durationDifferencePercentage;
-                }
-                if (
-                  cypressRunResultCompare.highestDurationDifferencePercentage ===
-                    undefined ||
-                  testResultCompare.durationDifferencePercentage >
-                    cypressRunResultCompare.highestDurationDifferencePercentage
-                ) {
-                  cypressRunResultCompare.highestDurationDifferencePercentage =
-                    testResultCompare.durationDifferencePercentage;
+                if (firstResultCompareTest.state === "failed") {
+                  if (secondResultCompareTest.state === "failed") {
+                    testResultCompare.failDetected =
+                      CypressFailed.FAILED_BOTH;
+                  } else {
+                    testResultCompare.failDetected =
+                      CypressFailed.FAILED_FIRST;
+                  }
+                } else if (secondResultCompareTest.state === "failed") {
+                  testResultCompare.failDetected =
+                    CypressFailed.FAILED_SECOND;
+                } else {
+                  testResultCompare.failDetected = CypressFailed.FAILED_NONE;
+                  let durationOfFirstTestAttempts = 0;
+                  let durationOfSecondTestAttempts = 0;
+                  firstTestResultFound = true;
+                  testResultCompare.attemptCountRun1 =
+                    firstResultCompareTest.attempts.length;
+                  testResultCompare.attemptCountRun2 =
+                    secondResultCompareTest.attempts.length;
+                  testResultCompare.differenceDetected =
+                    CypressDifference.NO_DIFFERENCE;
+                  firstResultCompareTest.attempts.forEach((value) => {
+                    durationOfFirstTestAttempts += value.duration;
+                  });
+                  secondResultCompareTest.attempts.forEach((value) => {
+                    durationOfSecondTestAttempts += value.duration;
+                  });
+                  testResultCompare.durationDifference =
+                    durationOfSecondTestAttempts - durationOfFirstTestAttempts;
+                  testResultCompare.durationDifferencePercentage =
+                    getPercentageDifference(
+                      durationOfSecondTestAttempts,
+                      durationOfFirstTestAttempts
+                    );
+                  durationOfFirstTests += durationOfFirstTestAttempts;
+                  durationOfSecondTests += durationOfSecondTestAttempts;
+                  if (
+                    cypressRunResultCompare.lowestDurationDifference ===
+                      undefined ||
+                    testResultCompare.durationDifference <
+                      cypressRunResultCompare.lowestDurationDifference
+                  ) {
+                    cypressRunResultCompare.lowestDurationDifference =
+                      testResultCompare.durationDifference;
+                  }
+                  if (
+                    cypressRunResultCompare.highestDurationDifference ===
+                      undefined ||
+                    testResultCompare.durationDifference >
+                      cypressRunResultCompare.highestDurationDifference
+                  ) {
+                    cypressRunResultCompare.highestDurationDifference =
+                      testResultCompare.durationDifference;
+                  }
+                  if (
+                    cypressRunResultCompare.lowestDurationDifferencePercentage ===
+                      undefined ||
+                    testResultCompare.durationDifferencePercentage <
+                      cypressRunResultCompare.lowestDurationDifferencePercentage
+                  ) {
+                    cypressRunResultCompare.lowestDurationDifferencePercentage =
+                      testResultCompare.durationDifferencePercentage;
+                  }
+                  if (
+                    cypressRunResultCompare.highestDurationDifferencePercentage ===
+                      undefined ||
+                    testResultCompare.durationDifferencePercentage >
+                      cypressRunResultCompare.highestDurationDifferencePercentage
+                  ) {
+                    cypressRunResultCompare.highestDurationDifferencePercentage =
+                      testResultCompare.durationDifferencePercentage;
+                  }
                 }
               }
             }
             if (!firstTestResultFound) {
-              testResultCompare.differenceDetectedMessage =
+              testResultCompare.differenceDetected =
                 CypressDifference.NOT_FOUND_FIRST;
             }
             durationOfFirstRunResult += durationOfFirstTests;
@@ -256,7 +271,7 @@ function compareFilesByContent(
             if (!secondTestResultFound) {
               const testResultCompare = new TestResultCompare();
               testResultCompare.title = firstTestResultCompare.title;
-              testResultCompare.differenceDetectedMessage =
+              testResultCompare.differenceDetected =
                 CypressDifference.NOT_FOUND_SECOND;
               runResultCompare.tests.push(testResultCompare);
             }
@@ -275,7 +290,7 @@ function compareFilesByContent(
         }
       }
       if (!firstRunResultFound) {
-        runResultCompare.differenceDetectedMessage =
+        runResultCompare.differenceDetected =
           CypressDifference.NOT_FOUND_FIRST;
         cypressRunResultCompare.runs.push(runResultCompare);
       }
@@ -294,7 +309,7 @@ function compareFilesByContent(
       if (!secondRunResultFound) {
         const runResultCompare = new RunResultCompare();
         runResultCompare.name = firstRunResultCompare.spec.name;
-        runResultCompare.differenceDetectedMessage =
+        runResultCompare.differenceDetected =
           CypressDifference.NOT_FOUND_SECOND;
         cypressRunResultCompare.runs.push(runResultCompare);
       }

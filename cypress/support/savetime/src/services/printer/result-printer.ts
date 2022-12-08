@@ -1,10 +1,11 @@
 import { translation } from "../handler/translation-handler";
 import {
   CypressDifference,
+  CypressFailed,
   CypressRunResultCompare,
   RunResultCompare,
   TestResultCompare,
-} from "../../classes/cypress-run-result-compare";
+} from "../../classes/cypress-test-result-compare";
 import {
   getMaxDurationDifference,
   getMaxDurationDifferencePercentage,
@@ -140,14 +141,11 @@ function getRunTableContent(
       ${translation.file + ": " + runResultCompare.name}
     </h3>
     ` +
-    (runResultCompare.differenceDetectedMessage !==
-    CypressDifference.NO_DIFFERENCE
+    (runResultCompare.differenceDetected !== CypressDifference.NO_DIFFERENCE
       ? `
       <div         
-        class="run__info run__info-${
-          runResultCompare.differenceDetectedMessage
-        }">
-        ${translation[runResultCompare.differenceDetectedMessage]}
+        class="run__info run__info-${runResultCompare.differenceDetected}">
+        ${translation[runResultCompare.differenceDetected]}
       </div>`
       : (!isOnlyCriticalTests()
           ? `
@@ -215,18 +213,22 @@ function getTestRowContent(
       <td 
         id="run__test__durationDifference__td__duration-${indexRun}-${indexTest}" 
         class="td__duration${
-          isDifferenceDetected(testResultCompare)
-            ? ` td__duration-${testResultCompare.differenceDetectedMessage}`
+          testResultCompare.failDetected !== CypressFailed.FAILED_NONE
+            ? ` td__duration-${testResultCompare.failDetected}`
+            : isDifferenceDetected(testResultCompare)
+            ? ` td__duration-${testResultCompare.differenceDetected}`
             : ""
         }" 
         style="
           ${getAdjustedStyle(testResultCompare)}
         ">
         ${
-          testResultCompare.differenceDetectedMessage ===
-          CypressDifference.NO_DIFFERENCE
+          testResultCompare.failDetected !== CypressFailed.FAILED_NONE
+            ? translation[testResultCompare.failDetected]
+            : testResultCompare.differenceDetected ===
+              CypressDifference.NO_DIFFERENCE
             ? getAdjustedDurationDifferenceString(testResultCompare)
-            : translation[testResultCompare.differenceDetectedMessage]
+            : translation[testResultCompare.differenceDetected]
         }
         ${getAttemptCountTooltip(testResultCompare, indexRun, indexTest)}
       </td>
@@ -350,7 +352,7 @@ function isDifferenceDetected(
   return (
     (resultCompare instanceof TestResultCompare ||
       resultCompare instanceof RunResultCompare) &&
-    resultCompare.differenceDetectedMessage !== CypressDifference.NO_DIFFERENCE
+    resultCompare.differenceDetected !== CypressDifference.NO_DIFFERENCE
   );
 }
 

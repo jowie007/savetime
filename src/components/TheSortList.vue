@@ -1,11 +1,14 @@
 <template>
   <div class="sort-wrapper">
     <div class="sort__buttons">
-      <button id="sort__buttons__insertionSort" v-on:click="tracks = insertionsort(tracks, 'name')">
+      <button id="sort__buttons__sort" v-on:click="tracks = insertionsort(tracks, 'name')">
+        Sort
+      </button>
+      <!-- <button id="sort__buttons__insertionSort" v-on:click="tracks = insertionsort(tracks, 'name')">
         Insertionsort
       </button>
       <button id="sort__buttons__bubbleSort" v-on:click="tracks = bubblesort(tracks, 'name')">Bubblesort</button>
-      <button id="sort__buttons__mergeSort" v-on:click="tracks = mergesort(tracks, 'name')">Mergesort</button>
+      <button id="sort__buttons__mergeSort" v-on:click="tracks = mergesort(tracks, 'name')">Mergesort</button> -->
       <button class="sort__buttons__reset" v-on:click="(tracks = [...backupTracks])">Reset</button>
     </div>
     <div class="sort__items">
@@ -4065,7 +4068,7 @@ const tracks = ref([
 const backupTracks = ref([...tracks.value]);
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 button {
   background-color: hsla(160, 100%, 37%, 1);
   border: none;
@@ -4079,9 +4082,25 @@ button {
   border-radius: 4px;
 }
 
-.sort__buttons__reset {
-  background-color: var(--color-text);
-  outline-color: hsla(160, 100%, 37%, 1)
+.sort {
+  &__buttons {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 0.1rem;
+
+    &__reset {
+      background-color: var(--color-text);
+      outline-color: hsla(160, 100%, 37%, 1)
+    }
+  }
+
+  &__items {
+    grid-template-columns: auto auto auto auto;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+  }
 }
 
 .sort-wrapper {

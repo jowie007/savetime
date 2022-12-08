@@ -1,5 +1,5 @@
 <template>
-    <div class="list-item">
+    <div :id="`list-item-${trackId}`" class="list-item">
         <!-- <div>{{ props.trackId }}</div> -->
         <div class="list-item__artists">{{ props.artists }}</div>
         <div class="list-item__name">{{ props.name }}</div>
