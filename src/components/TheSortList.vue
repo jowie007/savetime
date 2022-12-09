@@ -1,7 +1,7 @@
 <template>
   <div class="sort-wrapper">
     <div class="sort__buttons">
-      <button id="sort__buttons__sort" v-on:click="tracks = insertionsort(tracks, 'name')">
+      <button id="sort__buttons__sort" v-on:click="tracks = mergesort(tracks, 'name')">
         Sort
       </button>
       <!-- <button id="sort__buttons__insertionSort" v-on:click="tracks = insertionsort(tracks, 'name')">

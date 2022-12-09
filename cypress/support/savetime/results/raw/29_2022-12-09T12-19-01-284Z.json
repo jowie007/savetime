@@ -1,13 +1,13 @@
 {
 	"status": "finished",
-	"startedTestsAt": "2022-12-04T17:58:05.017Z",
-	"endedTestsAt": "2022-12-04T17:58:41.845Z",
-	"totalDuration": 28693,
+	"startedTestsAt": "2022-12-09T12:18:24.895Z",
+	"endedTestsAt": "2022-12-09T12:18:59.186Z",
+	"totalDuration": 25935,
 	"totalSuites": 3,
 	"totalTests": 8,
-	"totalPassed": 7,
+	"totalPassed": 8,
 	"totalPending": 0,
-	"totalFailed": 1,
+	"totalFailed": 0,
 	"totalSkipped": 0,
 	"runs": [
 		{
@@ -18,9 +18,9 @@
 				"pending": 0,
 				"skipped": 0,
 				"failures": 0,
-				"duration": 3633,
-				"startedAt": "2022-12-04T17:58:05.017Z",
-				"endedAt": "2022-12-04T17:58:08.650Z"
+				"duration": 3830,
+				"startedAt": "2022-12-09T12:18:24.895Z",
+				"endedAt": "2022-12-09T12:18:28.725Z"
 			},
 			"reporter": "spec",
 			"reporterStats": {
@@ -29,9 +29,9 @@
 				"passes": 3,
 				"pending": 0,
 				"failures": 0,
-				"start": "2022-12-04T17:58:05.021Z",
-				"end": "2022-12-04T17:58:08.656Z",
-				"duration": 3635
+				"start": "2022-12-09T12:18:24.887Z",
+				"end": "2022-12-09T12:18:28.734Z",
+				"duration": 3847
 			},
 			"hooks": [
 				{
@@ -55,9 +55,9 @@
 						{
 							"state": "passed",
 							"error": null,
-							"videoTimestamp": 2016,
-							"duration": 3555,
-							"startedAt": "2022-12-04T17:58:05.028Z",
+							"videoTimestamp": 5642,
+							"duration": 3488,
+							"startedAt": "2022-12-09T12:18:24.902Z",
 							"screenshots": []
 						}
 					]
@@ -74,9 +74,9 @@
 						{
 							"state": "passed",
 							"error": null,
-							"videoTimestamp": 585,
-							"duration": 247,
-							"startedAt": "2022-12-04T17:58:08.297Z",
+							"videoTimestamp": 9144,
+							"duration": 120,
+							"startedAt": "2022-12-09T12:18:28.404Z",
 							"screenshots": []
 						}
 					]
@@ -91,18 +91,11 @@
 					"displayError": null,
 					"attempts": [
 						{
-							"state": "failed",
-							"error": null,
-							"videoTimestamp": 5434,
-							"duration": 402,
-							"startedAt": "2022-12-04T17:58:08.446Z",
-							"screenshots": []
-						},						{
 							"state": "passed",
 							"error": null,
-							"videoTimestamp": 5434,
-							"duration": 402,
-							"startedAt": "2022-12-04T17:58:08.446Z",
+							"videoTimestamp": 9265,
+							"duration": 198,
+							"startedAt": "2022-12-09T12:18:28.525Z",
 							"screenshots": []
 						}
 					]
@@ -131,9 +124,9 @@
 				"pending": 0,
 				"skipped": 0,
 				"failures": 0,
-				"duration": 20580,
-				"startedAt": "2022-12-04T17:58:12.127Z",
-				"endedAt": "2022-12-04T17:58:32.707Z"
+				"duration": 20499,
+				"startedAt": "2022-12-09T12:18:32.483Z",
+				"endedAt": "2022-12-09T12:18:52.982Z"
 			},
 			"reporter": "spec",
 			"reporterStats": {
@@ -142,9 +135,9 @@
 				"passes": 3,
 				"pending": 0,
 				"failures": 0,
-				"start": "2022-12-04T17:58:12.129Z",
-				"end": "2022-12-04T17:58:32.713Z",
-				"duration": 20584
+				"start": "2022-12-09T12:18:32.480Z",
+				"end": "2022-12-09T12:18:52.982Z",
+				"duration": 20502
 			},
 			"hooks": [
 				{
@@ -161,16 +154,16 @@
 						"Home view",
 						"check main content"
 					],
-					"state": "failed",
+					"state": "passed",
 					"body": "function () {\r\n        cy.contains(\"h1\", \"You did it!\");\r\n        cy.wait(20000);\r\n    }",
 					"displayError": null,
 					"attempts": [
 						{
-							"state": "failed",
+							"state": "passed",
 							"error": null,
-							"videoTimestamp": 1381,
-							"duration": 20213,
-							"startedAt": "2022-12-04T17:58:12.139Z",
+							"videoTimestamp": 1174,
+							"duration": 20191,
+							"startedAt": "2022-12-09T12:18:32.491Z",
 							"screenshots": []
 						}
 					]
@@ -187,9 +180,28 @@
 						{
 							"state": "passed",
 							"error": null,
-							"videoTimestamp": 21610,
-							"duration": 135,
-							"startedAt": "2022-12-04T17:58:32.368Z",
+							"videoTimestamp": 21376,
+							"duration": 108,
+							"startedAt": "2022-12-09T12:18:52.693Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Home view",
+						"route to about page"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.contains(\"a\", \"About\").click();\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 21485,
+							"duration": 179,
+							"startedAt": "2022-12-09T12:18:52.802Z",
 							"screenshots": []
 						}
 					]
@@ -214,24 +226,24 @@
 			"stats": {
 				"suites": 1,
 				"tests": 2,
-				"passes": 1,
+				"passes": 2,
 				"pending": 0,
 				"skipped": 0,
-				"failures": 1,
-				"duration": 4480,
-				"startedAt": "2022-12-04T17:58:37.365Z",
-				"endedAt": "2022-12-04T17:58:41.845Z"
+				"failures": 0,
+				"duration": 1606,
+				"startedAt": "2022-12-09T12:18:57.580Z",
+				"endedAt": "2022-12-09T12:18:59.186Z"
 			},
 			"reporter": "spec",
 			"reporterStats": {
 				"suites": 1,
 				"tests": 2,
-				"passes": 1,
+				"passes": 2,
 				"pending": 0,
-				"failures": 1,
-				"start": "2022-12-04T17:58:37.368Z",
-				"end": "2022-12-04T17:58:41.853Z",
-				"duration": 4485
+				"failures": 0,
+				"start": "2022-12-09T12:18:57.572Z",
+				"end": "2022-12-09T12:18:59.189Z",
+				"duration": 1617
 			},
 			"hooks": [
 				{
@@ -255,9 +267,9 @@
 						{
 							"state": "passed",
 							"error": null,
-							"videoTimestamp": 1344,
-							"duration": 234,
-							"startedAt": "2022-12-04T17:58:37.377Z",
+							"videoTimestamp": 1215,
+							"duration": 147,
+							"startedAt": "2022-12-09T12:18:57.587Z",
 							"screenshots": []
 						}
 					]
@@ -267,38 +279,17 @@
 						"Sort view",
 						"check sort"
 					],
-					"state": "failed",
-					"body": "function () {\r\n        cy.get('[id=sort__buttons__mergeSort]').click();\r\n        cy.get('[id=sort__item-7]').contains('Leoniden');\r\n    }",
-					"displayError": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[id=sort__buttons__mergeSort]`, but never found it.\n    at Context.eval (webpack:///./cypress/e2e/sort-view.cy.ts:11:7)",
+					"state": "passed",
+					"body": "function () {\r\n        cy.get('[id=sort__buttons__sort]').click();\r\n        cy.get('[id=sort__item-7]').contains('Leoniden');\r\n    }",
+					"displayError": null,
 					"attempts": [
 						{
-							"state": "failed",
-							"error": {
-								"name": "AssertionError",
-								"message": "Timed out retrying after 4000ms: Expected to find element: `[id=sort__buttons__mergeSort]`, but never found it.",
-								"stack": "    at Context.eval (webpack:///./cypress/e2e/sort-view.cy.ts:11:7)",
-								"codeFrame": {
-									"line": 11,
-									"column": 8,
-									"originalFile": "cypress/e2e/sort-view.cy.ts",
-									"relativeFile": "cypress/e2e/sort-view.cy.ts",
-									"absoluteFile": "C:\\Users\\jwiegmann\\Documents\\Workspace\\Masterarbeit\\master-project/cypress/e2e/sort-view.cy.ts",
-									"frame": "   9 | \n  10 |   it('check sort', () => {\n> 11 |     cy.get('[id=sort__buttons__mergeSort]').click()\n     |        ^\n  12 |     cy.get('[id=sort__item-7]').contains('Leoniden')\n  13 |   })\n  14 | })",
-									"language": "ts"
-								}
-							},
-							"videoTimestamp": 1509,
-							"duration": 4263,
-							"startedAt": "2022-12-04T17:58:37.542Z",
-							"screenshots": [
-								{
-									"name": null,
-									"takenAt": "2022-12-04T17:58:41.636Z",
-									"path": "C:\\Users\\jwiegmann\\Documents\\Workspace\\Masterarbeit\\master-project\\cypress\\screenshots\\sort-view.cy.ts\\Sort view -- check sort (failed).png",
-									"height": 720,
-									"width": 1280
-								}
-							]
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 1365,
+							"duration": 1445,
+							"startedAt": "2022-12-09T12:18:57.737Z",
+							"screenshots": []
 						}
 					]
 				}
@@ -358,7 +349,7 @@
 		"configFile": "cypress.config.ts",
 		"morgan": false,
 		"isTextTerminal": true,
-		"socketId": "d8xj63neel",
+		"socketId": "147satgzr3",
 		"report": true,
 		"animationDistanceThreshold": 5,
 		"arch": "x64",
@@ -386,7 +377,7 @@
 		"numTestsKeptInMemory": 0,
 		"platform": "win32",
 		"pageLoadTimeout": 60000,
-		"port": 61125,
+		"port": 64484,
 		"redirectionLimit": 20,
 		"reporter": "spec",
 		"reporterOptions": null,
@@ -435,10 +426,10 @@
 				"family": "chromium",
 				"channel": "stable",
 				"displayName": "Edge",
-				"version": "107.0.1418.62",
+				"version": "108.0.1462.42",
 				"path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
 				"minSupportedVersion": 79,
-				"majorVersion": "107"
+				"majorVersion": "108"
 			},
 			{
 				"name": "electron",
@@ -707,10 +698,10 @@
 						"family": "chromium",
 						"channel": "stable",
 						"displayName": "Edge",
-						"version": "107.0.1418.62",
+						"version": "108.0.1462.42",
 						"path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
 						"minSupportedVersion": 79,
-						"majorVersion": "107"
+						"majorVersion": "108"
 					},
 					{
 						"name": "electron",
@@ -750,11 +741,11 @@
 		},
 		"browser": null,
 		"specs": [],
-		"proxyUrl": "http://localhost:61125",
+		"proxyUrl": "http://localhost:64484",
 		"browserUrl": "http://localhost:4173/__/",
 		"reporterUrl": "http://localhost:4173/__cypress/reporter",
 		"xhrUrl": "__cypress/xhrs/",
-		"proxyServer": "http://localhost:61125",
+		"proxyServer": "http://localhost:64484",
 		"state": {}
 	}
 }
