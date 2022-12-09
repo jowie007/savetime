@@ -13,11 +13,11 @@ notFoundSecond|Deleted|Entfernt
 failedBoth|Both failed|Beide fehlerhaft
 failedFirst|Old failed|Alter fehlerhaft
 failedSecond|New failed|Neuer fehlerhaft
-selection__datepicker__navigation__previous|◀|◀
-selection__datepicker__navigation__next|▶|▶
-swap|↔|↔
-reset|🔄|🔄
-settings|⚙️|⚙️
+selection__datepicker__navigation__previous|⮜|⮜
+selection__datepicker__navigation__next|⮞|⮞
+swap|⇄|⇄
+reset|↺|↺
+settings|⛭|⛭
 settings__language__label|Language|Sprache
 settings__maxDurationDifference__label|Max duration difference in milliseconds|Max. Laufzeitdifferenz in Millisekunden
 settings__maxDurationDifference__label__percentage|Max duration difference in %|Max. Laufzeitdifferenz in %

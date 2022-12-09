@@ -160,6 +160,13 @@ table {
     .selection__datepicker {
       &__button {
         cursor: pointer;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        height: 1.6rem;
+        min-width: 1.6rem;
+
         &__selected {
           background-color: $dark-color;
           color: $light-color;
@@ -210,10 +217,11 @@ table {
   z-index: 1;
   background-color: $dark-color;
   opacity: 0.95;
-  max-width: 20%;
+  max-width: 19%;
   padding: 0.2rem;
 
   &__button {
+    color: $light-color;
     position: absolute;
     top: 0.4rem;
     right: 0.4rem;
@@ -289,8 +297,9 @@ table {
 }
 
 .tooltip {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.9rem;
   background-color: $dark-color;
   color: $light-color;
   border-radius: 1rem;
