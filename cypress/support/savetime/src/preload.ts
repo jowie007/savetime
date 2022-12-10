@@ -14,8 +14,8 @@ window.addEventListener('DOMContentLoaded', async () => {
   initializeHTML()
 })
 
-export function initializeHTML() {
+export function initializeHTML(reInitSelected: boolean = false) {
   initTranslations()
   printSettings()
-  printDatepicker()
+  printDatepicker(reInitSelected)
 }

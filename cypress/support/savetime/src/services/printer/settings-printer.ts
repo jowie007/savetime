@@ -153,7 +153,7 @@ function initTypeButtonsClickListeners() {
     .addEventListener('click', () => {
       if (getType() !== CypressLogType.e2e) {
         setType(CypressLogType.e2e)
-        initializeHTML()
+        initializeHTML(true)
       }
     })
   document
@@ -161,7 +161,7 @@ function initTypeButtonsClickListeners() {
     .addEventListener('click', () => {
       if (getType() !== CypressLogType.component) {
         setType(CypressLogType.component)
-        initializeHTML()
+        initializeHTML(true)
       }
     })
 }
