@@ -40,5 +40,17 @@ export default defineConfig({
       framework: 'vue',
       bundler: 'vite',
     },
+
+    setupNodeEvents(on) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      on('after:run', (results) => {
+        console.log('cypress.config.ts:create_log/after:run')
+        createCypressLog(results)
+        compareRecentTwoFiles()
+        // openHTMLInfoPage()
+        return null
+      })
+    },
   },
 })

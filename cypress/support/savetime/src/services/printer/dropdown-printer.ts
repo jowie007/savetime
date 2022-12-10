@@ -2,6 +2,7 @@ import { DELIMITER, getFormatDateWithPosition } from '../handler/date-handler'
 import { compareFilesByNumber } from '../handler/cypress-file-handler'
 import { printResult } from './result-printer'
 import { getCypressLogFiles } from '../store/cypress-file-store'
+import { getType } from '../store/settings-store';
 
 let selection__dropdown1: HTMLSelectElement
 let selection__dropdown2: HTMLSelectElement
@@ -17,7 +18,7 @@ function getSelectedSecond(): number {
 }
 
 function printResultsElement() {
-  printResult(compareFilesByNumber(getSelectedFirst(), getSelectedSecond()))
+  printResult(compareFilesByNumber(getType(), getSelectedFirst(), getSelectedSecond()))
 }
 
 function init() {

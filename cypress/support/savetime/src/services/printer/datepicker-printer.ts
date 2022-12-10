@@ -1,11 +1,12 @@
 import {
   compareFilesByNumber,
   getAllFileDetails,
-} from "../handler/cypress-file-handler";
-import { getFormatDateWithPosition } from "../handler/date-handler";
-import { translation } from "../handler/translation-handler";
-import { getCypressLogFiles } from "../store/cypress-file-store";
-import { printResult } from "./result-printer";
+} from '../handler/cypress-file-handler'
+import { getFormatDateWithPosition } from '../handler/date-handler'
+import { translation } from '../handler/translation-handler'
+import { getCypressLogFiles } from '../store/cypress-file-store'
+import { getType } from '../store/settings-store'
+import { printResult } from './result-printer'
 
 let selection__datepicker__day: HTMLDivElement;
 let selection__datepicker__selection__datepicker__buttonFirst: HTMLButtonElement;
@@ -127,7 +128,7 @@ function clearDatePickerContent() {
 }
 
 function initializeSelectedElements() {
-  const itemsSize = getAllFileDetails().size;
+  const itemsSize = getAllFileDetails(getType()).size
   if (!selectedFirst || !selectedSecond) {
     setSelectedFirst(itemsSize - 1);
     setSelectedSecond((selectedSecond = itemsSize));
@@ -137,14 +138,14 @@ function initializeSelectedElements() {
 function setSelectedFirst(key: number) {
   selectedFirst = key;
   selection__datepicker__selection__datepicker__buttonFirst.innerHTML =
-    getFormatDateWithPosition(getAllFileDetails().get(key), key);
+    getFormatDateWithPosition(getAllFileDetails(getType()).get(key), key);
   printResultsElement();
 }
 
 function setSelectedSecond(key: number) {
   selectedSecond = key;
   selection__datepicker__selection__datepicker__buttonSecond.innerHTML =
-    getFormatDateWithPosition(getAllFileDetails().get(key), key);
+    getFormatDateWithPosition(getAllFileDetails(getType()).get(key), key);
   printResultsElement();
 }
 
@@ -261,7 +262,7 @@ function getDatePickerSelectContent() {
 }
 
 function printResultsElement() {
-  printResult(compareFilesByNumber(selectedFirst, selectedSecond));
+  printResult(compareFilesByNumber(getType(), selectedFirst, selectedSecond))
 }
 
 function initializeDatePickerSecondTitle() {
@@ -351,7 +352,7 @@ function initselection__datepicker__buttonResetClickListener() {
   selection__datepicker__selection__datepicker__buttonReset.addEventListener(
     "click",
     () => {
-      const itemsSize = getAllFileDetails().size;
+      const itemsSize = getAllFileDetails(getType()).size;
       setSelectedFirst(itemsSize - 1);
       setSelectedSecond((selectedSecond = itemsSize));
       printResultsElement();

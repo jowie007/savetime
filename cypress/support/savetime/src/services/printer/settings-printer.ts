@@ -62,6 +62,21 @@ function getSettingsContent() {
         ${languageFlagsHTMLArray.join(' ')}
       </div>
     </div>
+    <div id='settings__type__wrapper' class='settings__item'>
+      <label id='settings__type__label' for='settings__type'>
+        ${translation.settings__type__label}
+      </label><br/>
+      <div id='settings__type'>
+        <button id='settings__type__button-e2e'
+          class='settings__type__button'>
+          ${translation.settings__type__e2e}
+        </button>
+        <button id='settings__type__button-component'
+          class='settings__type__button'>
+          ${translation.settings__type__component}
+        </button>
+      </div>
+    </div>
     <div id='settings__maxDurationDifference__wrapper' class='settings__item'>
       <label id='settings__maxDurationDifference__label' for='settings__maxDurationDifference'>
         ${

@@ -8,8 +8,8 @@ import { printDatepicker } from './services/printer/datepicker-printer.js'
 import { initCypressFileStoreStore } from './services/store/cypress-file-store.js'
 
 window.addEventListener('DOMContentLoaded', async () => {
-  initCypressFileStoreStore()
   initSettingsStore()
+  initCypressFileStoreStore()
   readTranslationsFile()
   initializeHTML()
 })
