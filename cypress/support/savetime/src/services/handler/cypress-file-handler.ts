@@ -5,7 +5,7 @@ import {
   CypressRunResultCompare,
   RunResultCompare,
   TestResultCompare,
-} from "../../classes/cypress-test-result-compare";
+} from '../../classes/cypress-test-result-compare'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs')
@@ -25,17 +25,17 @@ export function getFileNumber(type: CypressLogType) {
     ) {
       const firstChars = filename.split('_')[0]
       if (firstCharsDigits.test(firstChars)) {
-        const position = Number(firstChars);
+        const position = Number(firstChars)
         if (position > count) {
-          count = position;
+          count = position
         }
       }
-    });
+    })
   } catch (_) {
-    console.log("No previous log files found.");
+    console.log('No previous log files found.')
   }
-  count = count + 1;
-  return String(count);
+  count = count + 1
+  return String(count)
 }
 
 function getRecentTwoFileNumbers(type: CypressLogType) {
@@ -47,14 +47,14 @@ function getRecentTwoFileNumbers(type: CypressLogType) {
   ) {
     const firstChars = filename.split('_')[0]
     if (firstCharsDigits.test(firstChars)) {
-      const position = Number(firstChars);
+      const position = Number(firstChars)
       if (position > latest) {
-        previousLatest = latest;
-        latest = position;
+        previousLatest = latest
+        latest = position
       }
     }
-  });
-  return [previousLatest, latest];
+  })
+  return [previousLatest, latest]
 }
 
 export function getAllFileNumbers(type: CypressLogType) {
@@ -65,11 +65,11 @@ export function getAllFileNumbers(type: CypressLogType) {
   ) {
     const firstChars = filename.split('_')[0]
     if (firstCharsDigits.test(firstChars)) {
-      const position = Number(firstChars);
-      fileNumbers.push(position);
+      const position = Number(firstChars)
+      fileNumbers.push(position)
     }
-  });
-  return fileNumbers;
+  })
+  return fileNumbers
 }
 
 export function getAllFileDetails(type: CypressLogType) {
@@ -81,23 +81,23 @@ export function getAllFileDetails(type: CypressLogType) {
     const splittedString = filename.split(/\D/)
     const firstChars = splittedString[0]
     if (firstCharsDigits.test(firstChars)) {
-      const date = new Date();
-      date.setFullYear(Number(splittedString[1]));
-      date.setMonth(Number(splittedString[2]) - 1);
-      date.setDate(Number(splittedString[3]));
-      date.setHours(Number(splittedString[4]));
-      date.setMinutes(Number(splittedString[5]));
-      date.setSeconds(Number(splittedString[6]));
-      date.setMilliseconds(Number(splittedString[7]));
-      fileDetails.set(Number(firstChars), new Date(date));
+      const date = new Date()
+      date.setFullYear(Number(splittedString[1]))
+      date.setMonth(Number(splittedString[2]) - 1)
+      date.setDate(Number(splittedString[3]))
+      date.setHours(Number(splittedString[4]))
+      date.setMinutes(Number(splittedString[5]))
+      date.setSeconds(Number(splittedString[6]))
+      date.setMilliseconds(Number(splittedString[7]))
+      fileDetails.set(Number(firstChars), new Date(date))
     }
-  });
+  })
   const ret = new Map(
     Array.from(fileDetails).sort((a, b) => {
-      return a[0] - b[0];
-    })
-  );
-  return ret;
+      return a[0] - b[0]
+    }),
+  )
+  return ret
 }
 
 // export function compareRecentTwoFiles() {
@@ -108,10 +108,10 @@ export function getAllFileDetails(type: CypressLogType) {
 export function compareFilesByNumber(
   type: CypressLogType,
   firstNumber: number,
-  secondNumber: number
+  secondNumber: number,
 ): CypressRunResultCompare | null {
-  let firstContent: CypressCommandLine.CypressRunResult;
-  let secondContent: CypressCommandLine.CypressRunResult;
+  let firstContent: CypressCommandLine.CypressRunResult
+  let secondContent: CypressCommandLine.CypressRunResult
   try {
     fs.readdirSync(getPathByCypressLogType(type)).forEach(function (
       filename: string,
@@ -130,53 +130,53 @@ export function compareFilesByNumber(
           ),
         )
         if (Number(firstChars) === firstNumber) {
-          firstContent = data;
+          firstContent = data
         } else {
-          secondContent = data;
+          secondContent = data
         }
       }
-    });
+    })
   } catch (e) {
-    console.log(e, "Unable to compare files by number");
+    console.log(e, 'Unable to compare files by number')
   }
   return firstContent && secondContent
     ? compareFilesByContent(firstContent, secondContent)
-    : null;
+    : null
 }
 
 function compareFilesByContent(
   firstLog: CypressCommandLine.CypressRunResult,
-  secondLog: CypressCommandLine.CypressRunResult
+  secondLog: CypressCommandLine.CypressRunResult,
 ): CypressRunResultCompare {
-  const cypressRunResultCompare = new CypressRunResultCompare();
+  const cypressRunResultCompare = new CypressRunResultCompare()
   // Get the total duration of the test runs
   try {
-    cypressRunResultCompare.runs = [];
-    let durationOfFirstCypressRunResult = 0;
-    let durationOfSecondCypressRunResult = 0;
+    cypressRunResultCompare.runs = []
+    let durationOfFirstCypressRunResult = 0
+    let durationOfSecondCypressRunResult = 0
 
     // Iterate over all run results of the second log
     for (const secondRunResultCompare of secondLog.runs) {
-      let durationOfFirstRunResult = 0;
-      let durationOfSecondRunResult = 0;
-      const runResultCompare = new RunResultCompare();
-      runResultCompare.name = secondRunResultCompare.spec.name;
-      let firstRunResultFound = false;
+      let durationOfFirstRunResult = 0
+      let durationOfSecondRunResult = 0
+      const runResultCompare = new RunResultCompare()
+      runResultCompare.name = secondRunResultCompare.spec.name
+      let firstRunResultFound = false
       // Iterate over the run results of the first log
       // Until we find the file with the same name
       for (const firstRunResultCompare of firstLog.runs) {
         if (
           secondRunResultCompare.spec.name === firstRunResultCompare.spec.name
         ) {
-          firstRunResultFound = true;
+          firstRunResultFound = true
           // Iterate over the tests of the second run result
           for (const secondResultCompareTest of secondRunResultCompare.tests) {
-            const testResultCompare = new TestResultCompare();
-            testResultCompare.title = secondResultCompareTest.title;
-            let firstTestResultFound = false;
+            const testResultCompare = new TestResultCompare()
+            testResultCompare.title = secondResultCompareTest.title
+            let firstTestResultFound = false
 
-            let durationOfFirstTests = 0;
-            let durationOfSecondTests = 0;
+            let durationOfFirstTests = 0
+            let durationOfSecondTests = 0
 
             // Iterate over the tests of the first run result
             // Until we find the test with the same name
@@ -187,43 +187,39 @@ function compareFilesByContent(
                 firstResultCompareTest.title[1] ===
                   secondResultCompareTest.title[1]
               ) {
-                if (firstResultCompareTest.state === "failed") {
-                  if (secondResultCompareTest.state === "failed") {
-                    testResultCompare.failDetected =
-                      CypressFailed.FAILED_BOTH;
+                if (firstResultCompareTest.state === 'failed') {
+                  if (secondResultCompareTest.state === 'failed') {
+                    testResultCompare.failDetected = CypressFailed.FAILED_BOTH
                   } else {
-                    testResultCompare.failDetected =
-                      CypressFailed.FAILED_FIRST;
+                    testResultCompare.failDetected = CypressFailed.FAILED_FIRST
                   }
-                } else if (secondResultCompareTest.state === "failed") {
-                  testResultCompare.failDetected =
-                    CypressFailed.FAILED_SECOND;
+                } else if (secondResultCompareTest.state === 'failed') {
+                  testResultCompare.failDetected = CypressFailed.FAILED_SECOND
                 } else {
-                  testResultCompare.failDetected = CypressFailed.FAILED_NONE;
-                  let durationOfFirstTestAttempts = 0;
-                  let durationOfSecondTestAttempts = 0;
-                  firstTestResultFound = true;
+                  testResultCompare.failDetected = CypressFailed.FAILED_NONE
+                  let durationOfFirstTestAttempts = 0
+                  let durationOfSecondTestAttempts = 0
+                  firstTestResultFound = true
                   testResultCompare.attemptCountRun1 =
-                    firstResultCompareTest.attempts.length;
+                    firstResultCompareTest.attempts.length
                   testResultCompare.attemptCountRun2 =
-                    secondResultCompareTest.attempts.length;
+                    secondResultCompareTest.attempts.length
                   testResultCompare.differenceDetected =
-                    CypressDifference.NO_DIFFERENCE;
+                    CypressDifference.NO_DIFFERENCE
                   firstResultCompareTest.attempts.forEach((value) => {
-                    durationOfFirstTestAttempts += value.duration;
-                  });
+                    durationOfFirstTestAttempts += value.duration
+                  })
                   secondResultCompareTest.attempts.forEach((value) => {
-                    durationOfSecondTestAttempts += value.duration;
-                  });
+                    durationOfSecondTestAttempts += value.duration
+                  })
                   testResultCompare.durationDifference =
-                    durationOfSecondTestAttempts - durationOfFirstTestAttempts;
-                  testResultCompare.durationDifferencePercentage =
-                    getPercentageDifference(
-                      durationOfSecondTestAttempts,
-                      durationOfFirstTestAttempts
-                    );
-                  durationOfFirstTests += durationOfFirstTestAttempts;
-                  durationOfSecondTests += durationOfSecondTestAttempts;
+                    durationOfSecondTestAttempts - durationOfFirstTestAttempts
+                  testResultCompare.durationDifferencePercentage = getPercentageDifference(
+                    durationOfSecondTestAttempts,
+                    durationOfFirstTestAttempts,
+                  )
+                  durationOfFirstTests += durationOfFirstTestAttempts
+                  durationOfSecondTests += durationOfSecondTestAttempts
                   if (
                     cypressRunResultCompare.lowestDurationDifference ===
                       undefined ||
@@ -231,7 +227,7 @@ function compareFilesByContent(
                       cypressRunResultCompare.lowestDurationDifference
                   ) {
                     cypressRunResultCompare.lowestDurationDifference =
-                      testResultCompare.durationDifference;
+                      testResultCompare.durationDifference
                   }
                   if (
                     cypressRunResultCompare.highestDurationDifference ===
@@ -240,7 +236,7 @@ function compareFilesByContent(
                       cypressRunResultCompare.highestDurationDifference
                   ) {
                     cypressRunResultCompare.highestDurationDifference =
-                      testResultCompare.durationDifference;
+                      testResultCompare.durationDifference
                   }
                   if (
                     cypressRunResultCompare.lowestDurationDifferencePercentage ===
@@ -249,7 +245,7 @@ function compareFilesByContent(
                       cypressRunResultCompare.lowestDurationDifferencePercentage
                   ) {
                     cypressRunResultCompare.lowestDurationDifferencePercentage =
-                      testResultCompare.durationDifferencePercentage;
+                      testResultCompare.durationDifferencePercentage
                   }
                   if (
                     cypressRunResultCompare.highestDurationDifferencePercentage ===
@@ -258,23 +254,23 @@ function compareFilesByContent(
                       cypressRunResultCompare.highestDurationDifferencePercentage
                   ) {
                     cypressRunResultCompare.highestDurationDifferencePercentage =
-                      testResultCompare.durationDifferencePercentage;
+                      testResultCompare.durationDifferencePercentage
                   }
                 }
               }
             }
             if (!firstTestResultFound) {
               testResultCompare.differenceDetected =
-                CypressDifference.NOT_FOUND_FIRST;
+                CypressDifference.NOT_FOUND_FIRST
             }
-            durationOfFirstRunResult += durationOfFirstTests;
-            durationOfSecondRunResult += durationOfSecondTests;
-            runResultCompare.tests.push(testResultCompare);
+            durationOfFirstRunResult += durationOfFirstTests
+            durationOfSecondRunResult += durationOfSecondTests
+            runResultCompare.tests.push(testResultCompare)
           }
 
           // Check which tests results of the first log arent handled
           for (const firstTestResultCompare of firstRunResultCompare.tests) {
-            let secondTestResultFound = false;
+            let secondTestResultFound = false
             for (const secondTestResultCompare of secondRunResultCompare.tests) {
               if (
                 firstTestResultCompare.title[0] ===
@@ -282,53 +278,50 @@ function compareFilesByContent(
                 firstTestResultCompare.title[1] ===
                   secondTestResultCompare.title[1]
               ) {
-                secondTestResultFound = true;
+                secondTestResultFound = true
               }
             }
             if (!secondTestResultFound) {
-              const testResultCompare = new TestResultCompare();
-              testResultCompare.title = firstTestResultCompare.title;
+              const testResultCompare = new TestResultCompare()
+              testResultCompare.title = firstTestResultCompare.title
               testResultCompare.differenceDetected =
-                CypressDifference.NOT_FOUND_SECOND;
-              runResultCompare.tests.push(testResultCompare);
+                CypressDifference.NOT_FOUND_SECOND
+              runResultCompare.tests.push(testResultCompare)
             }
           }
 
           runResultCompare.durationDifference =
-            durationOfSecondRunResult - durationOfFirstRunResult;
-          runResultCompare.durationDifferencePercentage =
-            getPercentageDifference(
-              durationOfSecondRunResult,
-              durationOfFirstRunResult
-            );
-          durationOfFirstCypressRunResult += durationOfFirstRunResult;
-          durationOfSecondCypressRunResult += durationOfSecondRunResult;
-          cypressRunResultCompare.runs.push(runResultCompare);
+            durationOfSecondRunResult - durationOfFirstRunResult
+          runResultCompare.durationDifferencePercentage = getPercentageDifference(
+            durationOfSecondRunResult,
+            durationOfFirstRunResult,
+          )
+          durationOfFirstCypressRunResult += durationOfFirstRunResult
+          durationOfSecondCypressRunResult += durationOfSecondRunResult
+          cypressRunResultCompare.runs.push(runResultCompare)
         }
       }
       if (!firstRunResultFound) {
-        runResultCompare.differenceDetected =
-          CypressDifference.NOT_FOUND_FIRST;
-        cypressRunResultCompare.runs.push(runResultCompare);
+        runResultCompare.differenceDetected = CypressDifference.NOT_FOUND_FIRST
+        cypressRunResultCompare.runs.push(runResultCompare)
       }
     }
 
     // Check which run results of the first log arent handled
     for (const firstRunResultCompare of firstLog.runs) {
-      let secondRunResultFound = false;
+      let secondRunResultFound = false
       for (const secondRunResultCompare of secondLog.runs) {
         if (
           secondRunResultCompare.spec.name === firstRunResultCompare.spec.name
         ) {
-          secondRunResultFound = true;
+          secondRunResultFound = true
         }
       }
       if (!secondRunResultFound) {
-        const runResultCompare = new RunResultCompare();
-        runResultCompare.name = firstRunResultCompare.spec.name;
-        runResultCompare.differenceDetected =
-          CypressDifference.NOT_FOUND_SECOND;
-        cypressRunResultCompare.runs.push(runResultCompare);
+        const runResultCompare = new RunResultCompare()
+        runResultCompare.name = firstRunResultCompare.spec.name
+        runResultCompare.differenceDetected = CypressDifference.NOT_FOUND_SECOND
+        cypressRunResultCompare.runs.push(runResultCompare)
       }
     }
     // const recentTwoFileNumbers = getRecentTwoFileNumbers()
@@ -339,27 +332,26 @@ function compareFilesByContent(
     // )
 
     cypressRunResultCompare.durationDifference =
-      durationOfSecondCypressRunResult - durationOfFirstCypressRunResult;
-    cypressRunResultCompare.durationDifferencePercentage =
-      getPercentageDifference(
-        durationOfSecondCypressRunResult,
-        durationOfFirstCypressRunResult
-      );
+      durationOfSecondCypressRunResult - durationOfFirstCypressRunResult
+    cypressRunResultCompare.durationDifferencePercentage = getPercentageDifference(
+      durationOfSecondCypressRunResult,
+      durationOfFirstCypressRunResult,
+    )
   } catch (_) {
-    console.log("Unable to create compare file.");
+    console.log('Unable to create compare file.')
   }
-  return cypressRunResultCompare;
+  return cypressRunResultCompare
 }
 
 function getPercentageDifference(secondValue: number, firstValue: number) {
-  return Number(((secondValue * 100) / firstValue).toFixed(2));
+  return Number(((secondValue * 100) / firstValue).toFixed(2))
 }
 
 export function createCypressLog(
-  type: CypressLogType | string,
+  type: CypressLogType | 'e2e' | 'component',
   results:
     | CypressCommandLine.CypressRunResult
-    | CypressCommandLine.CypressFailedRunResult
+    | CypressCommandLine.CypressFailedRunResult,
 ) {
   const tempType = type as CypressLogType
   if (results.status === 'finished') {
@@ -377,19 +369,19 @@ export function createCypressLog(
         tempType,
       )}_${new Date()
         .toISOString()
-        .split(":")
-        .join("-")
-        .split(".")
-        .join("-")}.json`,
-      JSON.stringify(results, null, "\t"),
+        .split(':')
+        .join('-')
+        .split('.')
+        .join('-')}.json`,
+      JSON.stringify(results, null, '\t'),
       (err: any) => {
         if (err) {
-          console.error(err);
+          console.error(err)
         }
-      }
-    );
+      },
+    )
   } else {
-    console.log("Something went wrong while reading the test results.");
+    console.log('Something went wrong while reading the test results.')
   }
 }
 
