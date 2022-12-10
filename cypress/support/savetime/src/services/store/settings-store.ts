@@ -18,6 +18,10 @@ export function setLocale(locale: Locale) {
   saveSettings(settings)
 }
 
+export function getLocale() {
+  return settings.locale
+}
+
 export function setType(type: CypressLogType) {
   settings.type = type
   saveSettings(settings)

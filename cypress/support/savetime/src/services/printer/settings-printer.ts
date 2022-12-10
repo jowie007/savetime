@@ -1,3 +1,4 @@
+import { CypressLogType } from '../../classes/cypress-log-type'
 import { Locale } from '../../classes/locale'
 import { initializeHTML } from '../../preload'
 import {
@@ -5,8 +6,10 @@ import {
   translation,
 } from '../handler/translation-handler'
 import {
+  getLocale,
   getMaxDurationDifference,
   getMaxDurationDifferencePercentage,
+  getType,
   isOnlyCriticalTests,
   isPercentageValues,
   setLocale,
@@ -14,6 +17,7 @@ import {
   setMaxDurationDifferencePercentage,
   setOnlyCriticalTests,
   setPercentageValues,
+  setType,
 } from '../store/settings-store'
 import { getMinBorder } from './result-printer'
 
@@ -43,6 +47,7 @@ function initializeAccordionButton() {
 function fillSettings() {
   settings__panel.innerHTML = getSettingsContent()
   initLocaleButtonsClickListeners()
+  initTypeButtonsClickListeners()
   initMaxDurationDifferenceChangeListener()
   initPercentageValuesChangeListener()
   initOnlyCriticalTestsChangeListener()
@@ -134,10 +139,31 @@ function initLocaleButtonsClickListeners() {
     document
       .getElementById(`settings__language__button-${locale}`)
       .addEventListener('click', () => {
-        setLocale(locale)
-        initializeHTML()
+        if (locale !== getLocale()) {
+          setLocale(locale)
+          initializeHTML()
+        }
       })
   })
+}
+
+function initTypeButtonsClickListeners() {
+  document
+    .getElementById(`settings__type__button-e2e`)
+    .addEventListener('click', () => {
+      if (getType() !== CypressLogType.e2e) {
+        setType(CypressLogType.e2e)
+        initializeHTML()
+      }
+    })
+  document
+    .getElementById(`settings__type__button-component`)
+    .addEventListener('click', () => {
+      if (getType() !== CypressLogType.component) {
+        setType(CypressLogType.component)
+        initializeHTML()
+      }
+    })
 }
 
 function initMaxDurationDifferenceChangeListener() {
