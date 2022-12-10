@@ -1,3 +1,4 @@
+import { CypressLogType } from '../../classes/cypress-log-type'
 import {
   CypressDifference,
   CypressRunResultCompare,
@@ -7,16 +8,20 @@ import {
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs')
-const RESULT_RAW_DIR = __dirname + '/../../../results/raw'
-const RESULT_COMP_DIR = __dirname + '/../../../results/compare'
+const RESULT_DIR_E2E = __dirname + '/../../../results/e2e'
+const RESULT_DIR_COMPONENT = __dirname + '/../../../results/component'
 
-export { RESULT_COMP_DIR }
+function getPathByCypressLogType(type: CypressLogType) {
+  return type === CypressLogType.e2e ? RESULT_DIR_E2E : RESULT_DIR_COMPONENT
+}
 
-export function getFileNumber() {
+export function getFileNumber(type: CypressLogType) {
   let count = 0
   const firstCharsDigits = /\d{1,}$/
   try {
-    fs.readdirSync(RESULT_RAW_DIR).forEach(function (filename: string) {
+    fs.readdirSync(getPathByCypressLogType(type)).forEach(function (
+      filename: string,
+    ) {
       const firstChars = filename.split('_')[0]
       if (firstCharsDigits.test(firstChars)) {
         const position = Number(firstChars)
@@ -32,11 +37,13 @@ export function getFileNumber() {
   return String(count)
 }
 
-function getRecentTwoFileNumbers() {
+function getRecentTwoFileNumbers(type: CypressLogType) {
   let previousLatest = 0
   let latest = 0
   const firstCharsDigits = /\d{1,}$/
-  fs.readdirSync(RESULT_RAW_DIR).forEach(function (filename: string) {
+  fs.readdirSync(getPathByCypressLogType(type)).forEach(function (
+    filename: string,
+  ) {
     const firstChars = filename.split('_')[0]
     if (firstCharsDigits.test(firstChars)) {
       const position = Number(firstChars)
@@ -49,10 +56,12 @@ function getRecentTwoFileNumbers() {
   return [previousLatest, latest]
 }
 
-export function getAllFileNumbers() {
+export function getAllFileNumbers(type: CypressLogType) {
   const fileNumbers: number[] = []
   const firstCharsDigits = /\d{1,}$/
-  fs.readdirSync(RESULT_RAW_DIR).forEach(function (filename: string) {
+  fs.readdirSync(getPathByCypressLogType(type)).forEach(function (
+    filename: string,
+  ) {
     const firstChars = filename.split('_')[0]
     if (firstCharsDigits.test(firstChars)) {
       const position = Number(firstChars)
@@ -62,10 +71,12 @@ export function getAllFileNumbers() {
   return fileNumbers
 }
 
-export function getAllFileDetails() {
+export function getAllFileDetails(type: CypressLogType) {
   const fileDetails = new Map<number, Date>()
   const firstCharsDigits = /\d{1,}$/
-  fs.readdirSync(RESULT_RAW_DIR).forEach(function (filename: string) {
+  fs.readdirSync(getPathByCypressLogType(type)).forEach(function (
+    filename: string,
+  ) {
     const splittedString = filename.split(/\D/)
     const firstChars = splittedString[0]
     if (firstCharsDigits.test(firstChars)) {
@@ -88,19 +99,22 @@ export function getAllFileDetails() {
   return ret
 }
 
-export function compareRecentTwoFiles() {
-  const recentTwoFileNumbers = getRecentTwoFileNumbers()
-  compareFilesByNumber(recentTwoFileNumbers[0], recentTwoFileNumbers[1])
-}
+// export function compareRecentTwoFiles() {
+//   const recentTwoFileNumbers = getRecentTwoFileNumbers()
+//   compareFilesByNumber(recentTwoFileNumbers[0], recentTwoFileNumbers[1])
+// }
 
 export function compareFilesByNumber(
+  type: CypressLogType,
   firstNumber: number,
   secondNumber: number,
 ): CypressRunResultCompare | null {
   let firstContent: CypressCommandLine.CypressRunResult
   let secondContent: CypressCommandLine.CypressRunResult
   try {
-    fs.readdirSync(RESULT_RAW_DIR).forEach(function (filename: string) {
+    fs.readdirSync(getPathByCypressLogType(type)).forEach(function (
+      filename: string,
+    ) {
       const firstChars = filename.split('_')[0]
       const firstCharsDigits = /\d{1,}$/
       if (
@@ -109,7 +123,10 @@ export function compareFilesByNumber(
           Number(firstChars) === secondNumber)
       ) {
         const data: CypressCommandLine.CypressRunResult = JSON.parse(
-          fs.readFileSync(`${RESULT_RAW_DIR}/${filename}`, 'utf8'),
+          fs.readFileSync(
+            `${getPathByCypressLogType(type)}/${filename}`,
+            'utf8',
+          ),
         )
         if (Number(firstChars) === firstNumber) {
           firstContent = data
@@ -336,18 +353,25 @@ function getPercentageDifference(secondValue: number, firstValue: number) {
 }
 
 export function createCypressLog(
+  type: CypressLogType,
   results:
     | CypressCommandLine.CypressRunResult
     | CypressCommandLine.CypressFailedRunResult,
 ) {
   if (results.status === 'finished') {
-    fs.mkdirSync(RESULT_RAW_DIR, { recursive: true }, (err: any) => {
-      if (err) {
-        console.error(err)
-      }
-    })
+    fs.mkdirSync(
+      getPathByCypressLogType(type),
+      { recursive: true },
+      (err: any) => {
+        if (err) {
+          console.error(err)
+        }
+      },
+    )
     fs.writeFileSync(
-      `${RESULT_RAW_DIR}/${getFileNumber()}_${new Date()
+      `${getPathByCypressLogType(type)}/${getFileNumber(
+        type,
+      )}_${new Date()
         .toISOString()
         .split(':')
         .join('-')
@@ -365,23 +389,23 @@ export function createCypressLog(
   }
 }
 
-function createCypressCompareLog(
-  firstNumber: number,
-  secondNumber: number,
-  logs: CypressRunResultCompare,
-) {
-  fs.mkdirSync(RESULT_COMP_DIR, { recursive: true }, (err: any) => {
-    if (err) {
-      console.error(err)
-    }
-  })
-  fs.writeFileSync(
-    `${RESULT_COMP_DIR}/${secondNumber}_vs_${firstNumber}.json`,
-    JSON.stringify(logs, null, '\t'),
-    (err: any) => {
-      if (err) {
-        console.error(err)
-      }
-    },
-  )
-}
+// function createCypressCompareLog(
+//   firstNumber: number,
+//   secondNumber: number,
+//   logs: CypressRunResultCompare,
+// ) {
+//   fs.mkdirSync(RESULT_COMP_DIR, { recursive: true }, (err: any) => {
+//     if (err) {
+//       console.error(err)
+//     }
+//   })
+//   fs.writeFileSync(
+//     `${RESULT_COMP_DIR}/${secondNumber}_vs_${firstNumber}.json`,
+//     JSON.stringify(logs, null, '\t'),
+//     (err: any) => {
+//       if (err) {
+//         console.error(err)
+//       }
+//     },
+//   )
+// }

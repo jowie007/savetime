@@ -1,3 +1,4 @@
+import { CypressLogType } from '../../classes/cypress-log-type'
 import { Locale } from '../../classes/locale'
 import { Settings } from '../../classes/settings'
 import { readSettings, saveSettings } from '../handler/settings-file-handler'
@@ -15,6 +16,15 @@ export function getSettings() {
 export function setLocale(locale: Locale) {
   settings.locale = locale
   saveSettings(settings)
+}
+
+export function setType(type: CypressLogType) {
+  settings.type = type
+  saveSettings(settings)
+}
+
+export function getType() {
+  return settings.type
 }
 
 export function getMaxDurationDifference() {

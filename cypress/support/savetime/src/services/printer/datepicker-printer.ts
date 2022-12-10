@@ -5,6 +5,7 @@ import {
 import { getFormatDateWithPosition } from '../handler/date-handler'
 import { translation } from '../handler/translation-handler'
 import { getCypressLogFiles } from '../store/cypress-file-store'
+import { getType } from '../store/settings-store'
 import { printResult } from './result-printer'
 
 let selection__datepicker__day: HTMLDivElement
@@ -109,7 +110,7 @@ function clearDatePickerContent() {
 }
 
 function initializeSelectedElements() {
-  const itemsSize = getAllFileDetails().size
+  const itemsSize = getAllFileDetails(getType()).size
   if (!selectedFirst || !selectedSecond) {
     setSelectedFirst(itemsSize - 1)
     setSelectedSecond((selectedSecond = itemsSize))
@@ -119,7 +120,7 @@ function initializeSelectedElements() {
 function setSelectedFirst(key: number) {
   selectedFirst = key
   selection__datepicker__button1.innerHTML = getFormatDateWithPosition(
-    getAllFileDetails().get(key),
+    getAllFileDetails(getType()).get(key),
     key,
   )
   printResultsElement()
@@ -128,7 +129,7 @@ function setSelectedFirst(key: number) {
 function setSelectedSecond(key: number) {
   selectedSecond = key
   selection__datepicker__button2.innerHTML = getFormatDateWithPosition(
-    getAllFileDetails().get(key),
+    getAllFileDetails(getType()).get(key),
     key,
   )
   printResultsElement()
@@ -247,7 +248,7 @@ function getDatePickerSelectContent() {
 }
 
 function printResultsElement() {
-  printResult(compareFilesByNumber(selectedFirst, selectedSecond))
+  printResult(compareFilesByNumber(getType(), selectedFirst, selectedSecond))
 }
 
 function initializeDatePickerSecondTitle() {

@@ -1,5 +1,6 @@
 {
 	"locale": "DE",
+	"type": "e2e",
 	"maxDurationDifference": 100,
 	"maxDurationDifferencePercentage": 149,
 	"percentageValues": false,
