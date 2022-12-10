@@ -5,11 +5,11 @@ import {
 import { printSettings } from './services/printer/settings-printer.js'
 import { initSettingsStore } from './services/store/settings-store.js'
 import { printDatepicker } from './services/printer/datepicker-printer.js'
-import { initCypressFileStoreStore } from './services/store/cypress-file-store.js'
+import { initCypressFileStore } from './services/store/cypress-file-store.js'
 
 window.addEventListener('DOMContentLoaded', async () => {
   initSettingsStore()
-  initCypressFileStoreStore()
+  initCypressFileStore()
   readTranslationsFile()
   initializeHTML()
 })

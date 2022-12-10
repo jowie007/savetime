@@ -5,6 +5,7 @@ import {
   getLanguageFlagByLocale,
   translation,
 } from '../handler/translation-handler'
+import { initCypressFileStore } from '../store/cypress-file-store'
 import {
   getLocale,
   getMaxDurationDifference,
@@ -153,6 +154,7 @@ function initTypeButtonsClickListeners() {
     .addEventListener('click', () => {
       if (getType() !== CypressLogType.e2e) {
         setType(CypressLogType.e2e)
+        initCypressFileStore()
         initializeHTML(true)
       }
     })
@@ -161,6 +163,7 @@ function initTypeButtonsClickListeners() {
     .addEventListener('click', () => {
       if (getType() !== CypressLogType.component) {
         setType(CypressLogType.component)
+        initCypressFileStore()
         initializeHTML(true)
       }
     })

@@ -3,7 +3,7 @@ import { getType } from './settings-store';
 
 let files: Map<number, Date>
 
-export function initCypressFileStoreStore() {
+export function initCypressFileStore() {
   files = getAllFileDetails(getType())
 }
 

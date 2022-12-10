@@ -356,14 +356,15 @@ function getPercentageDifference(secondValue: number, firstValue: number) {
 }
 
 export function createCypressLog(
-  type: CypressLogType,
+  type: CypressLogType | string,
   results:
     | CypressCommandLine.CypressRunResult
     | CypressCommandLine.CypressFailedRunResult
 ) {
+  const tempType = type as CypressLogType
   if (results.status === 'finished') {
     fs.mkdirSync(
-      getPathByCypressLogType(type),
+      getPathByCypressLogType(tempType),
       { recursive: true },
       (err: any) => {
         if (err) {
@@ -372,8 +373,8 @@ export function createCypressLog(
       },
     )
     fs.writeFileSync(
-      `${getPathByCypressLogType(type)}/${getFileNumber(
-        type,
+      `${getPathByCypressLogType(tempType)}/${getFileNumber(
+        tempType,
       )}_${new Date()
         .toISOString()
         .split(":")

@@ -1,6 +1,6 @@
 import { defineConfig } from 'cypress'
 import {
-  compareRecentTwoFiles,
+  // compareRecentTwoFiles,
   createCypressLog,
   // pushTransferredLogs,
   // openHTMLInfoPage,
@@ -16,9 +16,8 @@ export default defineConfig({
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       on('after:run', (results) => {
-        console.log('cypress.config.ts:create_log/after:run')
-        createCypressLog(results)
-        compareRecentTwoFiles()
+        createCypressLog('e2e', results)
+        // compareRecentTwoFiles()
         // openHTMLInfoPage()
         return null
       })
@@ -45,9 +44,8 @@ export default defineConfig({
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       on('after:run', (results) => {
-        console.log('cypress.config.ts:create_log/after:run')
-        createCypressLog(results)
-        compareRecentTwoFiles()
+        createCypressLog('component', results)
+        // compareRecentTwoFiles()
         // openHTMLInfoPage()
         return null
       })

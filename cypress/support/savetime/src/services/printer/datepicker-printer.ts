@@ -82,17 +82,20 @@ function init(reInitPickers: boolean) {
   printResultsElement()
 }
 
-function toggleDatePickerContent() {
-  if (shown) {
+function toggleDatePickerContent(close: boolean = false) {
+  let display
+  if (shown || close) {
     clearDatePickerContent()
+    display = 'none'
+    shown = false
   } else {
     year = new Date().getFullYear()
     month = new Date().getMonth()
     initializeDatePickerContent()
+    display = 'block'
+    shown = true
   }
-  selection__datepicker__day.style.display =
-    selection__datepicker__day.style.display === 'block' ? 'none' : 'block'
-  shown = !shown
+  selection__datepicker__day.style.display = display
 }
 
 function initializeDayHeading() {
@@ -128,6 +131,7 @@ function initializeSelectedElements(reInitPickers: boolean) {
   if (reInitPickers || !selectedFirst || !selectedSecond) {
     setSelectedFirst(itemsSize - 1)
     setSelectedSecond((selectedSecond = itemsSize))
+    toggleDatePickerContent(true)
   }
 }
 
