@@ -186,7 +186,7 @@ function getDatePickerSecondTitle() {
 }
 
 function getDayArray() {
-  const firstDayOfMonth = new Date(year, month - 1, 1)
+  const firstDayOfMonth = new Date(year, month, 1)
   // 0 -> Mon, 1 -> Tue, 2 -> Wed, 3 -> Thu
   // 4 -> Fri, 5 -> Sat, 6 -> Sun
   const firstDayOfMonthNumber =
