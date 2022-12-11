@@ -1,8 +1,8 @@
 {
 	"locale": "DE",
-	"type": "e2e",
+	"type": "component",
 	"maxDurationDifference": 100,
 	"maxDurationDifferencePercentage": 149,
 	"percentageValues": false,
-	"onlyCriticalTests": true
+	"onlyCriticalTests": false
 }

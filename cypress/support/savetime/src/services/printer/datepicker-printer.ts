@@ -138,7 +138,7 @@ function initializeSelectedElements(reInitPickers: boolean) {
 function setSelectedFirst(key: number) {
   selectedFirst = key
   selection__datepicker__selection__datepicker__buttonFirst.innerHTML =
-    key > 1
+    key > 0
       ? getFormatDateWithPosition(getAllFileDetails(getType()).get(key), key)
       : '-'
   printResultsElement()
@@ -147,7 +147,7 @@ function setSelectedFirst(key: number) {
 function setSelectedSecond(key: number) {
   selectedSecond = key
   selection__datepicker__selection__datepicker__buttonSecond.innerHTML =
-    key > 1
+    key > 0
       ? getFormatDateWithPosition(getAllFileDetails(getType()).get(key), key)
       : '-'
   printResultsElement()

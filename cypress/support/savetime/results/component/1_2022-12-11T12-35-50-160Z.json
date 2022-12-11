@@ -1,0 +1,570 @@
+{
+	"status": "finished",
+	"startedTestsAt": "2022-12-11T12:35:47.386Z",
+	"endedTestsAt": "2022-12-11T12:35:47.547Z",
+	"totalDuration": 161,
+	"totalSuites": 1,
+	"totalTests": 2,
+	"totalPassed": 2,
+	"totalPending": 0,
+	"totalFailed": 0,
+	"totalSkipped": 0,
+	"runs": [
+		{
+			"stats": {
+				"suites": 1,
+				"tests": 2,
+				"passes": 2,
+				"pending": 0,
+				"skipped": 0,
+				"failures": 0,
+				"duration": 161,
+				"startedAt": "2022-12-11T12:35:47.386Z",
+				"endedAt": "2022-12-11T12:35:47.547Z"
+			},
+			"reporter": "spec",
+			"reporterStats": {
+				"suites": 1,
+				"tests": 2,
+				"passes": 2,
+				"pending": 0,
+				"failures": 0,
+				"start": "2022-12-11T12:35:47.394Z",
+				"end": "2022-12-11T12:35:47.561Z",
+				"duration": 167
+			},
+			"hooks": [],
+			"tests": [
+				{
+					"title": [
+						"HelloWorld",
+						"playground"
+					],
+					"state": "passed",
+					"body": "() => {\n    cy.mount(HelloWorld, { props: { msg: \"Hello Cypress\" } });\n  }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 4613,
+							"duration": 76,
+							"startedAt": "2022-12-11T12:35:47.399Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"HelloWorld",
+						"renders properly"
+					],
+					"state": "passed",
+					"body": "() => {\n    cy.mount(HelloWorld, { props: { msg: \"Hello Cypress\" } });\n    cy.get(\"h1\").should(\"contain\", \"Hello Cypress\");\n  }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 4693,
+							"duration": 65,
+							"startedAt": "2022-12-11T12:35:47.479Z",
+							"screenshots": []
+						}
+					]
+				}
+			],
+			"error": null,
+			"video": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\videos\\HelloWorld.cy.ts.mp4",
+			"spec": {
+				"fileExtension": ".ts",
+				"baseName": "HelloWorld.cy.ts",
+				"fileName": "HelloWorld",
+				"specFileExtension": ".cy.ts",
+				"relativeToCommonRoot": "HelloWorld.cy.ts",
+				"specType": "component",
+				"name": "src/components/__tests__/HelloWorld.cy.ts",
+				"relative": "src\\components\\__tests__\\HelloWorld.cy.ts",
+				"absolute": "C:/Users/jonas/Documents/Workspace/VSC/master-project/src/components/__tests__/HelloWorld.cy.ts"
+			},
+			"shouldUploadVideo": true
+		}
+	],
+	"browserPath": "",
+	"browserName": "electron",
+	"browserVersion": "106.0.5249.51",
+	"osName": "win32",
+	"osVersion": "10.0.22621",
+	"cypressVersion": "12.0.2",
+	"config": {
+		"projectId": "h3q1s1",
+		"specPattern": "src/**/__tests__/*.{cy,spec}.{js,ts,jsx,tsx}",
+		"devServer": {
+			"framework": "vue",
+			"bundler": "vite"
+		},
+		"setupNodeEvents": "[Function setupNodeEvents]",
+		"projectRoot": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project",
+		"projectName": "master-project",
+		"repoRoot": "C:/Users/jonas/Documents/Workspace/VSC/master-project",
+		"rawJson": {
+			"projectId": "h3q1s1",
+			"e2e": {
+				"specPattern": "cypress/e2e/**/*.{cy,spec}.{js,jsx,ts,tsx}",
+				"baseUrl": "http://localhost:4173",
+				"setupNodeEvents": "[Function setupNodeEvents]"
+			},
+			"component": {
+				"specPattern": "src/**/__tests__/*.{cy,spec}.{js,ts,jsx,tsx}",
+				"devServer": {
+					"framework": "vue",
+					"bundler": "vite"
+				},
+				"setupNodeEvents": "[Function setupNodeEvents]"
+			},
+			"specPattern": "src/**/__tests__/*.{cy,spec}.{js,ts,jsx,tsx}",
+			"devServer": {
+				"framework": "vue",
+				"bundler": "vite"
+			},
+			"setupNodeEvents": "[Function setupNodeEvents]",
+			"envFile": {},
+			"projectRoot": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project",
+			"projectName": "master-project",
+			"repoRoot": "C:/Users/jonas/Documents/Workspace/VSC/master-project"
+		},
+		"configFile": "cypress.config.ts",
+		"morgan": false,
+		"isTextTerminal": true,
+		"socketId": "bno9bvwysf",
+		"report": true,
+		"reporter": "spec",
+		"animationDistanceThreshold": 5,
+		"arch": "x64",
+		"baseUrl": "http://localhost:5173",
+		"blockHosts": null,
+		"chromeWebSecurity": true,
+		"clientCertificates": [],
+		"defaultCommandTimeout": 4000,
+		"downloadsFolder": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\downloads",
+		"env": {},
+		"execTimeout": 60000,
+		"experimentalFetchPolyfill": false,
+		"experimentalInteractiveRunEvents": false,
+		"experimentalRunAllSpecs": false,
+		"experimentalModifyObstructiveThirdPartyCode": false,
+		"experimentalOriginDependencies": false,
+		"experimentalSourceRewriting": false,
+		"experimentalSingleTabRunMode": false,
+		"experimentalStudio": false,
+		"experimentalWebKitSupport": false,
+		"fileServerFolder": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project",
+		"fixturesFolder": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\fixtures",
+		"excludeSpecPattern": [
+			"**/__snapshots__/*",
+			"**/__image_snapshots__/*"
+		],
+		"includeShadowDom": false,
+		"keystrokeDelay": 0,
+		"modifyObstructiveCode": true,
+		"numTestsKeptInMemory": 0,
+		"platform": "win32",
+		"pageLoadTimeout": 60000,
+		"port": 57597,
+		"redirectionLimit": 20,
+		"reporterOptions": null,
+		"requestTimeout": 5000,
+		"resolvedNodePath": "C:\\Program Files\\nodejs\\node.exe",
+		"resolvedNodeVersion": "16.13.0",
+		"responseTimeout": 30000,
+		"retries": {
+			"runMode": 0,
+			"openMode": 0
+		},
+		"screenshotOnRunFailure": true,
+		"screenshotsFolder": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\screenshots",
+		"slowTestThreshold": 250,
+		"scrollBehavior": "top",
+		"supportFile": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\support\\component.ts",
+		"supportFolder": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\support",
+		"taskTimeout": 60000,
+		"testIsolation": true,
+		"trashAssetsBeforeRuns": true,
+		"userAgent": null,
+		"video": true,
+		"videoCompression": 32,
+		"videosFolder": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\videos",
+		"videoUploadOnPasses": true,
+		"viewportHeight": 500,
+		"viewportWidth": 500,
+		"waitForAnimations": true,
+		"watchForFileChanges": false,
+		"additionalIgnorePattern": "cypress/e2e/**/*.{cy,spec}.{js,jsx,ts,tsx}",
+		"autoOpen": false,
+		"browsers": [
+			{
+				"name": "chrome",
+				"family": "chromium",
+				"channel": "stable",
+				"displayName": "Chrome",
+				"version": "108.0.5359.99",
+				"path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+				"minSupportedVersion": 64,
+				"majorVersion": "108"
+			},
+			{
+				"name": "firefox",
+				"family": "firefox",
+				"channel": "stable",
+				"displayName": "Firefox",
+				"version": "107.0.1",
+				"path": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+				"minSupportedVersion": 86,
+				"majorVersion": "107",
+				"warning": "Your project has set the configuration option: `chromeWebSecurity` to `false`.\n\nThis option will not have an effect in Firefox. Tests that rely on web security being disabled will not run as expected."
+			},
+			{
+				"name": "edge",
+				"family": "chromium",
+				"channel": "stable",
+				"displayName": "Edge",
+				"version": "108.0.1462.46",
+				"path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+				"minSupportedVersion": 79,
+				"majorVersion": "108"
+			},
+			{
+				"name": "electron",
+				"channel": "stable",
+				"family": "chromium",
+				"displayName": "Electron",
+				"version": "106.0.5249.51",
+				"path": "",
+				"majorVersion": 106
+			}
+		],
+		"clientRoute": "/__/",
+		"cypressBinaryRoot": "C:\\Users\\jonas\\AppData\\Local\\Cypress\\Cache\\12.0.2\\Cypress\\resources\\app",
+		"devServerPublicPathRoute": "/__cypress/src",
+		"hosts": null,
+		"isInteractive": true,
+		"namespace": "__cypress",
+		"reporterRoute": "/__cypress/reporter",
+		"socketIoCookie": "__socket",
+		"socketIoRoute": "/__socket",
+		"version": "12.0.2",
+		"indexHtmlFile": "cypress/support/component-index.html",
+		"cypressEnv": "production",
+		"resolved": {
+			"animationDistanceThreshold": {
+				"value": 5,
+				"from": "default"
+			},
+			"arch": {
+				"value": "x64",
+				"from": "default"
+			},
+			"baseUrl": {
+				"value": null,
+				"from": "default"
+			},
+			"blockHosts": {
+				"value": null,
+				"from": "default"
+			},
+			"chromeWebSecurity": {
+				"value": true,
+				"from": "default"
+			},
+			"clientCertificates": {
+				"value": [],
+				"from": "default"
+			},
+			"defaultCommandTimeout": {
+				"value": 4000,
+				"from": "default"
+			},
+			"downloadsFolder": {
+				"value": "cypress/downloads",
+				"from": "default"
+			},
+			"env": {},
+			"execTimeout": {
+				"value": 60000,
+				"from": "default"
+			},
+			"experimentalFetchPolyfill": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalInteractiveRunEvents": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalRunAllSpecs": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalModifyObstructiveThirdPartyCode": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalOriginDependencies": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalSourceRewriting": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalSingleTabRunMode": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalStudio": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalWebKitSupport": {
+				"value": false,
+				"from": "default"
+			},
+			"fileServerFolder": {
+				"value": "",
+				"from": "default"
+			},
+			"fixturesFolder": {
+				"value": "cypress/fixtures",
+				"from": "default"
+			},
+			"excludeSpecPattern": {
+				"value": [
+					"**/__snapshots__/*",
+					"**/__image_snapshots__/*"
+				],
+				"from": "default"
+			},
+			"includeShadowDom": {
+				"value": false,
+				"from": "default"
+			},
+			"keystrokeDelay": {
+				"value": 0,
+				"from": "default"
+			},
+			"modifyObstructiveCode": {
+				"value": true,
+				"from": "default"
+			},
+			"nodeVersion": {
+				"from": "default"
+			},
+			"numTestsKeptInMemory": {
+				"value": 0,
+				"from": "config"
+			},
+			"platform": {
+				"value": "win32",
+				"from": "default"
+			},
+			"pageLoadTimeout": {
+				"value": 60000,
+				"from": "default"
+			},
+			"port": {
+				"value": null,
+				"from": "default"
+			},
+			"projectId": {
+				"value": "h3q1s1",
+				"from": "config"
+			},
+			"redirectionLimit": {
+				"value": 20,
+				"from": "default"
+			},
+			"reporter": {
+				"value": "spec",
+				"from": "cli"
+			},
+			"reporterOptions": {
+				"value": null,
+				"from": "default"
+			},
+			"requestTimeout": {
+				"value": 5000,
+				"from": "default"
+			},
+			"resolvedNodePath": {
+				"value": null,
+				"from": "default"
+			},
+			"resolvedNodeVersion": {
+				"value": null,
+				"from": "default"
+			},
+			"responseTimeout": {
+				"value": 30000,
+				"from": "default"
+			},
+			"retries": {
+				"value": {
+					"runMode": 0,
+					"openMode": 0
+				},
+				"from": "default"
+			},
+			"screenshotOnRunFailure": {
+				"value": true,
+				"from": "default"
+			},
+			"screenshotsFolder": {
+				"value": "cypress/screenshots",
+				"from": "default"
+			},
+			"slowTestThreshold": {
+				"value": 250,
+				"from": "default"
+			},
+			"scrollBehavior": {
+				"value": "top",
+				"from": "default"
+			},
+			"supportFile": {
+				"value": "cypress/support/component.{js,jsx,ts,tsx}",
+				"from": "default"
+			},
+			"supportFolder": {
+				"value": false,
+				"from": "default"
+			},
+			"taskTimeout": {
+				"value": 60000,
+				"from": "default"
+			},
+			"testIsolation": {
+				"value": true,
+				"from": "default"
+			},
+			"trashAssetsBeforeRuns": {
+				"value": true,
+				"from": "default"
+			},
+			"userAgent": {
+				"value": null,
+				"from": "default"
+			},
+			"video": {
+				"value": true,
+				"from": "default"
+			},
+			"videoCompression": {
+				"value": 32,
+				"from": "default"
+			},
+			"videosFolder": {
+				"value": "cypress/videos",
+				"from": "default"
+			},
+			"videoUploadOnPasses": {
+				"value": true,
+				"from": "default"
+			},
+			"viewportHeight": {
+				"value": 500,
+				"from": "default"
+			},
+			"viewportWidth": {
+				"value": 500,
+				"from": "default"
+			},
+			"waitForAnimations": {
+				"value": true,
+				"from": "default"
+			},
+			"watchForFileChanges": {
+				"value": false,
+				"from": "config"
+			},
+			"specPattern": {
+				"value": "src/**/__tests__/*.{cy,spec}.{js,ts,jsx,tsx}",
+				"from": "config"
+			},
+			"browsers": {
+				"value": [
+					{
+						"name": "chrome",
+						"family": "chromium",
+						"channel": "stable",
+						"displayName": "Chrome",
+						"version": "108.0.5359.99",
+						"path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+						"minSupportedVersion": 64,
+						"majorVersion": "108"
+					},
+					{
+						"name": "firefox",
+						"family": "firefox",
+						"channel": "stable",
+						"displayName": "Firefox",
+						"version": "107.0.1",
+						"path": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+						"minSupportedVersion": 86,
+						"majorVersion": "107"
+					},
+					{
+						"name": "edge",
+						"family": "chromium",
+						"channel": "stable",
+						"displayName": "Edge",
+						"version": "108.0.1462.46",
+						"path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+						"minSupportedVersion": 79,
+						"majorVersion": "108"
+					},
+					{
+						"name": "electron",
+						"channel": "stable",
+						"family": "chromium",
+						"displayName": "Electron",
+						"version": "106.0.5249.51",
+						"path": "",
+						"majorVersion": 106,
+						"isHeadless": true,
+						"isHeaded": false
+					}
+				],
+				"from": "runtime"
+			},
+			"hosts": {
+				"value": null,
+				"from": "default"
+			},
+			"isInteractive": {
+				"value": true,
+				"from": "default"
+			}
+		},
+		"testingType": "component",
+		"remote": {
+			"origin": "http://localhost:5173",
+			"strategy": "http",
+			"fileServer": null,
+			"domainName": "localhost",
+			"props": {
+				"port": "5173",
+				"protocol": "http:",
+				"subdomain": null,
+				"domain": "",
+				"tld": "localhost"
+			}
+		},
+		"browser": null,
+		"specs": [],
+		"proxyUrl": "http://localhost:57597",
+		"browserUrl": "http://localhost:5173/__/",
+		"reporterUrl": "http://localhost:5173/__cypress/reporter",
+		"proxyServer": "http://localhost:57597",
+		"state": {}
+	}
+}
