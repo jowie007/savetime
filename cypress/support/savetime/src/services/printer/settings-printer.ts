@@ -63,7 +63,7 @@ function getSettingsContent() {
     <div id='settings__language__wrapper' class='settings__item'>
       <label id='settings__language__label' for='settings__language'>
         ${translation.settings__language__label}
-      </label><br/>
+      </label>
       <div id='settings__language'>
         ${languageFlagsHTMLArray.join(' ')}
       </div>
@@ -71,7 +71,7 @@ function getSettingsContent() {
     <div id='settings__type__wrapper' class='settings__item'>
       <label id='settings__type__label' for='settings__type'>
         ${translation.settings__type__label}
-      </label><br/>
+      </label>
       <div id='settings__type'>
         <button id='settings__type__button-e2e'
           class='settings__type__button'>
@@ -90,7 +90,7 @@ function getSettingsContent() {
             ? translation.settings__maxDurationDifference__label__percentage
             : translation.settings__maxDurationDifference__label
         }
-      </label><br/>
+      </label>
       <input 
         id='settings__maxDurationDifference' 
         type='number' 
@@ -106,7 +106,7 @@ function getSettingsContent() {
     <div id='settings__percentageValues' class='settings__item'>
       <label id='settings__percentageValues__label' for='settings__percentageValues__checkbox'>
         ${translation.settings__percentageValues__label}
-      </label><br/>
+      </label>
       <input 
         id='settings__percentageValues__checkbox' 
         type='checkbox'
@@ -116,7 +116,7 @@ function getSettingsContent() {
     <div id='settings__onlyCriticalTests' class='settings__item'>
     <label id='settings__onlyCriticalTests__label' for='settings__onlyCriticalTests__checkbox'>
       ${translation.settings__onlyCriticalTests__label}
-    </label><br/>
+    </label>
     <input 
       id='settings__onlyCriticalTests__checkbox' 
       type='checkbox'

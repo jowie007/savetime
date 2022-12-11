@@ -19,7 +19,7 @@ swap|⇄|⇄
 reset|↺|↺
 settings|⛭|⛭
 settings__language__label|Language|Sprache
-settings__type__e2e|e2e tests|e2e-Tests
+settings__type__e2e|E2E tests|E2E-Tests
 settings__type__component|Component tests|Komponenten-Tests
 settings__type__label|Type|Typ
 settings__maxDurationDifference__label|Max duration difference in milliseconds|Max. Laufzeitdifferenz in Millisekunden
