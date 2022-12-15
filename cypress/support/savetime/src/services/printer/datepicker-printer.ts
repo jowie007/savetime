@@ -5,20 +5,24 @@ import {
 import { getFormatDateWithPosition } from '../handler/date-handler'
 import { translation } from '../handler/translation-handler'
 import { getCypressLogFiles } from '../store/cypress-file-store'
-import { getType } from '../store/settings-store'
+import { getType, isCompareSpans } from '../store/settings-store'
 import { printResult } from './result-printer'
 
 let selection__datepicker__day: HTMLDivElement
-let selection__datepicker__selection__datepicker__buttonFirst: HTMLButtonElement
-let selection__datepicker__selection__datepicker__buttonSecond: HTMLButtonElement
+let selection__datepicker__selection__datepicker__buttonsFirst__First: HTMLButtonElement
+let selection__datepicker__selection__datepicker__buttonsFirst__Second: HTMLButtonElement
+let selection__datepicker__selection__datepicker__buttonsSecond__First: HTMLButtonElement
+let selection__datepicker__selection__datepicker__buttonsSecond__Second: HTMLButtonElement
 let selection__datepicker__selection__datepicker__buttonSwap: HTMLButtonElement
 let selection__datepicker__selection__datepicker__buttonReset: HTMLButtonElement
 let selection__datepicker__day__heading: HTMLDivElement
 let selection__datepicker__day__wrapper: HTMLDivElement
 let selection__datepicker__test__heading: HTMLDivElement
 let selection__datepicker__test__wrapper: HTMLDivElement
-let selectedFirst: number
-let selectedSecond: number
+let selectedFirstFirst: number
+let selectedFirstSecond: number
+let selectedSecondFirst: number
+let selectedSecondSecond: number
 let year: number
 let month: number
 let day: number
@@ -27,19 +31,25 @@ let clickedButton: number
 let shown: boolean
 let initializedBefore: boolean
 
-export function printDatepicker(reInitSelected: boolean) {
-  init(reInitSelected)
+export function printDatepicker(reInitPickers: boolean) {
+  init(reInitPickers)
 }
 
 function init(reInitPickers: boolean) {
   if (!initializedBefore) {
     initializedBefore = true
     shown = false
-    selection__datepicker__selection__datepicker__buttonFirst = document.getElementById(
-      'selection__datepicker__selection__datepicker__buttonFirst',
+    selection__datepicker__selection__datepicker__buttonsFirst__First = document.getElementById(
+      'selection__datepicker__selection__datepicker__buttonsFirst__First',
     ) as HTMLButtonElement
-    selection__datepicker__selection__datepicker__buttonSecond = document.getElementById(
-      'selection__datepicker__selection__datepicker__buttonSecond',
+    selection__datepicker__selection__datepicker__buttonsFirst__Second = document.getElementById(
+      'selection__datepicker__selection__datepicker__buttonsFirst__Second',
+    ) as HTMLButtonElement
+    selection__datepicker__selection__datepicker__buttonsSecond__First = document.getElementById(
+      'selection__datepicker__selection__datepicker__buttonsSecond__First',
+    ) as HTMLButtonElement
+    selection__datepicker__selection__datepicker__buttonsSecond__Second = document.getElementById(
+      'selection__datepicker__selection__datepicker__buttonsSecond__Second',
     ) as HTMLButtonElement
     selection__datepicker__selection__datepicker__buttonSwap = document.getElementById(
       'selection__datepicker__selection__datepicker__buttonSwap',
@@ -79,7 +89,14 @@ function init(reInitPickers: boolean) {
     'selection__datepicker__test__wrapper',
   ) as HTMLDivElement
   initializeSelectedElements(reInitPickers)
+  initializeSpanButtonsVisibility()
   printResultsElement()
+}
+
+function initializeSpanButtonsVisibility() {
+  const display = isCompareSpans() ? 'block' : 'none'
+  selection__datepicker__selection__datepicker__buttonsFirst__Second.style.display = display
+  selection__datepicker__selection__datepicker__buttonsSecond__Second.style.display = display
 }
 
 function toggleDatePickerContent(close: boolean = false) {
@@ -112,11 +129,11 @@ function initializeDatePickerContent() {
 }
 
 function clearDatePickerContent() {
-  selection__datepicker__selection__datepicker__buttonFirst.classList.remove(
-    'selection__datepicker__button__selected',
+  selection__datepicker__selection__datepicker__buttonsFirst__First.classList.remove(
+    'selectedButton',
   )
-  selection__datepicker__selection__datepicker__buttonSecond.classList.remove(
-    'selection__datepicker__button__selected',
+  selection__datepicker__selection__datepicker__buttonsSecond__First.classList.remove(
+    'selectedButton',
   )
   day = undefined
   clickedButton = undefined
@@ -128,29 +145,59 @@ function clearDatePickerContent() {
 
 function initializeSelectedElements(reInitPickers: boolean) {
   const itemsSize = getAllFileDetails(getType()).size
-  if (reInitPickers || !selectedFirst || !selectedSecond) {
-    setSelectedFirst(itemsSize - 1)
-    setSelectedSecond((selectedSecond = itemsSize))
+  if (reInitPickers || !selectedFirstFirst || !selectedSecondFirst) {
+    setSelectedFirstFirst(itemsSize - 1, false)
+    setSelectedSecondFirst(itemsSize, !isCompareSpans())
     toggleDatePickerContent(true)
+  }
+  if (isCompareSpans()) {
+    setSelectedFirstSecond(itemsSize - 1, false)
+    setSelectedSecondSecond(itemsSize, true)
   }
 }
 
-function setSelectedFirst(key: number) {
-  selectedFirst = key
-  selection__datepicker__selection__datepicker__buttonFirst.innerHTML =
+function setSelectedFirstFirst(key: number, printResults: boolean = true) {
+  selectedFirstFirst = key
+  selection__datepicker__selection__datepicker__buttonsFirst__First.innerHTML =
     key > 0
       ? getFormatDateWithPosition(getAllFileDetails(getType()).get(key), key)
       : '-'
-  printResultsElement()
+  if (printResults) {
+    printResultsElement()
+  }
 }
 
-function setSelectedSecond(key: number) {
-  selectedSecond = key
-  selection__datepicker__selection__datepicker__buttonSecond.innerHTML =
+function setSelectedFirstSecond(key: number, printResults: boolean = true) {
+  selectedFirstSecond = key
+  selection__datepicker__selection__datepicker__buttonsFirst__Second.innerHTML =
     key > 0
       ? getFormatDateWithPosition(getAllFileDetails(getType()).get(key), key)
       : '-'
-  printResultsElement()
+  if (printResults) {
+    printResultsElement()
+  }
+}
+
+function setSelectedSecondFirst(key: number, printResults: boolean = true) {
+  selectedSecondFirst = key
+  selection__datepicker__selection__datepicker__buttonsSecond__First.innerHTML =
+    key > 0
+      ? getFormatDateWithPosition(getAllFileDetails(getType()).get(key), key)
+      : '-'
+  if (printResults) {
+    printResultsElement()
+  }
+}
+
+function setSelectedSecondSecond(key: number, printResults: boolean = true) {
+  selectedSecondSecond = key
+  selection__datepicker__selection__datepicker__buttonsSecond__Second.innerHTML =
+    key > 0
+      ? getFormatDateWithPosition(getAllFileDetails(getType()).get(key), key)
+      : '-'
+  if (printResults) {
+    printResultsElement()
+  }
 }
 
 function getDatePickerFirstTitle() {
@@ -266,7 +313,9 @@ function getDatePickerSelectContent() {
 }
 
 function printResultsElement() {
-  printResult(compareFilesByNumber(getType(), selectedFirst, selectedSecond))
+  printResult(
+    compareFilesByNumber(getType(), selectedFirstFirst, selectedSecondFirst),
+  )
 }
 
 function initializeDatePickerSecondTitle() {
@@ -287,7 +336,7 @@ function initializeDatePickerSecondSelectContent() {
 }
 
 function initselection__datepicker__buttonFirstClickListener() {
-  selection__datepicker__selection__datepicker__buttonFirst.addEventListener(
+  selection__datepicker__selection__datepicker__buttonsFirst__First.addEventListener(
     'click',
     () => {
       const previousClickedButton = clickedButton
@@ -295,12 +344,12 @@ function initselection__datepicker__buttonFirstClickListener() {
       if (previousClickedButton === 1) {
         toggleDatePickerContent()
       } else {
-        selection__datepicker__selection__datepicker__buttonFirst.classList.add(
-          'selection__datepicker__button__selected',
+        selection__datepicker__selection__datepicker__buttonsFirst__First.classList.add(
+          'selectedButton',
         )
         if (previousClickedButton === 2) {
-          selection__datepicker__selection__datepicker__buttonSecond.classList.remove(
-            'selection__datepicker__button__selected',
+          selection__datepicker__selection__datepicker__buttonsSecond__First.classList.remove(
+            'selectedButton',
           )
         } else {
           toggleDatePickerContent()
@@ -311,7 +360,7 @@ function initselection__datepicker__buttonFirstClickListener() {
 }
 
 function initselection__datepicker__buttonSecondClickListener() {
-  selection__datepicker__selection__datepicker__buttonSecond.addEventListener(
+  selection__datepicker__selection__datepicker__buttonsSecond__First.addEventListener(
     'click',
     () => {
       const previousClickedButton = clickedButton
@@ -319,12 +368,12 @@ function initselection__datepicker__buttonSecondClickListener() {
       if (previousClickedButton === 2) {
         toggleDatePickerContent()
       } else {
-        selection__datepicker__selection__datepicker__buttonSecond.classList.add(
-          'selection__datepicker__button__selected',
+        selection__datepicker__selection__datepicker__buttonsSecond__First.classList.add(
+          'selectedButton',
         )
         if (previousClickedButton === 1) {
-          selection__datepicker__selection__datepicker__buttonFirst.classList.remove(
-            'selection__datepicker__button__selected',
+          selection__datepicker__selection__datepicker__buttonsFirst__First.classList.remove(
+            'selectedButton',
           )
         } else {
           toggleDatePickerContent()
@@ -338,14 +387,24 @@ function initselection__datepicker__buttonSwapClickListener() {
   selection__datepicker__selection__datepicker__buttonSwap.addEventListener(
     'click',
     () => {
-      let selectedFirstTemp = selectedFirst
-      selectedFirst = selectedSecond
-      selectedSecond = selectedFirstTemp
-      let selection__datepicker__selection__datepicker__buttonFirstHTMLTemp =
-        selection__datepicker__selection__datepicker__buttonFirst.innerHTML
-      selection__datepicker__selection__datepicker__buttonFirst.innerHTML =
-        selection__datepicker__selection__datepicker__buttonSecond.innerHTML
-      selection__datepicker__selection__datepicker__buttonSecond.innerHTML = selection__datepicker__selection__datepicker__buttonFirstHTMLTemp
+      let selectedFirstFirstTemp = selectedFirstFirst
+      selectedFirstFirst = selectedSecondFirst
+      selectedSecondFirst = selectedFirstFirstTemp
+      let selection__datepicker__selection__datepicker__buttonsFirst__FirstHTMLTemp =
+        selection__datepicker__selection__datepicker__buttonsFirst__First.innerHTML
+      selection__datepicker__selection__datepicker__buttonsFirst__First.innerHTML =
+        selection__datepicker__selection__datepicker__buttonsSecond__First.innerHTML
+      selection__datepicker__selection__datepicker__buttonsSecond__First.innerHTML = selection__datepicker__selection__datepicker__buttonsFirst__FirstHTMLTemp
+      if (isCompareSpans()) {
+        let selectedFirstSecondTemp = selectedFirstSecond
+        selectedFirstSecond = selectedSecondSecond
+        selectedSecondSecond = selectedFirstSecondTemp
+        let selection__datepicker__selection__datepicker__buttonsFirst__SecondHTMLTemp =
+          selection__datepicker__selection__datepicker__buttonsFirst__Second.innerHTML
+        selection__datepicker__selection__datepicker__buttonsFirst__Second.innerHTML =
+          selection__datepicker__selection__datepicker__buttonsSecond__Second.innerHTML
+        selection__datepicker__selection__datepicker__buttonsSecond__Second.innerHTML = selection__datepicker__selection__datepicker__buttonsFirst__SecondHTMLTemp
+      }
       printResultsElement()
     },
   )
@@ -412,9 +471,9 @@ function initTestButtonClickListener() {
     const item = elements.item(index)
     item.addEventListener('click', () => {
       if (clickedButton === 1) {
-        setSelectedFirst(Number(item.innerHTML.trim().split(':')[0]))
+        setSelectedFirstFirst(Number(item.innerHTML.trim().split(':')[0]))
       } else {
-        setSelectedSecond(Number(item.innerHTML.trim().split(':')[0]))
+        setSelectedSecondFirst(Number(item.innerHTML.trim().split(':')[0]))
       }
       toggleDatePickerContent()
     })

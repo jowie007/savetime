@@ -109,7 +109,22 @@ label {
 }
 
 #selection {
-  &__datepicker {
+  &__datepicker { 
+    &__buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        margin: 0.2rem;
+      }
+
+      &__functions {
+        display: flex;
+      }
+    }
+
     &__day {
       display: none;
 
@@ -174,12 +189,6 @@ label {
       &__button {
         height: 1.6rem;
         min-width: 1.6rem;
-
-        &__selected {
-          background-color: $dark-color;
-          color: $light-color;
-          @include basic-outline;
-        }
       }
 
       &__navigation {
@@ -356,6 +365,12 @@ label {
     left: 1.6rem;
     z-index: 2;
   }
+}
+
+.selectedButton {
+  background-color: $dark-color;
+  color: $light-color;
+  @include basic-outline;
 }
 
 #overall {

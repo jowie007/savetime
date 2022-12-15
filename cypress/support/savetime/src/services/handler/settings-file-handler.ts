@@ -1,4 +1,4 @@
-import { INITIAL_SETTINGS, Settings } from "../../classes/settings";
+import { INITIAL_SETTINGS, SaveSettings, Settings } from "../../classes/settings";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require("fs");
 
@@ -15,10 +15,10 @@ export function readSettings(): Settings {
 }
 
 export function saveSettings(settings: Settings) {
-  console.log("saving settings");
+  console.log("saving settings", settings as SaveSettings);
   fs.writeFileSync(
     SETTINGS_FILE,
-    JSON.stringify(settings, null, "\t"),
+    JSON.stringify(settings as SaveSettings, null, "\t"),
     (err: any) => {
       if (err) {
         console.error(err);

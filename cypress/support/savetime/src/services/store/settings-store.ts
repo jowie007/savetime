@@ -51,6 +51,14 @@ export function setMaxDurationDifferencePercentage(
   saveSettings(settings)
 }
 
+export function isCompareSpans() {
+  return settings.compareSpans
+}
+
+export function setCompareSpans(compareSpans: boolean) {
+  settings.compareSpans = compareSpans
+}
+
 export function isPercentageValues() {
   return settings.percentageValues
 }

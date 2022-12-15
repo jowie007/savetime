@@ -1,7 +1,7 @@
 import { CypressLogType } from './cypress-log-type'
 import { Locale } from './locale'
 
-export class Settings {
+export class SaveSettings {
   locale: Locale
   type: CypressLogType
   maxDurationDifference: number
@@ -26,11 +26,41 @@ export class Settings {
   }
 }
 
+export class Settings extends SaveSettings {
+  locale: Locale
+  type: CypressLogType
+  maxDurationDifference: number
+  maxDurationDifferencePercentage: number
+  compareSpans: boolean
+  percentageValues: boolean
+  onlyCriticalTests: boolean
+
+  constructor(
+    locale: Locale,
+    type: CypressLogType,
+    maxDurationDifference: number,
+    maxDurationDifferencePercentage: number,
+    percentageValues: boolean,
+    onlyCriticalTests: boolean,
+  ) {
+    super(
+      locale,
+      type,
+      maxDurationDifference,
+      maxDurationDifferencePercentage,
+      percentageValues,
+      onlyCriticalTests,
+    )
+    this.compareSpans = false
+  }
+}
+
 export const INITIAL_SETTINGS: Settings = {
   locale: Locale.EN,
   type: CypressLogType.e2e,
   maxDurationDifference: 1000,
   maxDurationDifferencePercentage: 200,
+  compareSpans: false,
   percentageValues: false,
   onlyCriticalTests: false,
 }

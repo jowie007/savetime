@@ -24,6 +24,7 @@ settings__type__component|Component tests|Komponenten-Tests
 settings__type__label|Type|Typ
 settings__maxDurationDifference__label|Max duration difference in milliseconds|Max. Laufzeitdifferenz in Millisekunden
 settings__maxDurationDifference__label__percentage|Max duration difference in %|Max. Laufzeitdifferenz in %
+settings__compareSpans__label|Compare spans|Spannen vergleichen
 settings__percentageValues__label|Percentage values|Prozentuale Werte
 settings__onlyCriticalTests__label|Only show tests with a duration difference above the border|Nur Tests anzeigen dessen Laufzeit die Grenze überschreitet
 overall__caption|Overall infos|Allgemeine Infos

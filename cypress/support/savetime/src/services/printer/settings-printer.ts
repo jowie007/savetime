@@ -11,8 +11,10 @@ import {
   getMaxDurationDifference,
   getMaxDurationDifferencePercentage,
   getType,
+  isCompareSpans,
   isOnlyCriticalTests,
   isPercentageValues,
+  setCompareSpans,
   setLocale,
   setMaxDurationDifference,
   setMaxDurationDifferencePercentage,
@@ -22,8 +24,9 @@ import {
 } from '../store/settings-store'
 import { getMinBorder } from './result-printer'
 
-let settings__button: HTMLElement
+let settings__button: HTMLButtonElement
 let settings__panel: HTMLElement
+
 let initializedBefore = false
 
 function init() {
@@ -35,7 +38,9 @@ function init() {
 }
 
 function initializeAccordionButton() {
-  settings__button = document.getElementById('settings__button')
+  settings__button = document.getElementById(
+    'settings__button',
+  ) as HTMLButtonElement
   settings__panel = document.getElementById('settings__panel')
   settings__button.textContent = translation.settings
   settings__button.addEventListener('click', function () {
@@ -50,6 +55,7 @@ function fillSettings() {
   initLocaleButtonsClickListeners()
   initTypeButtonsClickListeners()
   initMaxDurationDifferenceChangeListener()
+  initCompareSpansChangeListener()
   initPercentageValuesChangeListener()
   initOnlyCriticalTestsChangeListener()
 }
@@ -103,6 +109,16 @@ function getSettingsContent() {
         oninput="validity.valid||(value='');"
         />
     </div>
+    <div id='settings__compareSpans' class='settings__item'>
+      <label id='settings__compareSpans__label' for='settings__compareSpans__checkbox'>
+        ${translation.settings__compareSpans__label}
+      </label>
+      <input 
+        id='settings__compareSpans__checkbox' 
+        type='checkbox'
+        ${isCompareSpans() ? 'checked' : ''}
+        />
+    </div>
     <div id='settings__percentageValues' class='settings__item'>
       <label id='settings__percentageValues__label' for='settings__percentageValues__checkbox'>
         ${translation.settings__percentageValues__label}
@@ -149,24 +165,37 @@ function initLocaleButtonsClickListeners() {
 }
 
 function initTypeButtonsClickListeners() {
-  document
-    .getElementById(`settings__type__button-e2e`)
-    .addEventListener('click', () => {
-      if (getType() !== CypressLogType.e2e) {
-        setType(CypressLogType.e2e)
-        initCypressFileStore()
-        initializeHTML(true)
-      }
-    })
-  document
-    .getElementById(`settings__type__button-component`)
-    .addEventListener('click', () => {
-      if (getType() !== CypressLogType.component) {
-        setType(CypressLogType.component)
-        initCypressFileStore()
-        initializeHTML(true)
-      }
-    })
+  const settings__type__buttonE2E = document.getElementById(
+    'settings__type__button-e2e',
+  ) as HTMLButtonElement
+  const settings__type__buttonComponent = document.getElementById(
+    'settings__type__button-component',
+  ) as HTMLButtonElement
+  if (getType() === CypressLogType.e2e) {
+    settings__type__buttonE2E.classList.add('selectedButton')
+  } else if (getType() === CypressLogType.component) {
+    settings__type__buttonComponent.classList.add('selectedButton')
+  }
+  settings__type__buttonE2E.addEventListener('click', () => {
+    if (getType() !== CypressLogType.e2e) {
+      settings__type__buttonE2E.classList.add('selectedButton')
+      setType(CypressLogType.e2e)
+      initCypressFileStore()
+      initializeHTML(true)
+    } else {
+      settings__type__buttonE2E.classList.remove('selectedButton')
+    }
+  })
+  settings__type__buttonComponent.addEventListener('click', () => {
+    if (getType() !== CypressLogType.component) {
+      settings__type__buttonComponent.classList.add('selectedButton')
+      setType(CypressLogType.component)
+      initCypressFileStore()
+      initializeHTML(true)
+    } else {
+      settings__type__buttonComponent.classList.remove('selectedButton')
+    }
+  })
 }
 
 function initMaxDurationDifferenceChangeListener() {
@@ -179,6 +208,15 @@ function initMaxDurationDifferenceChangeListener() {
       } else {
         setMaxDurationDifference(newValue)
       }
+      initializeHTML()
+    })
+}
+
+function initCompareSpansChangeListener() {
+  document
+    .getElementById(`settings__compareSpans__checkbox`)
+    .addEventListener('change', () => {
+      setCompareSpans(!isCompareSpans())
       initializeHTML()
     })
 }
