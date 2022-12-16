@@ -8,6 +8,7 @@
     "test": "cypress open",
     "test:e2e:vis": "npm run build && start-server-and-test preview http://localhost:4173/ 'cypress open --e2e'",
     "test:e2e": "npm run build && start-server-and-test preview http://localhost:4173/ 'cypress run --e2e'",
+    "test:e2e:withoutBuild": "start-server-and-test preview http://localhost:4173/ 'cypress run --e2e'",
     "test:component:vis": "cypress open --component",
     "test:component": "cypress run --component --quiet --reporter spec",
     "savetime:report": "cd ./cypress/support/savetime && tsc && sass src/styles:dist/styles  && electron ./dist/main.js",

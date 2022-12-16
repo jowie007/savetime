@@ -359,7 +359,6 @@ function isDifferenceDetected(
 }
 
 function getDurationRange(resultCompare: CypressRunResultCompare) {
-  console.log(resultCompare)
   if (isPercentageValues()) {
     return [
       resultCompare.lowestDurationDifferencePercentage + '%',

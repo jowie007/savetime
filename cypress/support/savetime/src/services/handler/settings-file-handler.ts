@@ -5,7 +5,6 @@ const fs = require("fs");
 const SETTINGS_FILE = __dirname + "/../../../src/settings.json";
 
 export function readSettings(): Settings {
-  console.log("reading settings");
   try {
     return JSON.parse(fs.readFileSync(SETTINGS_FILE, "utf8")) as Settings;
   } catch (e) {
@@ -15,7 +14,6 @@ export function readSettings(): Settings {
 }
 
 export function saveSettings(settings: Settings) {
-  console.log("saving settings", settings as SaveSettings);
   fs.writeFileSync(
     SETTINGS_FILE,
     JSON.stringify(settings as SaveSettings, null, "\t"),

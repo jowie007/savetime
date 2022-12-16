@@ -1,5 +1,6 @@
 import {
   compareFilesByNumber,
+  compareFilesByNumberSpan,
   getAllFileDetails,
 } from '../handler/cypress-file-handler'
 import { getFormatDateWithPosition } from '../handler/date-handler'
@@ -13,6 +14,7 @@ let selection__datepicker__selection__datepicker__buttonsFirst__First: HTMLButto
 let selection__datepicker__selection__datepicker__buttonsFirst__Second: HTMLButtonElement
 let selection__datepicker__selection__datepicker__buttonsSecond__First: HTMLButtonElement
 let selection__datepicker__selection__datepicker__buttonsSecond__Second: HTMLButtonElement
+let selectionDatePickerButtons: HTMLButtonElement[]
 let selection__datepicker__selection__datepicker__buttonSwap: HTMLButtonElement
 let selection__datepicker__selection__datepicker__buttonReset: HTMLButtonElement
 let selection__datepicker__day__heading: HTMLDivElement
@@ -61,8 +63,17 @@ function init(reInitPickers: boolean) {
     ) as HTMLButtonElement
     selection__datepicker__selection__datepicker__buttonReset.innerHTML =
       translation.reset
-    initselection__datepicker__buttonFirstClickListener()
-    initselection__datepicker__buttonSecondClickListener()
+    selectionDatePickerButtons = [
+      selection__datepicker__selection__datepicker__buttonsFirst__First,
+      selection__datepicker__selection__datepicker__buttonsSecond__First,
+      selection__datepicker__selection__datepicker__buttonsFirst__Second,
+      selection__datepicker__selection__datepicker__buttonsSecond__Second,
+    ]
+    initSelectionDatepickerButtons(selectionDatePickerButtons)
+    // initSelection__datepicker__buttonFirst__FirstClickListener()
+    // initSelection__datepicker__buttonFirst__SecondClickListener()
+    // initSelection__datepicker__buttonSecond__FirstClickListener()
+    // initSelection__datepicker__buttonSecond__SecondClickListener()
     initselection__datepicker__buttonSwapClickListener()
     initselection__datepicker__buttonResetClickListener()
   } else {
@@ -128,13 +139,14 @@ function initializeDatePickerContent() {
   initDateButtonClickListeners()
 }
 
+function clearSelectedClasses() {
+  selectionDatePickerButtons.forEach((htmlElement) => {
+    htmlElement.classList.remove('selectedButton')
+  })
+}
+
 function clearDatePickerContent() {
-  selection__datepicker__selection__datepicker__buttonsFirst__First.classList.remove(
-    'selectedButton',
-  )
-  selection__datepicker__selection__datepicker__buttonsSecond__First.classList.remove(
-    'selectedButton',
-  )
+  clearSelectedClasses()
   day = undefined
   clickedButton = undefined
   selection__datepicker__day__heading.innerHTML = ''
@@ -156,48 +168,50 @@ function initializeSelectedElements(reInitPickers: boolean) {
   }
 }
 
-function setSelectedFirstFirst(key: number, printResults: boolean = true) {
-  selectedFirstFirst = key
-  selection__datepicker__selection__datepicker__buttonsFirst__First.innerHTML =
+function setSelectedItem(
+  htmlElement: HTMLButtonElement,
+  key: number,
+  printResults: boolean = true,
+) {
+  htmlElement.innerHTML =
     key > 0
       ? getFormatDateWithPosition(getAllFileDetails(getType()).get(key), key)
       : '-'
   if (printResults) {
     printResultsElement()
   }
+}
+
+function setSelectedFirstFirst(key: number, printResults: boolean = true) {
+  setSelectedItem(
+    selection__datepicker__selection__datepicker__buttonsFirst__First,
+    (selectedFirstFirst = key),
+    printResults,
+  )
 }
 
 function setSelectedFirstSecond(key: number, printResults: boolean = true) {
-  selectedFirstSecond = key
-  selection__datepicker__selection__datepicker__buttonsFirst__Second.innerHTML =
-    key > 0
-      ? getFormatDateWithPosition(getAllFileDetails(getType()).get(key), key)
-      : '-'
-  if (printResults) {
-    printResultsElement()
-  }
+  setSelectedItem(
+    selection__datepicker__selection__datepicker__buttonsFirst__Second,
+    (selectedFirstSecond = key),
+    printResults,
+  )
 }
 
 function setSelectedSecondFirst(key: number, printResults: boolean = true) {
-  selectedSecondFirst = key
-  selection__datepicker__selection__datepicker__buttonsSecond__First.innerHTML =
-    key > 0
-      ? getFormatDateWithPosition(getAllFileDetails(getType()).get(key), key)
-      : '-'
-  if (printResults) {
-    printResultsElement()
-  }
+  setSelectedItem(
+    selection__datepicker__selection__datepicker__buttonsSecond__First,
+    (selectedSecondFirst = key),
+    printResults,
+  )
 }
 
 function setSelectedSecondSecond(key: number, printResults: boolean = true) {
-  selectedSecondSecond = key
-  selection__datepicker__selection__datepicker__buttonsSecond__Second.innerHTML =
-    key > 0
-      ? getFormatDateWithPosition(getAllFileDetails(getType()).get(key), key)
-      : '-'
-  if (printResults) {
-    printResultsElement()
-  }
+  setSelectedItem(
+    selection__datepicker__selection__datepicker__buttonsSecond__Second,
+    (selectedSecondSecond = key),
+    printResults,
+  )
 }
 
 function getDatePickerFirstTitle() {
@@ -313,9 +327,21 @@ function getDatePickerSelectContent() {
 }
 
 function printResultsElement() {
-  printResult(
-    compareFilesByNumber(getType(), selectedFirstFirst, selectedSecondFirst),
-  )
+  if (!isCompareSpans()) {
+    printResult(
+      compareFilesByNumber(getType(), selectedFirstFirst, selectedSecondFirst),
+    )
+  } else {
+    printResult(
+      compareFilesByNumberSpan(
+        getType(),
+        selectedFirstFirst,
+        selectedFirstSecond,
+        selectedSecondFirst,
+        selectedSecondSecond,
+      ),
+    )
+  }
 }
 
 function initializeDatePickerSecondTitle() {
@@ -335,7 +361,26 @@ function initializeDatePickerSecondSelectContent() {
   initTestButtonClickListener()
 }
 
-function initselection__datepicker__buttonFirstClickListener() {
+function initSelectionDatepickerButtons(htmlElements: HTMLButtonElement[]) {
+  htmlElements.forEach((htmlElement, index) => {
+    htmlElement.addEventListener('click', () => {
+      const previousClickedButton = clickedButton
+      clickedButton = index
+      if (previousClickedButton === index) {
+        toggleDatePickerContent()
+      } else {
+        if (previousClickedButton !== undefined) {
+          clearSelectedClasses()
+        } else {
+          toggleDatePickerContent()
+        }
+        htmlElement.classList.add('selectedButton')
+      }
+    })
+  })
+}
+
+function initSelection__datepicker__buttonFirst__FirstClickListener() {
   selection__datepicker__selection__datepicker__buttonsFirst__First.addEventListener(
     'click',
     () => {
@@ -359,7 +404,7 @@ function initselection__datepicker__buttonFirstClickListener() {
   )
 }
 
-function initselection__datepicker__buttonSecondClickListener() {
+function initSelection__datepicker__buttonSecond__FirstClickListener() {
   selection__datepicker__selection__datepicker__buttonsSecond__First.addEventListener(
     'click',
     () => {
@@ -470,10 +515,14 @@ function initTestButtonClickListener() {
   for (let index = 0; index < elements.length; index++) {
     const item = elements.item(index)
     item.addEventListener('click', () => {
-      if (clickedButton === 1) {
+      if (clickedButton === 0) {
         setSelectedFirstFirst(Number(item.innerHTML.trim().split(':')[0]))
-      } else {
+      } else if (clickedButton === 1) {
         setSelectedSecondFirst(Number(item.innerHTML.trim().split(':')[0]))
+      } else if (clickedButton === 2) {
+        setSelectedFirstSecond(Number(item.innerHTML.trim().split(':')[0]))
+      } else if (clickedButton === 3) {
+        setSelectedSecondSecond(Number(item.innerHTML.trim().split(':')[0]))
       }
       toggleDatePickerContent()
     })

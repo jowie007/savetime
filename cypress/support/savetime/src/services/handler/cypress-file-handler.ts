@@ -105,6 +105,124 @@ export function getAllFileDetails(type: CypressLogType) {
 //   compareFilesByNumber(recentTwoFileNumbers[0], recentTwoFileNumbers[1])
 // }
 
+export function compareFilesByNumberSpan(
+  type: CypressLogType,
+  firstSpanStart: number,
+  firstSpanEnd: number,
+  secondSpanStart: number,
+  secondSpanEnd: number,
+): CypressRunResultCompare | null {
+  if (firstSpanStart > firstSpanEnd) {
+    const firstSpanStartTemp = firstSpanStart
+    firstSpanStart = firstSpanEnd
+    firstSpanEnd = firstSpanStartTemp
+  }
+  if (secondSpanStart > secondSpanEnd) {
+    const secondSpanStartTemp = secondSpanStart
+    secondSpanStart = secondSpanEnd
+    secondSpanEnd = secondSpanStartTemp
+  }
+  const firstSpanFileNumbers = Array.from(
+    { length: firstSpanEnd - firstSpanStart + 1 },
+    (_, i) => i + firstSpanStart,
+  )
+  const secondSpanFileNumbers = Array.from(
+    { length: secondSpanEnd - secondSpanStart + 1 },
+    (_, i) => i + secondSpanStart,
+  )
+  const firstContent: CypressCommandLine.CypressRunResult[] = []
+  const secondContent: CypressCommandLine.CypressRunResult[] = []
+  try {
+    fs.readdirSync(getPathByCypressLogType(type)).forEach(function (
+      filename: string,
+    ) {
+      const firstChars = filename.split('_')[0]
+      const firstCharsDigits = /\d{1,}$/
+      if (
+        firstCharsDigits.test(firstChars) &&
+        (firstSpanFileNumbers.includes(Number(firstChars)) ||
+          secondSpanFileNumbers.includes(Number(firstChars)))
+      ) {
+        const data: CypressCommandLine.CypressRunResult = JSON.parse(
+          fs.readFileSync(
+            `${getPathByCypressLogType(type)}/${filename}`,
+            'utf8',
+          ),
+        )
+        if (firstSpanFileNumbers.includes(Number(firstChars))) {
+          firstContent.push(data)
+        } else if (secondSpanFileNumbers.includes(Number(firstChars))) {
+          secondContent.push(data)
+        }
+      }
+    })
+  } catch (e) {
+    console.log(e, 'Unable to compare files by number span')
+  }
+  return firstContent && secondContent
+    ? compareCypressRunResults(
+        getMeanContent(firstContent),
+        getMeanContent(secondContent),
+      )
+    : null
+}
+
+function getMeanContent(content: CypressCommandLine.CypressRunResult[]) {
+  let meanContent = content[0]
+  let elementCount = content.length
+  let first = true
+  content.forEach((file, fileIndex) => {
+    if (first) {
+      meanContent.runs = file.runs
+      first = false
+    } else {
+      meanContent.runs.forEach((meanRunResult, runIndex) => {
+        let matchingFileRunResult: CypressCommandLine.RunResult | undefined
+        file.runs.forEach((fileRunResult) => {
+          if (meanRunResult.spec.name === fileRunResult.spec.name) {
+            matchingFileRunResult = fileRunResult
+          }
+        })
+        if (matchingFileRunResult === undefined) {
+          meanContent.runs.splice(runIndex, 1)
+        } else {
+          meanRunResult.tests.forEach((meanTest, testIndex) => {
+            let testOk = false
+            console.log('CHECK TEST')
+            matchingFileRunResult.tests.forEach((matchingFileTest) => {
+              // console.log(
+              //   meanTest.title,
+              //   matchingFileTest.title,
+              //   matchingFileTest.attempts.length,
+              //   meanTest.attempts.length,
+              // )
+              if (
+                meanTest.title.join(' ') === matchingFileTest.title.join(' ') &&
+                matchingFileTest.attempts.length === 1 &&
+                meanTest.attempts.length === 1
+              ) {
+                console.log('TEST OKAY')
+                testOk = true
+                meanTest.attempts[0].duration +=
+                  matchingFileTest.attempts[0].duration
+                if (fileIndex === elementCount - 1) {
+                  meanTest.attempts[0].duration =
+                    Math.round(meanTest.attempts[0].duration / elementCount)
+                }
+              }
+            })
+            if (!testOk) {
+              console.log('TEST NOT OKAY')
+              meanRunResult.tests.splice(testIndex, 1)
+            }
+          })
+        }
+      })
+    }
+  })
+  return meanContent
+}
+
 export function compareFilesByNumber(
   type: CypressLogType,
   firstNumber: number,
@@ -140,11 +258,11 @@ export function compareFilesByNumber(
     console.log(e, 'Unable to compare files by number')
   }
   return firstContent && secondContent
-    ? compareFilesByContent(firstContent, secondContent)
+    ? compareCypressRunResults(firstContent, secondContent)
     : null
 }
 
-function compareFilesByContent(
+function compareCypressRunResults(
   firstLog: CypressCommandLine.CypressRunResult,
   secondLog: CypressCommandLine.CypressRunResult,
 ): CypressRunResultCompare {
