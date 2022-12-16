@@ -1,15 +1,15 @@
 <template>
   <div class="sort-wrapper">
     <div class="sort__buttons">
-      <button id="sort__buttons__sort" v-on:click="tracks = mergesort(tracks, 'name')">
+      <!-- <button id="sort__buttons__sort" v-on:click="tracks = mergesort(tracks, 'name')">
         Sort
-      </button>
-      <!-- <button id="sort__buttons__insertionSort" v-on:click="tracks = insertionsort(tracks, 'name')">
+      </button> -->
+      <button id="sort__buttons__insertionSort" v-on:click="tracks = insertionsort(tracks, 'name')">
         Insertionsort
       </button>
       <button id="sort__buttons__bubbleSort" v-on:click="tracks = bubblesort(tracks, 'name')">Bubblesort</button>
-      <button id="sort__buttons__mergeSort" v-on:click="tracks = mergesort(tracks, 'name')">Mergesort</button> -->
-      <button class="sort__buttons__reset" v-on:click="(tracks = [...backupTracks])">Reset</button>
+      <button id="sort__buttons__mergeSort" v-on:click="tracks = mergesort(tracks, 'name')">Mergesort</button>
+      <button id="sort__buttons__reset" class="sort__buttons__reset" v-on:click="(tracks = [...backupTracks])">Reset</button>
     </div>
     <div class="sort__items">
       <SortItem :id="`sort__item-${index}`" v-for="(track, index) in tracks" :trackId="track.id"
