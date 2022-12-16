@@ -10,7 +10,7 @@ fetch(`http://192.168.178.66:8083/api/song/12`)
 </script>
 
 <template>
-    <div>{{ text }}</div>
+    <div id="localRequestText">{{ text }}</div>
 </template>
 
 <style scoped>

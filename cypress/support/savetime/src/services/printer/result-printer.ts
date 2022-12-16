@@ -13,6 +13,8 @@ import {
   isPercentageValues,
 } from '../store/settings-store'
 
+// TODO Handle new or deleted files
+
 const MIN_BORDER = 0
 const MIN_BORDER_PERCENTAGE = 100
 

@@ -60,9 +60,9 @@ nav a {
   border-left: 1px solid var(--color-border);
 }
 
-/* nav a:first-of-type {
+nav a:first-of-type {
   border: 0;
-} */
+}
 
 @media (min-width: 1024px) {
   header {

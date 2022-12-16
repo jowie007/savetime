@@ -18,7 +18,7 @@ fetch("http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=6121cf598e
 </script>
 
 <template>
-    <div>{{ text }}</div>
+    <div id="internetRequestText">{{ text }}</div>
 </template>
 
 <style scoped>

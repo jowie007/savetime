@@ -7,7 +7,7 @@ setTimeout(() => {
 </script>
 
 <template>
-    <div>{{ text }}</div>
+    <div id="textAwaiterText">{{ text }}</div>
 </template>
 
 <style scoped>

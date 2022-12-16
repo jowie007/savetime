@@ -3,7 +3,7 @@
 	"type": "e2e",
 	"maxDurationDifference": 100,
 	"maxDurationDifferencePercentage": 149,
-	"percentageValues": false,
+	"percentageValues": true,
 	"onlyCriticalTests": false,
 	"compareSpans": false
 }
