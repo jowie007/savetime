@@ -169,57 +169,82 @@ export function compareFilesByNumberSpan(
 
 function getMeanContent(content: CypressCommandLine.CypressRunResult[]) {
   let meanContent = content[0]
+  const shortestTests: Map<string, number> = new Map()
+  const longestTests: Map<string, number> = new Map()
   let elementCount = content.length
   let first = true
   content.forEach((file, fileIndex) => {
     if (first) {
       meanContent.runs = file.runs
-      first = false
-    } else {
-      meanContent.runs.forEach((meanRunResult, runIndex) => {
-        let matchingFileRunResult: CypressCommandLine.RunResult | undefined
-        file.runs.forEach((fileRunResult) => {
-          if (meanRunResult.spec.name === fileRunResult.spec.name) {
-            matchingFileRunResult = fileRunResult
-          }
-        })
-        if (matchingFileRunResult === undefined) {
-          meanContent.runs.splice(runIndex, 1)
-        } else {
-          meanRunResult.tests.forEach((meanTest, testIndex) => {
-            let testOk = false
-            console.log('CHECK TEST')
-            matchingFileRunResult.tests.forEach((matchingFileTest) => {
-              // console.log(
-              //   meanTest.title,
-              //   matchingFileTest.title,
-              //   matchingFileTest.attempts.length,
-              //   meanTest.attempts.length,
-              // )
-              if (
-                meanTest.title.join(' ') === matchingFileTest.title.join(' ') &&
-                matchingFileTest.attempts.length === 1 &&
-                meanTest.attempts.length === 1
-              ) {
-                console.log('TEST OKAY')
-                testOk = true
+    }
+    meanContent.runs.forEach((meanRunResult, runIndex) => {
+      let matchingFileRunResult: CypressCommandLine.RunResult | undefined
+      file.runs.forEach((fileRunResult) => {
+        if (meanRunResult.spec.name === fileRunResult.spec.name) {
+          matchingFileRunResult = fileRunResult
+        }
+      })
+      if (matchingFileRunResult === undefined) {
+        meanContent.runs.splice(runIndex, 1)
+      } else {
+        meanRunResult.tests.forEach((meanTest, testIndex) => {
+          let testOk = false
+          const meanTestTitleJoined = meanTest.title.join(': ')
+          matchingFileRunResult.tests.forEach((matchingFileTest) => {
+            if (
+              meanTestTitleJoined === matchingFileTest.title.join(': ') &&
+              matchingFileTest.attempts.length === 1 &&
+              meanTest.attempts.length === 1
+            ) {
+              testOk = true
+              if (!first) {
                 meanTest.attempts[0].duration +=
                   matchingFileTest.attempts[0].duration
                 if (fileIndex === elementCount - 1) {
-                  meanTest.attempts[0].duration =
-                    Math.round(meanTest.attempts[0].duration / elementCount)
+                  meanTest.attempts[0].duration = Math.round(
+                    meanTest.attempts[0].duration / elementCount,
+                  )
                 }
+                if (
+                  shortestTests.get(meanTestTitleJoined) >
+                  matchingFileTest.attempts[0].duration
+                ) {
+                  shortestTests.set(
+                    meanTestTitleJoined,
+                    matchingFileTest.attempts[0].duration,
+                  )
+                }
+                if (
+                  longestTests.get(meanTestTitleJoined) <
+                  matchingFileTest.attempts[0].duration
+                ) {
+                  longestTests.set(
+                    meanTestTitleJoined,
+                    matchingFileTest.attempts[0].duration,
+                  )
+                }
+              } else {
+                shortestTests.set(
+                  meanTestTitleJoined,
+                  matchingFileTest.attempts[0].duration,
+                )
+                longestTests.set(
+                  meanTestTitleJoined,
+                  matchingFileTest.attempts[0].duration,
+                )
               }
-            })
-            if (!testOk) {
-              console.log('TEST NOT OKAY')
-              meanRunResult.tests.splice(testIndex, 1)
             }
           })
-        }
-      })
-    }
+          if (!testOk) {
+            meanRunResult.tests.splice(testIndex, 1)
+          }
+        })
+      }
+    })
+    first = false
   })
+  console.log('longestTests', shortestTests)
+  console.log('shortestTests', longestTests)
   return meanContent
 }
 
