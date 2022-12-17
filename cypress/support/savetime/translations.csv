@@ -15,6 +15,9 @@ failedFirst|Old failed|Alter fehlerhaft
 failedSecond|New failed|Neuer fehlerhaft
 selection__datepicker__navigation__previous|⮜|⮜
 selection__datepicker__navigation__next|⮞|⮞
+selection__datepicker__buttonsFirst__legend|Tests 1|Tests 1
+selection__datepicker__buttonsSecond__legend|Tests 2|Tests 2
+selection__datepicker__functions__legend|Func.|Funk.
 swap|⇄|⇄
 reset|↺|↺
 settings|⛭|⛭
@@ -24,7 +27,7 @@ settings__type__component|Component tests|Komponenten-Tests
 settings__type__label|Type|Typ
 settings__maxDurationDifference__label|Max duration difference in milliseconds|Max. Laufzeitdifferenz in Millisekunden
 settings__maxDurationDifference__label__percentage|Max duration difference in %|Max. Laufzeitdifferenz in %
-settings__compareSpans__label|Compare spans (Experimental feature)|Spannen vergleichen (Experimental feature)
+settings__compareSpans__label|Compare spans (experimental feature)|Spannen vergleichen (experimentales Feature)
 settings__percentageValues__label|Percentage values|Prozentuale Werte
 settings__onlyCriticalTests__label|Only show tests with a duration difference above the border|Nur Tests anzeigen dessen Laufzeit die Grenze überschreitet
 overall__caption|Overall infos|Allgemeine Infos

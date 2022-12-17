@@ -10,13 +10,16 @@ import { getType, isCompareSpans } from '../store/settings-store'
 import { printResult } from './result-printer'
 
 let selection__datepicker__day: HTMLDivElement
-let selection__datepicker__selection__datepicker__buttonsFirst__First: HTMLButtonElement
-let selection__datepicker__selection__datepicker__buttonsFirst__Second: HTMLButtonElement
-let selection__datepicker__selection__datepicker__buttonsSecond__First: HTMLButtonElement
-let selection__datepicker__selection__datepicker__buttonsSecond__Second: HTMLButtonElement
+let selection__datepicker__buttonsFirst__legend: HTMLLegendElement
+let selection__datepicker__buttonsFirst__first: HTMLButtonElement
+let selection__datepicker__buttonsFirst__second: HTMLButtonElement
+let selection__datepicker__buttonsSecond__legend: HTMLLegendElement
+let selection__datepicker__buttonsSecond__first: HTMLButtonElement
+let selection__datepicker__buttonsSecond__second: HTMLButtonElement
 let selectionDatePickerButtons: HTMLButtonElement[]
-let selection__datepicker__selection__datepicker__buttonSwap: HTMLButtonElement
-let selection__datepicker__selection__datepicker__buttonReset: HTMLButtonElement
+let selection__datepicker__functions__legend: HTMLLegendElement
+let selection__datepicker__functions__buttonSwap: HTMLButtonElement
+let selection__datepicker__functions__buttonReset: HTMLButtonElement
 let selection__datepicker__day__heading: HTMLDivElement
 let selection__datepicker__day__wrapper: HTMLDivElement
 let selection__datepicker__test__heading: HTMLDivElement
@@ -41,33 +44,38 @@ function init(reInitPickers: boolean) {
   if (!initializedBefore) {
     initializedBefore = true
     shown = false
-    selection__datepicker__selection__datepicker__buttonsFirst__First = document.getElementById(
-      'selection__datepicker__selection__datepicker__buttonsFirst__First',
+    selection__datepicker__buttonsFirst__legend = document.getElementById(
+      'selection__datepicker__buttonsFirst__legend',
+    ) as HTMLLegendElement
+    selection__datepicker__buttonsFirst__first = document.getElementById(
+      'selection__datepicker__buttonsFirst__first',
     ) as HTMLButtonElement
-    selection__datepicker__selection__datepicker__buttonsFirst__Second = document.getElementById(
-      'selection__datepicker__selection__datepicker__buttonsFirst__Second',
+    selection__datepicker__buttonsFirst__second = document.getElementById(
+      'selection__datepicker__buttonsFirst__second',
     ) as HTMLButtonElement
-    selection__datepicker__selection__datepicker__buttonsSecond__First = document.getElementById(
-      'selection__datepicker__selection__datepicker__buttonsSecond__First',
+    selection__datepicker__buttonsSecond__legend = document.getElementById(
+      'selection__datepicker__buttonsSecond__legend',
+    ) as HTMLLegendElement
+    selection__datepicker__buttonsSecond__first = document.getElementById(
+      'selection__datepicker__buttonsSecond__first',
     ) as HTMLButtonElement
-    selection__datepicker__selection__datepicker__buttonsSecond__Second = document.getElementById(
-      'selection__datepicker__selection__datepicker__buttonsSecond__Second',
+    selection__datepicker__buttonsSecond__second = document.getElementById(
+      'selection__datepicker__buttonsSecond__second',
     ) as HTMLButtonElement
-    selection__datepicker__selection__datepicker__buttonSwap = document.getElementById(
-      'selection__datepicker__selection__datepicker__buttonSwap',
+    selection__datepicker__functions__legend = document.getElementById(
+      'selection__datepicker__functions__legend',
+    ) as HTMLLegendElement
+    selection__datepicker__functions__buttonSwap = document.getElementById(
+      'selection__datepicker__functions__buttonSwap',
     ) as HTMLButtonElement
-    selection__datepicker__selection__datepicker__buttonSwap.innerHTML =
-      translation.swap
-    selection__datepicker__selection__datepicker__buttonReset = document.getElementById(
-      'selection__datepicker__selection__datepicker__buttonReset',
+    selection__datepicker__functions__buttonReset = document.getElementById(
+      'selection__datepicker__functions__buttonReset',
     ) as HTMLButtonElement
-    selection__datepicker__selection__datepicker__buttonReset.innerHTML =
-      translation.reset
     selectionDatePickerButtons = [
-      selection__datepicker__selection__datepicker__buttonsFirst__First,
-      selection__datepicker__selection__datepicker__buttonsSecond__First,
-      selection__datepicker__selection__datepicker__buttonsFirst__Second,
-      selection__datepicker__selection__datepicker__buttonsSecond__Second,
+      selection__datepicker__buttonsFirst__first,
+      selection__datepicker__buttonsSecond__first,
+      selection__datepicker__buttonsFirst__second,
+      selection__datepicker__buttonsSecond__second,
     ]
     initSelectionDatepickerButtons(selectionDatePickerButtons)
     // initSelection__datepicker__buttonFirst__FirstClickListener()
@@ -84,6 +92,14 @@ function init(reInitPickers: boolean) {
       }
     }
   }
+  selection__datepicker__buttonsFirst__legend.innerHTML =
+    translation.selection__datepicker__buttonsFirst__legend
+  selection__datepicker__buttonsSecond__legend.innerHTML =
+    translation.selection__datepicker__buttonsSecond__legend
+  selection__datepicker__functions__legend.innerHTML =
+    translation.selection__datepicker__functions__legend
+  selection__datepicker__functions__buttonSwap.innerHTML = translation.swap
+  selection__datepicker__functions__buttonReset.innerHTML = translation.reset
   selection__datepicker__day = document.getElementById(
     'selection__datepicker__day',
   ) as HTMLDivElement
@@ -106,8 +122,8 @@ function init(reInitPickers: boolean) {
 
 function initializeSpanButtonsVisibility() {
   const display = isCompareSpans() ? 'block' : 'none'
-  selection__datepicker__selection__datepicker__buttonsFirst__Second.style.display = display
-  selection__datepicker__selection__datepicker__buttonsSecond__Second.style.display = display
+  selection__datepicker__buttonsFirst__second.style.display = display
+  selection__datepicker__buttonsSecond__second.style.display = display
 }
 
 function toggleDatePickerContent(close: boolean = false) {
@@ -184,7 +200,7 @@ function setSelectedItem(
 
 function setSelectedFirstFirst(key: number, printResults: boolean = true) {
   setSelectedItem(
-    selection__datepicker__selection__datepicker__buttonsFirst__First,
+    selection__datepicker__buttonsFirst__first,
     (selectedFirstFirst = key),
     printResults,
   )
@@ -192,7 +208,7 @@ function setSelectedFirstFirst(key: number, printResults: boolean = true) {
 
 function setSelectedFirstSecond(key: number, printResults: boolean = true) {
   setSelectedItem(
-    selection__datepicker__selection__datepicker__buttonsFirst__Second,
+    selection__datepicker__buttonsFirst__second,
     (selectedFirstSecond = key),
     printResults,
   )
@@ -200,7 +216,7 @@ function setSelectedFirstSecond(key: number, printResults: boolean = true) {
 
 function setSelectedSecondFirst(key: number, printResults: boolean = true) {
   setSelectedItem(
-    selection__datepicker__selection__datepicker__buttonsSecond__First,
+    selection__datepicker__buttonsSecond__first,
     (selectedSecondFirst = key),
     printResults,
   )
@@ -208,7 +224,7 @@ function setSelectedSecondFirst(key: number, printResults: boolean = true) {
 
 function setSelectedSecondSecond(key: number, printResults: boolean = true) {
   setSelectedItem(
-    selection__datepicker__selection__datepicker__buttonsSecond__Second,
+    selection__datepicker__buttonsSecond__second,
     (selectedSecondSecond = key),
     printResults,
   )
@@ -381,82 +397,71 @@ function initSelectionDatepickerButtons(htmlElements: HTMLButtonElement[]) {
 }
 
 function initSelection__datepicker__buttonFirst__FirstClickListener() {
-  selection__datepicker__selection__datepicker__buttonsFirst__First.addEventListener(
-    'click',
-    () => {
-      const previousClickedButton = clickedButton
-      clickedButton = 1
-      if (previousClickedButton === 1) {
-        toggleDatePickerContent()
-      } else {
-        selection__datepicker__selection__datepicker__buttonsFirst__First.classList.add(
+  selection__datepicker__buttonsFirst__first.addEventListener('click', () => {
+    const previousClickedButton = clickedButton
+    clickedButton = 1
+    if (previousClickedButton === 1) {
+      toggleDatePickerContent()
+    } else {
+      selection__datepicker__buttonsFirst__first.classList.add('selectedButton')
+      if (previousClickedButton === 2) {
+        selection__datepicker__buttonsSecond__first.classList.remove(
           'selectedButton',
         )
-        if (previousClickedButton === 2) {
-          selection__datepicker__selection__datepicker__buttonsSecond__First.classList.remove(
-            'selectedButton',
-          )
-        } else {
-          toggleDatePickerContent()
-        }
+      } else {
+        toggleDatePickerContent()
       }
-    },
-  )
+    }
+  })
 }
 
 function initSelection__datepicker__buttonSecond__FirstClickListener() {
-  selection__datepicker__selection__datepicker__buttonsSecond__First.addEventListener(
-    'click',
-    () => {
-      const previousClickedButton = clickedButton
-      clickedButton = 2
-      if (previousClickedButton === 2) {
-        toggleDatePickerContent()
-      } else {
-        selection__datepicker__selection__datepicker__buttonsSecond__First.classList.add(
+  selection__datepicker__buttonsSecond__first.addEventListener('click', () => {
+    const previousClickedButton = clickedButton
+    clickedButton = 2
+    if (previousClickedButton === 2) {
+      toggleDatePickerContent()
+    } else {
+      selection__datepicker__buttonsSecond__first.classList.add(
+        'selectedButton',
+      )
+      if (previousClickedButton === 1) {
+        selection__datepicker__buttonsFirst__first.classList.remove(
           'selectedButton',
         )
-        if (previousClickedButton === 1) {
-          selection__datepicker__selection__datepicker__buttonsFirst__First.classList.remove(
-            'selectedButton',
-          )
-        } else {
-          toggleDatePickerContent()
-        }
+      } else {
+        toggleDatePickerContent()
       }
-    },
-  )
+    }
+  })
 }
 
 function initselection__datepicker__buttonSwapClickListener() {
-  selection__datepicker__selection__datepicker__buttonSwap.addEventListener(
-    'click',
-    () => {
-      let selectedFirstFirstTemp = selectedFirstFirst
-      selectedFirstFirst = selectedSecondFirst
-      selectedSecondFirst = selectedFirstFirstTemp
-      let selection__datepicker__selection__datepicker__buttonsFirst__FirstHTMLTemp =
-        selection__datepicker__selection__datepicker__buttonsFirst__First.innerHTML
-      selection__datepicker__selection__datepicker__buttonsFirst__First.innerHTML =
-        selection__datepicker__selection__datepicker__buttonsSecond__First.innerHTML
-      selection__datepicker__selection__datepicker__buttonsSecond__First.innerHTML = selection__datepicker__selection__datepicker__buttonsFirst__FirstHTMLTemp
-      if (isCompareSpans()) {
-        let selectedFirstSecondTemp = selectedFirstSecond
-        selectedFirstSecond = selectedSecondSecond
-        selectedSecondSecond = selectedFirstSecondTemp
-        let selection__datepicker__selection__datepicker__buttonsFirst__SecondHTMLTemp =
-          selection__datepicker__selection__datepicker__buttonsFirst__Second.innerHTML
-        selection__datepicker__selection__datepicker__buttonsFirst__Second.innerHTML =
-          selection__datepicker__selection__datepicker__buttonsSecond__Second.innerHTML
-        selection__datepicker__selection__datepicker__buttonsSecond__Second.innerHTML = selection__datepicker__selection__datepicker__buttonsFirst__SecondHTMLTemp
-      }
-      printResultsElement()
-    },
-  )
+  selection__datepicker__functions__buttonSwap.addEventListener('click', () => {
+    let selectedFirstFirstTemp = selectedFirstFirst
+    selectedFirstFirst = selectedSecondFirst
+    selectedSecondFirst = selectedFirstFirstTemp
+    let selection__datepicker__buttonsFirst__firstHTMLTemp =
+      selection__datepicker__buttonsFirst__first.innerHTML
+    selection__datepicker__buttonsFirst__first.innerHTML =
+      selection__datepicker__buttonsSecond__first.innerHTML
+    selection__datepicker__buttonsSecond__first.innerHTML = selection__datepicker__buttonsFirst__firstHTMLTemp
+    if (isCompareSpans()) {
+      let selectedFirstSecondTemp = selectedFirstSecond
+      selectedFirstSecond = selectedSecondSecond
+      selectedSecondSecond = selectedFirstSecondTemp
+      let selection__datepicker__buttonsFirst__secondHTMLTemp =
+        selection__datepicker__buttonsFirst__second.innerHTML
+      selection__datepicker__buttonsFirst__second.innerHTML =
+        selection__datepicker__buttonsSecond__second.innerHTML
+      selection__datepicker__buttonsSecond__second.innerHTML = selection__datepicker__buttonsFirst__secondHTMLTemp
+    }
+    printResultsElement()
+  })
 }
 
 function initselection__datepicker__buttonResetClickListener() {
-  selection__datepicker__selection__datepicker__buttonReset.addEventListener(
+  selection__datepicker__functions__buttonReset.addEventListener(
     'click',
     () => {
       initializeSelectedElements(true)
