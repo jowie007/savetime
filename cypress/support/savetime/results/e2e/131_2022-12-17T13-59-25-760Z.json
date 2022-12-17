@@ -1,0 +1,1102 @@
+{
+	"status": "finished",
+	"startedTestsAt": "2022-12-17T13:58:24.169Z",
+	"endedTestsAt": "2022-12-17T13:59:21.834Z",
+	"totalDuration": 43980,
+	"totalSuites": 5,
+	"totalTests": 20,
+	"totalPassed": 20,
+	"totalPending": 0,
+	"totalFailed": 0,
+	"totalSkipped": 0,
+	"runs": [
+		{
+			"stats": {
+				"suites": 1,
+				"tests": 3,
+				"passes": 3,
+				"pending": 0,
+				"skipped": 0,
+				"failures": 0,
+				"duration": 834,
+				"startedAt": "2022-12-17T13:58:24.169Z",
+				"endedAt": "2022-12-17T13:58:25.003Z"
+			},
+			"reporter": "spec",
+			"reporterStats": {
+				"suites": 1,
+				"tests": 3,
+				"passes": 3,
+				"pending": 0,
+				"failures": 0,
+				"start": "2022-12-17T13:58:24.173Z",
+				"end": "2022-12-17T13:58:25.011Z",
+				"duration": 838
+			},
+			"hooks": [
+				{
+					"hookName": "before each",
+					"title": [
+						"\"before each\" hook"
+					],
+					"body": "function () {\r\n        cy.visit('/about');\r\n    }"
+				}
+			],
+			"tests": [
+				{
+					"title": [
+						"About view",
+						"check main content"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.contains('h1', 'You did it!');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 1792,
+							"duration": 334,
+							"startedAt": "2022-12-17T13:58:24.183Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"About view",
+						"check secondary content"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.contains('h1', 'This is an about page');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 2129,
+							"duration": 186,
+							"startedAt": "2022-12-17T13:58:24.520Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"About view",
+						"route to home page"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.contains('a', 'Home').click();\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 2317,
+							"duration": 293,
+							"startedAt": "2022-12-17T13:58:24.708Z",
+							"screenshots": []
+						}
+					]
+				}
+			],
+			"error": null,
+			"video": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\videos\\about-view.cy.ts.mp4",
+			"spec": {
+				"fileExtension": ".ts",
+				"baseName": "about-view.cy.ts",
+				"fileName": "about-view",
+				"specFileExtension": ".cy.ts",
+				"relativeToCommonRoot": "about-view.cy.ts",
+				"specType": "integration",
+				"name": "cypress/e2e/about-view.cy.ts",
+				"relative": "cypress\\e2e\\about-view.cy.ts",
+				"absolute": "C:/Users/jonas/Documents/Workspace/VSC/master-project/cypress/e2e/about-view.cy.ts"
+			},
+			"shouldUploadVideo": true
+		},
+		{
+			"stats": {
+				"suites": 1,
+				"tests": 3,
+				"passes": 3,
+				"pending": 0,
+				"skipped": 0,
+				"failures": 0,
+				"duration": 770,
+				"startedAt": "2022-12-17T13:58:28.197Z",
+				"endedAt": "2022-12-17T13:58:28.967Z"
+			},
+			"reporter": "spec",
+			"reporterStats": {
+				"suites": 1,
+				"tests": 3,
+				"passes": 3,
+				"pending": 0,
+				"failures": 0,
+				"start": "2022-12-17T13:58:28.200Z",
+				"end": "2022-12-17T13:58:28.975Z",
+				"duration": 775
+			},
+			"hooks": [
+				{
+					"hookName": "before each",
+					"title": [
+						"\"before each\" hook"
+					],
+					"body": "function () {\r\n        cy.visit('/');\r\n    }"
+				}
+			],
+			"tests": [
+				{
+					"title": [
+						"Home view",
+						"check main content"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.contains('h1', 'You did it!');\r\n        // cy.wait(20000)\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 1210,
+							"duration": 287,
+							"startedAt": "2022-12-17T13:58:28.208Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Home view",
+						"check info list"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.contains('h3', 'Documentation');\r\n        cy.contains('h3', 'Tooling');\r\n        cy.contains('h3', 'Ecosystem');\r\n        cy.contains('h3', 'Community');\r\n        cy.contains('h3', 'Support Vue');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 1500,
+							"duration": 148,
+							"startedAt": "2022-12-17T13:58:28.498Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Home view",
+						"route to about page"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.contains('a', 'About').click();\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 1651,
+							"duration": 315,
+							"startedAt": "2022-12-17T13:58:28.649Z",
+							"screenshots": []
+						}
+					]
+				}
+			],
+			"error": null,
+			"video": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\videos\\home-view.cy.ts.mp4",
+			"spec": {
+				"fileExtension": ".ts",
+				"baseName": "home-view.cy.ts",
+				"fileName": "home-view",
+				"specFileExtension": ".cy.ts",
+				"relativeToCommonRoot": "home-view.cy.ts",
+				"specType": "integration",
+				"name": "cypress/e2e/home-view.cy.ts",
+				"relative": "cypress\\e2e\\home-view.cy.ts",
+				"absolute": "C:/Users/jonas/Documents/Workspace/VSC/master-project/cypress/e2e/home-view.cy.ts"
+			},
+			"shouldUploadVideo": true
+		},
+		{
+			"stats": {
+				"suites": 1,
+				"tests": 2,
+				"passes": 2,
+				"pending": 0,
+				"skipped": 0,
+				"failures": 0,
+				"duration": 2912,
+				"startedAt": "2022-12-17T13:58:32.004Z",
+				"endedAt": "2022-12-17T13:58:34.916Z"
+			},
+			"reporter": "spec",
+			"reporterStats": {
+				"suites": 1,
+				"tests": 2,
+				"passes": 2,
+				"pending": 0,
+				"failures": 0,
+				"start": "2022-12-17T13:58:32.005Z",
+				"end": "2022-12-17T13:58:34.931Z",
+				"duration": 2926
+			},
+			"hooks": [
+				{
+					"hookName": "before each",
+					"title": [
+						"\"before each\" hook"
+					],
+					"body": "function () {\r\n        cy.visit('/');\r\n    }"
+				}
+			],
+			"tests": [
+				{
+					"title": [
+						"Other tests",
+						"check wait"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.wait(2000);\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 1163,
+							"duration": 2231,
+							"startedAt": "2022-12-17T13:58:32.015Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Other tests",
+						"intercept request"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.visit('/various/internetRequest');\r\n        cy.intercept('GET', 'http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=6121cf598e22ddccef3fdd805f543efe&artist=bicep&track=apricots&format=json', {\r\n            statusCode: 201,\r\n            body: {\r\n                track: {\r\n                    name: \"Intercepted\"\r\n                },\r\n            },\r\n        });\r\n        cy.get('[id=internetRequestText]').should('contain', 'Intercepted');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 3398,
+							"duration": 663,
+							"startedAt": "2022-12-17T13:58:34.250Z",
+							"screenshots": []
+						}
+					]
+				}
+			],
+			"error": null,
+			"video": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\videos\\other-tests.cy.ts.mp4",
+			"spec": {
+				"fileExtension": ".ts",
+				"baseName": "other-tests.cy.ts",
+				"fileName": "other-tests",
+				"specFileExtension": ".cy.ts",
+				"relativeToCommonRoot": "other-tests.cy.ts",
+				"specType": "integration",
+				"name": "cypress/e2e/other-tests.cy.ts",
+				"relative": "cypress\\e2e\\other-tests.cy.ts",
+				"absolute": "C:/Users/jonas/Documents/Workspace/VSC/master-project/cypress/e2e/other-tests.cy.ts"
+			},
+			"shouldUploadVideo": true
+		},
+		{
+			"stats": {
+				"suites": 1,
+				"tests": 5,
+				"passes": 5,
+				"pending": 0,
+				"skipped": 0,
+				"failures": 0,
+				"duration": 15435,
+				"startedAt": "2022-12-17T13:58:37.975Z",
+				"endedAt": "2022-12-17T13:58:53.410Z"
+			},
+			"reporter": "spec",
+			"reporterStats": {
+				"suites": 1,
+				"tests": 5,
+				"passes": 5,
+				"pending": 0,
+				"failures": 0,
+				"start": "2022-12-17T13:58:37.977Z",
+				"end": "2022-12-17T13:58:53.428Z",
+				"duration": 15451
+			},
+			"hooks": [
+				{
+					"hookName": "before each",
+					"title": [
+						"\"before each\" hook"
+					],
+					"body": "function () {\r\n        cy.visit('/sort');\r\n    }"
+				}
+			],
+			"tests": [
+				{
+					"title": [
+						"Sort view",
+						"check main content"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.contains('h1', 'You did it!');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 1264,
+							"duration": 234,
+							"startedAt": "2022-12-17T13:58:37.987Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Sort view",
+						"check all sorts"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.get('[id=sort__buttons__insertionSort]').click();\r\n        cy.get('[id=sort__item-7]').contains('Leoniden');\r\n        cy.get('[id=sort__buttons__reset]').click();\r\n        cy.get('[id=sort__item-7]').contains('Bicep');\r\n        cy.get('[id=sort__buttons__bubbleSort]').click();\r\n        cy.get('[id=sort__item-7]').contains('Leoniden');\r\n        cy.get('[id=sort__buttons__reset]').click();\r\n        cy.get('[id=sort__item-7]').contains('Bicep');\r\n        cy.get('[id=sort__buttons__mergeSort]').click();\r\n        cy.get('[id=sort__item-7]').contains('Leoniden');\r\n        cy.get('[id=sort__buttons__reset]').click();\r\n        cy.get('[id=sort__item-7]').contains('Bicep');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 1501,
+							"duration": 8170,
+							"startedAt": "2022-12-17T13:58:38.224Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Sort view",
+						"check insertionsort"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.get('[id=sort__buttons__insertionSort]').click();\r\n        cy.get('[id=sort__item-7]').contains('Leoniden');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 9677,
+							"duration": 2202,
+							"startedAt": "2022-12-17T13:58:46.400Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Sort view",
+						"check bubblesort"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.get('[id=sort__buttons__bubbleSort]').click();\r\n        cy.get('[id=sort__item-7]').contains('Leoniden');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 11882,
+							"duration": 3977,
+							"startedAt": "2022-12-17T13:58:48.605Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Sort view",
+						"check mergesort"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.get('[id=sort__buttons__mergeSort]').click();\r\n        cy.get('[id=sort__item-7]').contains('Leoniden');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 15862,
+							"duration": 824,
+							"startedAt": "2022-12-17T13:58:52.585Z",
+							"screenshots": []
+						}
+					]
+				}
+			],
+			"error": null,
+			"video": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\videos\\sort-view.cy.ts.mp4",
+			"spec": {
+				"fileExtension": ".ts",
+				"baseName": "sort-view.cy.ts",
+				"fileName": "sort-view",
+				"specFileExtension": ".cy.ts",
+				"relativeToCommonRoot": "sort-view.cy.ts",
+				"specType": "integration",
+				"name": "cypress/e2e/sort-view.cy.ts",
+				"relative": "cypress\\e2e\\sort-view.cy.ts",
+				"absolute": "C:/Users/jonas/Documents/Workspace/VSC/master-project/cypress/e2e/sort-view.cy.ts"
+			},
+			"shouldUploadVideo": true
+		},
+		{
+			"stats": {
+				"suites": 1,
+				"tests": 7,
+				"passes": 7,
+				"pending": 0,
+				"skipped": 0,
+				"failures": 0,
+				"duration": 24029,
+				"startedAt": "2022-12-17T13:58:57.805Z",
+				"endedAt": "2022-12-17T13:59:21.834Z"
+			},
+			"reporter": "spec",
+			"reporterStats": {
+				"suites": 1,
+				"tests": 7,
+				"passes": 7,
+				"pending": 0,
+				"failures": 0,
+				"start": "2022-12-17T13:58:57.807Z",
+				"end": "2022-12-17T13:59:21.873Z",
+				"duration": 24066
+			},
+			"hooks": [
+				{
+					"hookName": "before each",
+					"title": [
+						"\"before each\" hook"
+					],
+					"body": "function () {\r\n        cy.visit('/various');\r\n    }"
+				}
+			],
+			"tests": [
+				{
+					"title": [
+						"Various view",
+						"check image loader"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.visit('/various/imageLoader');\r\n        // https://stackoverflow.com/questions/51246606/test-loading-of-image-in-cypress\r\n        cy.get('[id=imageLoaderImage]')\r\n            .should('be.visible')\r\n            .and(function ($img) {\r\n            // \"naturalWidth\" and \"naturalHeight\" are set when the image loads\r\n            expect($img[0].naturalWidth).to.be.greaterThan(0);\r\n        });\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 1194,
+							"duration": 385,
+							"startedAt": "2022-12-17T13:58:57.816Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Various view",
+						"check internet request"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.visit('/various/internetRequest');\r\n        cy.get('[id=internetRequestText]').should('contain', 'Apricots');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 1583,
+							"duration": 490,
+							"startedAt": "2022-12-17T13:58:58.205Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Various view",
+						"check local request"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.visit('/various/localRequest');\r\n        cy.get('[id=localRequestText]').should('contain', 'Leoniden');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 2075,
+							"duration": 550,
+							"startedAt": "2022-12-17T13:58:58.697Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Various view",
+						"check long text"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.visit('/various/longText');\r\n        cy.get('[id=longTextText]').should('contain', 'thisWord');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 2626,
+							"duration": 255,
+							"startedAt": "2022-12-17T13:58:59.248Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Various view",
+						"check text awaiter"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.visit('/various/textAwaiter');\r\n        cy.get('[id=textAwaiterText]').should('contain', 'Loaded');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 2884,
+							"duration": 5228,
+							"startedAt": "2022-12-17T13:58:59.506Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Various view",
+						"check number generator"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.visit('/various/numberGenerator');\r\n        cy.get('[id=number-99999]').should('exist').should('be.visible');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 8117,
+							"duration": 5328,
+							"startedAt": "2022-12-17T13:59:04.739Z",
+							"screenshots": []
+						}
+					]
+				},
+				{
+					"title": [
+						"Various view",
+						"check everything"
+					],
+					"state": "passed",
+					"body": "function () {\r\n        cy.visit('/various/imageLoader');\r\n        // https://stackoverflow.com/questions/51246606/test-loading-of-image-in-cypress\r\n        cy.get('[id=imageLoaderImage]')\r\n            .should('be.visible')\r\n            .and(function ($img) {\r\n            // \"naturalWidth\" and \"naturalHeight\" are set when the image loads\r\n            expect($img[0].naturalWidth).to.be.greaterThan(0);\r\n        });\r\n        cy.visit('/various/internetRequest');\r\n        cy.get('[id=internetRequestText]').should('contain', 'Apricots');\r\n        cy.visit('/various/localRequest');\r\n        cy.get('[id=localRequestText]').should('contain', 'Leoniden');\r\n        cy.visit('/various/longText');\r\n        cy.get('[id=longTextText]').should('contain', 'thisWord');\r\n        cy.visit('/various/textAwaiter');\r\n        cy.get('[id=textAwaiterText]').should('contain', 'Loaded');\r\n        cy.visit('/various/numberGenerator');\r\n        cy.get('[id=number-99999]').should('exist').should('be.visible');\r\n    }",
+					"displayError": null,
+					"attempts": [
+						{
+							"state": "passed",
+							"error": null,
+							"videoTimestamp": 13448,
+							"duration": 11760,
+							"startedAt": "2022-12-17T13:59:10.070Z",
+							"screenshots": []
+						}
+					]
+				}
+			],
+			"error": null,
+			"video": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\videos\\various-view.cy.ts.mp4",
+			"spec": {
+				"fileExtension": ".ts",
+				"baseName": "various-view.cy.ts",
+				"fileName": "various-view",
+				"specFileExtension": ".cy.ts",
+				"relativeToCommonRoot": "various-view.cy.ts",
+				"specType": "integration",
+				"name": "cypress/e2e/various-view.cy.ts",
+				"relative": "cypress\\e2e\\various-view.cy.ts",
+				"absolute": "C:/Users/jonas/Documents/Workspace/VSC/master-project/cypress/e2e/various-view.cy.ts"
+			},
+			"shouldUploadVideo": true
+		}
+	],
+	"browserPath": "",
+	"browserName": "electron",
+	"browserVersion": "106.0.5249.51",
+	"osName": "win32",
+	"osVersion": "10.0.22621",
+	"cypressVersion": "12.1.0",
+	"config": {
+		"projectId": "h3q1s1",
+		"defaultCommandTimeout": 100000,
+		"specPattern": "cypress/e2e/**/*.{cy,spec}.{js,jsx,ts,tsx}",
+		"baseUrl": "http://localhost:4173",
+		"setupNodeEvents": "[Function setupNodeEvents]",
+		"projectRoot": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project",
+		"projectName": "master-project",
+		"repoRoot": "C:/Users/jonas/Documents/Workspace/VSC/master-project",
+		"rawJson": {
+			"projectId": "h3q1s1",
+			"defaultCommandTimeout": 100000,
+			"e2e": {
+				"specPattern": "cypress/e2e/**/*.{cy,spec}.{js,jsx,ts,tsx}",
+				"baseUrl": "http://localhost:4173",
+				"setupNodeEvents": "[Function setupNodeEvents]"
+			},
+			"component": {
+				"specPattern": "src/**/__tests__/*.{cy,spec}.{js,ts,jsx,tsx}",
+				"devServer": {
+					"framework": "vue",
+					"bundler": "vite"
+				},
+				"setupNodeEvents": "[Function setupNodeEvents]"
+			},
+			"specPattern": "cypress/e2e/**/*.{cy,spec}.{js,jsx,ts,tsx}",
+			"baseUrl": "http://localhost:4173",
+			"setupNodeEvents": "[Function setupNodeEvents]",
+			"envFile": {},
+			"projectRoot": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project",
+			"projectName": "master-project",
+			"repoRoot": "C:/Users/jonas/Documents/Workspace/VSC/master-project"
+		},
+		"configFile": "cypress.config.ts",
+		"morgan": false,
+		"isTextTerminal": true,
+		"socketId": "2kandp0jh5",
+		"report": true,
+		"animationDistanceThreshold": 5,
+		"arch": "x64",
+		"blockHosts": null,
+		"chromeWebSecurity": true,
+		"clientCertificates": [],
+		"downloadsFolder": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\downloads",
+		"env": {},
+		"execTimeout": 60000,
+		"experimentalFetchPolyfill": false,
+		"experimentalInteractiveRunEvents": false,
+		"experimentalRunAllSpecs": false,
+		"experimentalModifyObstructiveThirdPartyCode": false,
+		"experimentalOriginDependencies": false,
+		"experimentalSourceRewriting": false,
+		"experimentalSingleTabRunMode": false,
+		"experimentalStudio": false,
+		"experimentalWebKitSupport": false,
+		"fileServerFolder": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project",
+		"fixturesFolder": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\fixtures",
+		"excludeSpecPattern": "*.hot-update.js",
+		"includeShadowDom": false,
+		"keystrokeDelay": 0,
+		"modifyObstructiveCode": true,
+		"numTestsKeptInMemory": 0,
+		"platform": "win32",
+		"pageLoadTimeout": 60000,
+		"port": 52650,
+		"redirectionLimit": 20,
+		"reporter": "spec",
+		"reporterOptions": null,
+		"requestTimeout": 5000,
+		"resolvedNodePath": "C:\\Program Files\\nodejs\\node.exe",
+		"resolvedNodeVersion": "16.13.0",
+		"responseTimeout": 30000,
+		"retries": {
+			"runMode": 0,
+			"openMode": 0
+		},
+		"screenshotOnRunFailure": true,
+		"screenshotsFolder": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\screenshots",
+		"slowTestThreshold": 10000,
+		"scrollBehavior": "top",
+		"supportFile": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\support\\e2e.ts",
+		"supportFolder": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\support",
+		"taskTimeout": 60000,
+		"testIsolation": true,
+		"trashAssetsBeforeRuns": true,
+		"userAgent": null,
+		"video": true,
+		"videoCompression": 32,
+		"videosFolder": "C:\\Users\\jonas\\Documents\\Workspace\\VSC\\master-project\\cypress\\videos",
+		"videoUploadOnPasses": true,
+		"viewportHeight": 660,
+		"viewportWidth": 1000,
+		"waitForAnimations": true,
+		"watchForFileChanges": false,
+		"additionalIgnorePattern": [],
+		"autoOpen": false,
+		"browsers": [
+			{
+				"name": "chrome",
+				"family": "chromium",
+				"channel": "stable",
+				"displayName": "Chrome",
+				"version": "108.0.5359.125",
+				"path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+				"minSupportedVersion": 64,
+				"majorVersion": "108"
+			},
+			{
+				"name": "firefox",
+				"family": "firefox",
+				"channel": "stable",
+				"displayName": "Firefox",
+				"version": "108.0.1",
+				"path": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+				"minSupportedVersion": 86,
+				"majorVersion": "108"
+			},
+			{
+				"name": "edge",
+				"family": "chromium",
+				"channel": "stable",
+				"displayName": "Edge",
+				"version": "108.0.1462.46",
+				"path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+				"minSupportedVersion": 79,
+				"majorVersion": "108"
+			},
+			{
+				"name": "electron",
+				"channel": "stable",
+				"family": "chromium",
+				"displayName": "Electron",
+				"version": "106.0.5249.51",
+				"path": "",
+				"majorVersion": 106
+			}
+		],
+		"clientRoute": "/__/",
+		"cypressBinaryRoot": "C:\\Users\\jonas\\AppData\\Local\\Cypress\\Cache\\12.1.0\\Cypress\\resources\\app",
+		"devServerPublicPathRoute": "/__cypress/src",
+		"hosts": null,
+		"isInteractive": true,
+		"namespace": "__cypress",
+		"reporterRoute": "/__cypress/reporter",
+		"socketIoCookie": "__socket",
+		"socketIoRoute": "/__socket",
+		"version": "12.1.0",
+		"cypressEnv": "production",
+		"resolved": {
+			"animationDistanceThreshold": {
+				"value": 5,
+				"from": "default"
+			},
+			"arch": {
+				"value": "x64",
+				"from": "default"
+			},
+			"baseUrl": {
+				"value": "http://localhost:4173",
+				"from": "config"
+			},
+			"blockHosts": {
+				"value": null,
+				"from": "default"
+			},
+			"chromeWebSecurity": {
+				"value": true,
+				"from": "default"
+			},
+			"clientCertificates": {
+				"value": [],
+				"from": "default"
+			},
+			"defaultCommandTimeout": {
+				"value": 100000,
+				"from": "config"
+			},
+			"downloadsFolder": {
+				"value": "cypress/downloads",
+				"from": "default"
+			},
+			"env": {},
+			"execTimeout": {
+				"value": 60000,
+				"from": "default"
+			},
+			"experimentalFetchPolyfill": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalInteractiveRunEvents": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalRunAllSpecs": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalModifyObstructiveThirdPartyCode": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalOriginDependencies": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalSourceRewriting": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalSingleTabRunMode": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalStudio": {
+				"value": false,
+				"from": "default"
+			},
+			"experimentalWebKitSupport": {
+				"value": false,
+				"from": "default"
+			},
+			"fileServerFolder": {
+				"value": "",
+				"from": "default"
+			},
+			"fixturesFolder": {
+				"value": "cypress/fixtures",
+				"from": "default"
+			},
+			"excludeSpecPattern": {
+				"value": "*.hot-update.js",
+				"from": "default"
+			},
+			"includeShadowDom": {
+				"value": false,
+				"from": "default"
+			},
+			"keystrokeDelay": {
+				"value": 0,
+				"from": "default"
+			},
+			"modifyObstructiveCode": {
+				"value": true,
+				"from": "default"
+			},
+			"nodeVersion": {
+				"from": "default"
+			},
+			"numTestsKeptInMemory": {
+				"value": 0,
+				"from": "config"
+			},
+			"platform": {
+				"value": "win32",
+				"from": "default"
+			},
+			"pageLoadTimeout": {
+				"value": 60000,
+				"from": "default"
+			},
+			"port": {
+				"value": null,
+				"from": "default"
+			},
+			"projectId": {
+				"value": "h3q1s1",
+				"from": "config"
+			},
+			"redirectionLimit": {
+				"value": 20,
+				"from": "default"
+			},
+			"reporter": {
+				"value": "spec",
+				"from": "default"
+			},
+			"reporterOptions": {
+				"value": null,
+				"from": "default"
+			},
+			"requestTimeout": {
+				"value": 5000,
+				"from": "default"
+			},
+			"resolvedNodePath": {
+				"value": null,
+				"from": "default"
+			},
+			"resolvedNodeVersion": {
+				"value": null,
+				"from": "default"
+			},
+			"responseTimeout": {
+				"value": 30000,
+				"from": "default"
+			},
+			"retries": {
+				"value": {
+					"runMode": 0,
+					"openMode": 0
+				},
+				"from": "default"
+			},
+			"screenshotOnRunFailure": {
+				"value": true,
+				"from": "default"
+			},
+			"screenshotsFolder": {
+				"value": "cypress/screenshots",
+				"from": "default"
+			},
+			"slowTestThreshold": {
+				"value": 10000,
+				"from": "default"
+			},
+			"scrollBehavior": {
+				"value": "top",
+				"from": "default"
+			},
+			"supportFile": {
+				"value": "cypress/support/e2e.{js,jsx,ts,tsx}",
+				"from": "default"
+			},
+			"supportFolder": {
+				"value": false,
+				"from": "default"
+			},
+			"taskTimeout": {
+				"value": 60000,
+				"from": "default"
+			},
+			"testIsolation": {
+				"value": true,
+				"from": "default"
+			},
+			"trashAssetsBeforeRuns": {
+				"value": true,
+				"from": "default"
+			},
+			"userAgent": {
+				"value": null,
+				"from": "default"
+			},
+			"video": {
+				"value": true,
+				"from": "default"
+			},
+			"videoCompression": {
+				"value": 32,
+				"from": "default"
+			},
+			"videosFolder": {
+				"value": "cypress/videos",
+				"from": "default"
+			},
+			"videoUploadOnPasses": {
+				"value": true,
+				"from": "default"
+			},
+			"viewportHeight": {
+				"value": 660,
+				"from": "default"
+			},
+			"viewportWidth": {
+				"value": 1000,
+				"from": "default"
+			},
+			"waitForAnimations": {
+				"value": true,
+				"from": "default"
+			},
+			"watchForFileChanges": {
+				"value": false,
+				"from": "config"
+			},
+			"specPattern": {
+				"value": "cypress/e2e/**/*.{cy,spec}.{js,jsx,ts,tsx}",
+				"from": "config"
+			},
+			"browsers": {
+				"value": [
+					{
+						"name": "chrome",
+						"family": "chromium",
+						"channel": "stable",
+						"displayName": "Chrome",
+						"version": "108.0.5359.125",
+						"path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+						"minSupportedVersion": 64,
+						"majorVersion": "108"
+					},
+					{
+						"name": "firefox",
+						"family": "firefox",
+						"channel": "stable",
+						"displayName": "Firefox",
+						"version": "108.0.1",
+						"path": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+						"minSupportedVersion": 86,
+						"majorVersion": "108"
+					},
+					{
+						"name": "edge",
+						"family": "chromium",
+						"channel": "stable",
+						"displayName": "Edge",
+						"version": "108.0.1462.46",
+						"path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+						"minSupportedVersion": 79,
+						"majorVersion": "108"
+					},
+					{
+						"name": "electron",
+						"channel": "stable",
+						"family": "chromium",
+						"displayName": "Electron",
+						"version": "106.0.5249.51",
+						"path": "",
+						"majorVersion": 106,
+						"isHeadless": true,
+						"isHeaded": false
+					}
+				],
+				"from": "runtime"
+			},
+			"hosts": {
+				"value": null,
+				"from": "default"
+			},
+			"isInteractive": {
+				"value": true,
+				"from": "default"
+			}
+		},
+		"testingType": "e2e",
+		"remote": {
+			"origin": "http://localhost:4173",
+			"strategy": "http",
+			"fileServer": null,
+			"domainName": "localhost",
+			"props": {
+				"port": "4173",
+				"protocol": "http:",
+				"subdomain": null,
+				"domain": "",
+				"tld": "localhost"
+			}
+		},
+		"browser": null,
+		"specs": [],
+		"proxyUrl": "http://localhost:52650",
+		"browserUrl": "http://localhost:4173/__/",
+		"reporterUrl": "http://localhost:4173/__cypress/reporter",
+		"proxyServer": "http://localhost:52650",
+		"state": {}
+	}
+}
