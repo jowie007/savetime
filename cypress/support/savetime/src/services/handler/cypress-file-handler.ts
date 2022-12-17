@@ -151,7 +151,8 @@ export function compareFilesByNumberSpan(
         )
         if (firstSpanFileNumbers.includes(Number(firstChars))) {
           firstContent.push(data)
-        } else if (secondSpanFileNumbers.includes(Number(firstChars))) {
+        }
+        if (secondSpanFileNumbers.includes(Number(firstChars))) {
           secondContent.push(data)
         }
       }
@@ -243,8 +244,6 @@ function getMeanContent(content: CypressCommandLine.CypressRunResult[]) {
     })
     first = false
   })
-  console.log('longestTests', shortestTests)
-  console.log('shortestTests', longestTests)
   return meanContent
 }
 
@@ -480,14 +479,16 @@ function compareCypressRunResults(
       durationOfSecondCypressRunResult,
       durationOfFirstCypressRunResult,
     )
-  } catch (_) {
-    console.log('Unable to create compare file.')
+  } catch (e) {
+    console.log(e, 'Unable to create compare file.')
   }
   return cypressRunResultCompare
 }
 
 function getPercentageDifference(secondValue: number, firstValue: number) {
-  return firstValue ? Number(((secondValue * 100) / firstValue).toFixed(2)) : 100
+  return firstValue
+    ? Number(((secondValue * 100) / firstValue).toFixed(2))
+    : 100
 }
 
 export function createCypressLog(

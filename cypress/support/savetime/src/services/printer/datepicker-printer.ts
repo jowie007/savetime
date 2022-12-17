@@ -327,7 +327,6 @@ function getDatePickerSelectContent() {
 }
 
 function printResultsElement() {
-  console.log('PRINT RESULTS ELEMENT')
   if (!isCompareSpans()) {
     printResult(
       compareFilesByNumber(getType(), selectedFirstFirst, selectedSecondFirst),
