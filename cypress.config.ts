@@ -9,6 +9,8 @@ import {
 export default defineConfig({
   projectId: 'h3q1s1',
   defaultCommandTimeout: 100000,
+  video: false,
+  screenshotOnRunFailure: false,
   e2e: {
     specPattern: 'cypress/e2e/**/*.{cy,spec}.{js,jsx,ts,tsx}',
     baseUrl: 'http://localhost:4173',
