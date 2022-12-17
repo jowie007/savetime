@@ -101,6 +101,7 @@ function init(reInitPickers: boolean) {
   ) as HTMLDivElement
   initializeSelectedElements(reInitPickers)
   initializeSpanButtonsVisibility()
+  printResultsElement()
 }
 
 function initializeSpanButtonsVisibility() {
@@ -158,12 +159,12 @@ function initializeSelectedElements(reInitPickers: boolean) {
   const itemsSize = getAllFileDetails(getType()).size
   if (reInitPickers || !selectedFirstFirst || !selectedSecondFirst) {
     setSelectedFirstFirst(itemsSize - 1, false)
-    setSelectedSecondFirst(itemsSize, !isCompareSpans())
+    setSelectedSecondFirst(itemsSize, !isCompareSpans() && reInitPickers)
     toggleDatePickerContent(true)
   }
   if (isCompareSpans()) {
     setSelectedFirstSecond(itemsSize - 1, false)
-    setSelectedSecondSecond(itemsSize, true)
+    setSelectedSecondSecond(itemsSize, reInitPickers)
   }
 }
 
@@ -326,6 +327,7 @@ function getDatePickerSelectContent() {
 }
 
 function printResultsElement() {
+  console.log('PRINT RESULTS ELEMENT')
   if (!isCompareSpans()) {
     printResult(
       compareFilesByNumber(getType(), selectedFirstFirst, selectedSecondFirst),
