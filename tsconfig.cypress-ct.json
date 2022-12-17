@@ -10,5 +10,7 @@
   "exclude": [],
   "compilerOptions": {
     "composite": true
-  }
+  },
+  "video": false,
+  "screenshotOnRunFailure": false
 }
