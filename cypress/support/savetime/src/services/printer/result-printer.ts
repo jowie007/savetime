@@ -13,8 +13,6 @@ import {
   isPercentageValues,
 } from '../store/settings-store'
 
-// TODO Handle new or deleted files
-
 const MIN_BORDER = 0
 const MIN_BORDER_PERCENTAGE = 100
 
@@ -137,20 +135,20 @@ function getRunTableContent(
     )
   })
   const joinedTestHTMLArray = testHTMLArray.join(' ')
-  return joinedTestHTMLArray.trim() !== ''
-    ? `
+  return (
+    `
     <h3 id="run__caption-${indexRun}">
       ${translation.file + ': ' + runResultCompare.name}
     </h3>
     ` +
-        (runResultCompare.differenceDetected !== CypressDifference.NO_DIFFERENCE
-          ? `
+    (runResultCompare.differenceDetected !== CypressDifference.NO_DIFFERENCE
+      ? `
       <div         
         class="run__info run__info-${runResultCompare.differenceDetected}">
         ${translation[runResultCompare.differenceDetected]}
       </div>`
-          : (!isOnlyCriticalTests()
-              ? `
+      : (!isOnlyCriticalTests()
+          ? `
     <table id="run-${indexRun}">
       <tr id="run__durationDifference-${indexRun}">
         <th id="run__durationDifference__th-${indexRun}">
@@ -166,8 +164,8 @@ function getRunTableContent(
       </tr>
     </table>
     `
-              : '') +
-            `
+          : '') +
+        `
     <table>
       <tr id="run__test-${indexRun}">
         <th id="run__test__name__th-${indexRun}">
@@ -180,7 +178,7 @@ function getRunTableContent(
       ${joinedTestHTMLArray}
     </table>
   `)
-    : ''
+  )
 
   /*
         <tr id="run__durationDifferenceWithoutMissingTests-${indexRun}">

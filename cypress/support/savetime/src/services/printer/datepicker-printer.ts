@@ -101,7 +101,6 @@ function init(reInitPickers: boolean) {
   ) as HTMLDivElement
   initializeSelectedElements(reInitPickers)
   initializeSpanButtonsVisibility()
-  printResultsElement()
 }
 
 function initializeSpanButtonsVisibility() {

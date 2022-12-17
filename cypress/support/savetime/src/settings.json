@@ -2,7 +2,7 @@
 	"locale": "EN",
 	"type": "e2e",
 	"maxDurationDifference": 100,
-	"maxDurationDifferencePercentage": 149,
+	"maxDurationDifferencePercentage": 150,
 	"percentageValues": true,
 	"onlyCriticalTests": false,
 	"compareSpans": false
