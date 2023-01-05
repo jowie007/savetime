@@ -244,6 +244,8 @@ function getMeanContent(content: CypressCommandLine.CypressRunResult[]) {
     })
     first = false
   })
+  console.log("Shortest tests", shortestTests)
+  console.log("Longest tests", longestTests)
   return meanContent
 }
 
