@@ -62,6 +62,7 @@ Zunächst sei erneut darauf hingewiesen, dass die Vergleiche von den Cypress-Tes
 import {
   createCypressLog,
 } from './cypress/support/savetime/src/services/handler/cypress-file-handler'
+...
 
 export default defineConfig({
     e2e: {
@@ -90,5 +91,14 @@ export default defineConfig({
 ```typescript
 "savetime:report": "cd ./cypress/support/savetime && electron ./dist/main.js"
 ```
+6. Editieren der tsconfig-Datei
+```json
+{
+  "exclude": [
+    "cypress/support/savetime/src/services/handler/cypress-file-handler.ts",
+  ]
+}
+```
+
 
 Anschließend kann das Tool wie bereits zuvor beschrieben genutzt werden. Dabei ist zu beachtet, dass für e2e-Tests die Applikation zusätzlich laufen muss.
