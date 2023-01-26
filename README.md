@@ -3,6 +3,7 @@
 </p>
 
 # Savetime-Tool in einem Beispielprojekt
+Das Savetime-Tool wurde im Rahmen einer Masterarbeit entwickelt und diente dazu festzustellen, inwiefern die Laufzeit von Cypresstests Rückschlüsse auf Codequalität liefert. Vorab sei gesagt, dass die Testlaufzeiten bereits auf dem gleichen Gerät unter ähnlichen Bedingungen Schwankungen aufweisen, ohne dass der Code geändert wurde, weswegen ein Vergleich nur anhand von Cypress-Tests schwierig ist. Im Optimalfall wäre das Tool zum Einsatz gekommen, um die Codequalität bezüglich der Laufzeit im gesamten Entwicklungsprozess beobachten zu können.
 
 Für dieses Projekt wurde eine einfache Vue-Applikation aufgesetzt, sodass folgende Hinweise für das Aufsetzen der Applikation beachtet werden sollten:
 1. Empfohlenes Umgebung:
