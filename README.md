@@ -55,7 +55,13 @@ Mittels Zahradicon in der Ecke können die Einstellungen geöffnet werden. Die m
 ## Savetime-Tool in einem anderen Projekt verwenden
 Zunächst sei erneut darauf hingewiesen, dass die Vergleiche von den Cypress-Testläufen <ins>keine</ins> aussagekräftigen Ergebnisse liefern. Sollte das Tool jedoch trotzdem in eine eigene Applikation eingebunden werden, so sollten folgende Schritte befolgt werden:
 1. Installation von [Cypress](https://www.cypress.io/)
+```sh
+npm install cypress --save-dev
+```
 2. Installation von [Electron](https://www.electronjs.org/)
+```sh
+npm install electron --save-dev
+```
 3. Kopieren des Ordners cypress\support\savetime in das eigene Projekt
 4. Editieren/Hinzufügen des Cypress-Events [After Run](https://docs.cypress.io/api/plugins/after-run-api)
 ```typescript
@@ -99,6 +105,6 @@ export default defineConfig({
   ]
 }
 ```
-
+7. Leeren der Ordner welche sich in cypress\support\savetime\results befinden
 
 Anschließend kann das Tool wie bereits zuvor beschrieben genutzt werden. Dabei ist zu beachtet, dass für e2e-Tests die Applikation zusätzlich laufen muss.
