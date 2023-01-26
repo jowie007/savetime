@@ -11,7 +11,7 @@
     "test:e2e:withoutBuild": "start-server-and-test preview http://localhost:4173/ 'cypress run --e2e'",
     "test:component:vis": "cypress open --component",
     "test:component": "cypress run --component --quiet --reporter spec",
-    "savetime:report": "cd ./cypress/support/savetime && tsc && sass src/styles:dist/styles  && electron ./dist/main.js",
+    "savetime:report": "cd ./cypress/support/savetime && tsc && sass src/styles:dist/styles && electron ./dist/main.js",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"

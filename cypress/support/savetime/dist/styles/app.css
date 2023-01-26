@@ -1,0 +1,329 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background-color: #081215;
+  color: white;
+}
+
+caption,
+h2,
+h3 {
+  margin-bottom: 0.4rem;
+  font-size: medium;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#compareInfos__rating__gradient {
+  height: 1rem;
+  width: 100%;
+}
+#compareInfos__rating__borders {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
+table,
+td,
+th {
+  border: 0.0625rem solid;
+}
+
+td,
+th {
+  min-width: 25%;
+}
+
+table {
+  margin-bottom: 1.2rem;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+#main {
+  padding: 0.4rem;
+}
+
+#title {
+  margin-top: 0;
+}
+#title svg {
+  width: 40%;
+  height: fit-content;
+}
+
+#content__wrapper {
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+#selection__datepicker__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+#selection__datepicker__buttons button {
+  margin: 0.2rem;
+}
+#selection__datepicker__buttons__functions {
+  display: flex;
+}
+#selection__datepicker__day {
+  display: none;
+}
+#selection__datepicker__day__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+#selection__datepicker__day__wrapper {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  grid-gap: 0.1rem;
+}
+#selection__datepicker__day__wrapper .selection__datepicker__day {
+  background-color: white;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8rem;
+  height: 2rem;
+}
+#selection__datepicker__day__wrapper .selection__datepicker__day-1, #selection__datepicker__day__wrapper .selection__datepicker__day-2, #selection__datepicker__day__wrapper .selection__datepicker__day-3, #selection__datepicker__day__wrapper .selection__datepicker__day-4, #selection__datepicker__day__wrapper .selection__datepicker__day-5 {
+  color: white;
+  cursor: pointer;
+}
+#selection__datepicker__day__wrapper .selection__datepicker__day-1 {
+  background-color: #9955ff;
+}
+#selection__datepicker__day__wrapper .selection__datepicker__day-2 {
+  background-color: #7f2aff;
+}
+#selection__datepicker__day__wrapper .selection__datepicker__day-3 {
+  background-color: #6600ff;
+}
+#selection__datepicker__day__wrapper .selection__datepicker__day-4 {
+  background-color: #5500d4;
+}
+#selection__datepicker__day__wrapper .selection__datepicker__day-5 {
+  background-color: #4400aa;
+}
+#selection__datepicker__day__wrapper .selection__datepicker__day__invalid {
+  opacity: 0.8;
+}
+#selection__datepicker .selection__datepicker__button {
+  height: 1.6rem;
+  min-width: 1.6rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+#selection__datepicker .selection__datepicker__button__date {
+  width: 100%;
+}
+#selection__datepicker .selection__datepicker__navigation {
+  background-color: white;
+  height: 1.6rem;
+  width: 1.6rem;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+}
+#selection__datepicker__test__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.1rem;
+}
+#selection__datepicker__test__wrapper .selection__datepicker__test {
+  background-color: white;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8rem;
+  height: 2rem;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  min-width: fit-content;
+  cursor: pointer;
+}
+
+#settings {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #081215;
+  opacity: 0.95;
+  max-width: 19%;
+  padding: 0.2rem;
+}
+#settings__button {
+  color: white;
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+}
+#settings__panel {
+  display: none;
+  padding: 1rem 0.8rem;
+  outline-width: 0.04rem;
+  outline-offset: -0.08rem;
+  outline-style: solid;
+  outline-color: white;
+}
+#settings__maxDurationDifference {
+  width: 4rem;
+}
+#settings .settings__item {
+  margin-bottom: 1.2rem;
+}
+#settings .settings__language__button {
+  height: 1.2rem;
+  padding: 0;
+}
+#settings .settings__language__button svg {
+  width: fit-content;
+  height: 100%;
+}
+#settings .settings__type__button {
+  width: 100%;
+}
+
+#nothingToCompare {
+  margin-top: 1.2rem;
+}
+
+.td__duration {
+  text-shadow: 0.0625rem 0.0625rem 0.125rem black;
+  padding: 0.2rem;
+  width: 20%;
+  position: relative;
+}
+.td__duration-failedFirst, .td__duration-failedSecond, .td__duration-failedBoth {
+  background: blue;
+}
+.td__duration-notFoundFirst {
+  background-image: radial-gradient(#404040 30%, transparent 30%);
+  background-color: transparent;
+  background-position: center;
+  background-size: 0.625rem 0.625rem;
+}
+.td__duration-notFoundSecond {
+  background: repeating-linear-gradient(45deg, #404040, #404040 0.25rem, transparent 0.25rem, transparent 0.5rem);
+}
+
+.run__info {
+  outline-width: 0.04rem;
+  outline-offset: -0.08rem;
+  outline-style: solid;
+  outline-color: white;
+  padding: 0.25rem;
+}
+.run__info-notFoundFirst {
+  background-image: radial-gradient(#404040 30%, transparent 30%);
+  background-color: transparent;
+  background-position: center;
+  background-size: 0.625rem 0.625rem;
+}
+.run__info-notFoundSecond {
+  background: repeating-linear-gradient(45deg, #404040, #404040 0.25rem, transparent 0.25rem, transparent 0.5rem);
+}
+
+.accordion {
+  padding: 0;
+  background-color: transparent;
+  font-size: medium;
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
+.panel {
+  padding: 0 1rem;
+  display: none;
+  overflow: hidden;
+}
+
+.tooltip {
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.9rem;
+  background-color: #081215;
+  color: white;
+  border-radius: 1rem;
+  position: absolute;
+  right: -0.2rem;
+  top: -0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: help;
+  outline-width: 0.04rem;
+  outline-offset: -0.08rem;
+  outline-style: solid;
+  outline-color: white;
+}
+.tooltip:hover .tooltip__text {
+  visibility: visible;
+}
+.tooltip__text {
+  visibility: hidden;
+  width: 8rem;
+  text-align: center;
+  border-radius: 0.4rem;
+  padding: 0.2rem;
+  background-color: #081215;
+  color: white;
+  outline-width: 0.04rem;
+  outline-offset: -0.08rem;
+  outline-style: solid;
+  outline-color: white;
+  /* Position the tooltip */
+  position: absolute;
+  top: 0;
+  left: 1.6rem;
+  z-index: 2;
+}
+
+.selectedButton {
+  background-color: #081215;
+  color: white;
+  outline-width: 0.04rem;
+  outline-offset: -0.08rem;
+  outline-style: solid;
+  outline-color: white;
+}
+
+#overall__report {
+  position: relative;
+  text-align: start;
+  margin-bottom: 1.2rem;
+}
+#overall__report__tooltip {
+  right: -0.2rem;
+  top: -0.8rem;
+}
+
+/*# sourceMappingURL=app.css.map */
