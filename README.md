@@ -1,3 +1,7 @@
+<p align="center">
+   <img width="400" src="https://user-images.githubusercontent.com/90611576/214872753-5838b385-bb20-447e-baf6-2f6e6d414ce8.svg">
+</p>
+
 # Savetime-Tool in einem Beispielprojekt
 
 Für dieses Projekt wurde eine einfache Vue-Applikation aufgesetzt, sodass folgende Hinweise für das Aufsetzen der Applikation beachtet werden sollten:
