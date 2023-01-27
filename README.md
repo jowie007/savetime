@@ -1,9 +1,9 @@
 <p align="center">
-   <img width="400" src="https://user-images.githubusercontent.com/90611576/214872753-5838b385-bb20-447e-baf6-2f6e6d414ce8.svg">
+   <img width="400" src="https://user-images.githubusercontent.com/90611576/215098604-267f4087-56c5-47fe-aafa-e129c47c1177.svg">
 </p>
 
 # Savetime-Tool in einem Beispielprojekt
-Das Savetime-Tool wurde im Rahmen einer Masterarbeit entwickelt und diente dazu festzustellen, inwiefern die Laufzeit von Cypresstests Rückschlüsse auf Codequalität liefert. Vorab sei gesagt, dass die Testlaufzeiten bereits auf dem gleichen Gerät unter ähnlichen Bedingungen Schwankungen aufweisen, ohne dass der Code geändert wurde, weswegen ein Vergleich nur anhand von Cypress-Tests schwierig ist. Im Optimalfall wäre das Tool zum Einsatz gekommen, um die Codequalität bezüglich der Laufzeit im gesamten Entwicklungsprozess beobachten zu können.
+Das Savetime-Tool wurde im Rahmen einer Masterarbeit entwickelt und diente dazu festzustellen, inwiefern die Laufzeit von Cypress-Tests Rückschlüsse auf Codequalität liefert. Vorab sei gesagt, dass die Testlaufzeiten bereits auf dem gleichen Gerät unter ähnlichen Bedingungen Schwankungen aufweisen, ohne dass der Code geändert wurde, weswegen ein Vergleich nur anhand von Cypress-Tests schwierig ist. Im Optimalfall wäre das Tool zum Einsatz gekommen, um die Codequalität bezüglich der Laufzeit im gesamten Entwicklungsprozess beobachten zu können.
 
 Für dieses Projekt wurde eine einfache Vue-Applikation aufgesetzt, sodass folgende Hinweise für das Aufsetzen der Applikation beachtet werden sollten:
 1. Empfohlenes Umgebung:
@@ -44,7 +44,7 @@ npm run savetime:report
 
 ## Savetime-Tool
 <img align="right" width="400" src="https://user-images.githubusercontent.com/90611576/214844202-8f9d47d6-7915-416a-8e8b-0dbfcfa0d5a4.png">
-Innerhalb des Tools können anschließend zwei Testläufe mittels Datepicker ausgewählt werden. Die Tage sind dabei mit verschiedenen Abstufungen der Farbe lila hinterlegt, wobei der Hintergrund dunkler wird, je mehr Testläufe an einem Tag durchgeführt werden. In dem gezeigten Beispiel sind zwei Testläufe ausgewählt, welche an dem 12.05.2022 durchgeführt wurden, wobei der Datepicker für den zweiten Testlauf geöffnet ist. 
+Innerhalb des Tools können anschließend zwei Testläufe mittels Datepicker ausgewählt werden. Die Tage sind dabei mit verschiedenen Abstufungen der Farbe lila hinterlegt, wobei der Hintergrund dunkler wird, je mehr Testläufe an einem Tag durchgeführt werden. In dem gezeigten Beispiel sind zwei Testläufe ausgewählt, welche an dem 05.12.2022 durchgeführt wurden, wobei der Datepicker für den zweiten Testlauf geöffnet ist. 
 
 Die Legende gibt Auskunft darüber, wie die Laufzeitdifferenzen farblich hinterlegt werden.
 
@@ -53,7 +53,7 @@ Die Allgemeinen Infos dienen zur Orientierung, wobei sich hinter dem Tooltip ein
 
 wurde jedoch wiederlegt.
 
-Anschließend werden die Informationen zu den einzelenen Laufzeitdifferenzen aufgelistet, einzelene Tests, welche fehlerhaft sind, neu hinzugekommen sind oder entfernt wurden, werden nicht angezeigt, da diese keine aussagekräftigen Ergebniss liefern.
+Anschließend werden die Informationen zu den einzelnen Laufzeitdifferenzen aufgelistet, einzelne Tests, welche fehlerhaft sind, neu hinzugekommen sind oder entfernt wurden, werden nicht angezeigt, da diese keine aussagekräftigen Ergebniss liefern.
 
 Mittels Zahradicon in der Ecke können die Einstellungen geöffnet werden. Die maximale Laufzeitdifferenz dient insbesondere der farblichen Hinterlegung und der Filterung, falls nur Tests angezeigt werden, dessen Laufzeit die gesetzte Grenze überschreitet. Zudem kann die Ansicht auf prozentuale Werte geändert werden, da diese gegebenfalls aussagekräftiger sind. Das Feature zum Vergleich von Spannen kann sich unberechenbar verhalten und wurde vor allem genutzt um die Evalutaion durchzuführen.
 
